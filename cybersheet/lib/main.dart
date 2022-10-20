@@ -35,10 +35,20 @@ class Home extends StatelessWidget {
               textStyle: const TextStyle(fontSize: 20),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, feedRoute,
-                  arguments: 'arguments/data from home');
+              Navigator.pushNamed(context, newCharRoute,
+                  arguments: 'arguments/chose NEW');
             },
-            child: const Text('Click to go somewhere'),
+            child: const Text('New Edgerunner'),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context, newCharRoute,
+                  arguments: 'arguments/chose EDIT');
+            },
+            child: const Text('Edit Edgerunner'),
           )
         ],
       )),
@@ -46,10 +56,10 @@ class Home extends StatelessWidget {
   }
 }
 
-class Feed extends StatelessWidget {
+class newChar extends StatelessWidget {
   final String data;
 
-  Feed(this.data);
+  newChar(this.data);
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +69,37 @@ class Feed extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text('Feed: $data'),
+            Text('New: $data'),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Back...'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class editChar extends StatelessWidget {
+  final String data;
+
+  editChar(this.data);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text('Edit: $data'),
             TextButton(
               style: TextButton.styleFrom(
                 textStyle: const TextStyle(fontSize: 20),

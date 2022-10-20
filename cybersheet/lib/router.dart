@@ -8,9 +8,12 @@ class Router {
     switch (settings.name) {
       case homeRoute:
         return MaterialPageRoute(builder: (_) => Home());
-      case feedRoute:
+      case newCharRoute:
         var data = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) => Feed(data));
+        return MaterialPageRoute(builder: (_) => newChar(data));
+      case editCharRoute:
+        var data = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) => editChar(data));
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

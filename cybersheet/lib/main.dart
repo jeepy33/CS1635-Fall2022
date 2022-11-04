@@ -75,6 +75,66 @@ class newChar extends StatelessWidget {
                 textStyle: const TextStyle(fontSize: 20),
               ),
               onPressed: () {
+                Navigator.pushNamed(context, templatesRouteSR,
+                    arguments: 'arguments/chose Templates');
+              },
+              child: const Text('Street Rat'),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, templatesRouteER,
+                    arguments: 'arguments/chose Templates');
+              },
+              child: const Text('Edgerunner'),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, templatesRouteCP,
+                    arguments: 'arguments/chose Templates');
+              },
+              child: const Text('Complete Package'),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Back...'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class TemplatesPage extends StatelessWidget {
+  final String data;
+
+  TemplatesPage(this.data);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text('Templates: $data'),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
                 Navigator.pop(context);
               },
               child: const Text('Back...'),

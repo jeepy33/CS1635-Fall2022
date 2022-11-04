@@ -14,6 +14,15 @@ class Router {
       case editCharRoute:
         var data = settings.arguments as String;
         return MaterialPageRoute(builder: (_) => editChar(data));
+      case templatesRouteSR:
+        var data = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) => TemplatesPage(data));
+      case templatesRouteER:
+        var data = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) => TemplatesPage(data));
+      case templatesRouteCP:
+        var data = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) => TemplatesPage(data));
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

@@ -16,7 +16,6 @@ class Model {
 
 class Edgerunner {
   String name = '';
-  int eurobucks = 0;
   Lifepath lifepath = new Lifepath();
   Skillbook skills = new Skillbook('skills');
   Inventory items = new Inventory('items');
@@ -24,10 +23,39 @@ class Edgerunner {
   Inventory equipped = new Inventory('equipped');
   Inventory outfit = new Inventory('outfit');
   List<Role> role = [];
-  //getters and setters
-  //damage, heals, add eurobucks
+  int eurobucks = 0;
 
   Edgerunner();
+
+  int heal(int HP) {
+    //ADD logic
+    return 0;
+  }
+
+  int damage(int HP) {
+    //ADD logic
+    return 0;
+  }
+
+  List<Role> getRole() {
+    return this.role;
+  }
+
+  void setRole(List<Role> role) {
+    this.role = role;
+  }
+
+  int getEurobucks() {
+    return this.eurobucks;
+  }
+
+  void setEurobucks(int eurobucks) {
+    this.eurobucks = eurobucks;
+  }
+
+  void addEurobucks(int eurobucks) {
+    //add logic
+  }
 
   Lifepath getLifepath() {
     return this.lifepath;
@@ -37,8 +65,44 @@ class Edgerunner {
     this.lifepath = lifepath;
   }
 
+  Skillbook getSkills() {
+    return this.skills;
+  }
+
+  void setSkills(Skillbook skills) {
+    this.skills = skills;
+  }
+
   Inventory getItems() {
     return this.items;
+  }
+
+  void setItems(Inventory items) {
+    this.items = items;
+  }
+
+  Inventory getCyberware() {
+    return this.cyberware;
+  }
+
+  void setCyberware(Inventory cyberware) {
+    this.cyberware = cyberware;
+  }
+
+  Inventory getEquipped() {
+    return this.equipped;
+  }
+
+  void setEquipped(Inventory equipped) {
+    this.cyberware = cyberware;
+  }
+
+  Inventory getOutfit() {
+    return this.outfit;
+  }
+
+  void setOutfit(Inventory outfit) {
+    this.outfit = outfit;
   }
 
   String getName() {

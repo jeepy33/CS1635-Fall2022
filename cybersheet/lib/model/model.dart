@@ -368,12 +368,33 @@ class Item {
   }
 }
 
+enum SkillCategory {
+  AWARE,
+  BODY,
+  CONTROL,
+  EDUCATION,
+  FIGHTING,
+  PERFORMANCE,
+  GUN,
+  SOCIAL,
+  TECH,
+  NONE
+}
+
 class Skill {
   int id = 0;
   String name = "";
   int level = 0;
-//ADD ENUM!!!
+  SkillCategory category = SkillCategory.NONE;
   Skill(this.id);
+
+  SkillCategory getCategory() {
+    return this.category;
+  }
+
+  void setCategory(SkillCategory category) {
+    this.category = category;
+  }
 
   int getId() {
     return this.id;
@@ -398,4 +419,151 @@ class Skill {
   void setLevel(int level) {
     this.level = level;
   }
+}
+
+class Armor extends Item {
+  int SP = 0;
+  int mod = 0;
+  bool penalty = false;
+  int maxSP = 0;
+
+  Armor(int id) : super(id);
+
+  int getSP() {
+    return this.SP;
+  }
+
+  void setSP(int SP) {
+    this.SP = SP;
+  }
+
+  int getMod() {
+    return this.mod;
+  }
+
+  void setMod(int mod) {
+    this.mod = mod;
+  }
+
+  bool getPenalty() {
+    return this.penalty;
+  }
+
+  void setPenalty(bool penalty) {
+    this.penalty = penalty;
+  }
+
+  int getMaxSP() {
+    return this.maxSP;
+  }
+
+  void setMaxSP(int maxSP) {
+    this.maxSP = maxSP;
+  }
+}
+
+class WeaponMelee extends Item {
+  int SSD = 0;
+  int ROF = 0;
+  int NHR = 0;
+  bool conceal = false;
+
+  WeaponMelee(int id) : super(id);
+
+  int getSSD() {
+    return this.SSD;
+  }
+
+  void setSSD(int SSD) {
+    this.SSD = SSD;
+  }
+
+  int getROF() {
+    return this.ROF;
+  }
+
+  void setROF(int ROF) {
+    this.ROF = ROF;
+  }
+
+  int getNHR() {
+    return this.NHR;
+  }
+
+  void setNHR(int NHR) {
+    this.NHR = NHR;
+  }
+
+  bool getConceal() {
+    return this.conceal;
+  }
+
+  void setConceal(bool conceal) {
+    this.conceal = conceal;
+  }
+}
+
+class WeaponRanged extends Item {
+  String weaponSkill = "";
+  int SSD = 0;
+  int MAG = 0;
+  int ROF = 0;
+  int NHR = 0;
+  bool autofire = false;
+  bool conceal = false;
+
+  WeaponRanged(int id) : super(id);
+
+  int getSSD() {
+    return this.SSD;
+  }
+
+  void setSSD(int SSD) {
+    this.SSD = SSD;
+  }
+
+  int getMAG() {
+    return this.MAG;
+  }
+
+  void setMAG(int MAG) {
+    this.MAG = MAG;
+  }
+
+  int getROF() {
+    return this.ROF;
+  }
+
+  void setROF(int ROF) {
+    this.ROF = ROF;
+  }
+
+  int getNHR() {
+    return this.NHR;
+  }
+
+  void setNHR(int NHR) {
+    this.NHR = NHR;
+  }
+
+  bool getAutofire() {
+    return this.autofire;
+  }
+
+  void setAutofire(bool autofire) {
+    this.autofire = autofire;
+  }
+
+  bool getConceal() {
+    return this.conceal;
+  }
+
+  void setConceal(bool conceal) {
+    this.conceal = conceal;
+  }
+}
+
+class Inventory {
+  String name = "";
+  List<Item> items = [];
 }

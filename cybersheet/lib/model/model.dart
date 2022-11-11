@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Model {
   Edgerunner character = new Edgerunner();
 
@@ -15,8 +17,29 @@ class Model {
 class Edgerunner {
   String name = '';
   int eurobucks = 0;
+  Lifepath lifepath = new Lifepath();
+  Skillbook skills = new Skillbook('skills');
+  Inventory items = new Inventory('items');
+  Inventory cyberware = new Inventory('cyberware');
+  Inventory equipped = new Inventory('equipped');
+  Inventory outfit = new Inventory('outfit');
+  List<Role> role = [];
+  //getters and setters
+  //damage, heals, add eurobucks
 
   Edgerunner();
+
+  Lifepath getLifepath() {
+    return this.lifepath;
+  }
+
+  void setLifepath(Lifepath lifepath) {
+    this.lifepath = lifepath;
+  }
+
+  Inventory getItems() {
+    return this.items;
+  }
 
   String getName() {
     return this.name;
@@ -152,7 +175,7 @@ class Stats {
 class Lifepath {
   String template = '';
   String region = '';
-  List<String> languages = [''];
+  List<String> languages = [];
   String what_are_you_like = '';
   String clothing_style = '';
   String affectation_you_are_never_without = '';
@@ -165,9 +188,9 @@ class Lifepath {
   String childhood_environment = '';
   String background = '';
   int friends = 0;
-  List<String> friend_desc = ['', '', ''];
+  List<String> friend_desc = [];
   int enemies = 0;
-  List<String> enemy_desc = ['', '', ''];
+  List<String> enemy_desc = [];
   String life_goals = '';
 
   Lifepath();
@@ -368,12 +391,41 @@ class Item {
   }
 }
 
+enum SkillCategory {
+  AWARE,
+  BODY,
+  CONTROL,
+  EDUCATION,
+  FIGHTING,
+  PERFORMANCE,
+  GUN,
+  SOCIAL,
+  TECH,
+  NONE
+}
+
 class Skill {
   int id = 0;
   String name = "";
   int level = 0;
-//ADD ENUM!!!
+  SkillCategory category = SkillCategory.NONE;
+
   Skill(this.id);
+
+  void increment() {
+    //add logic
+  }
+  void decrement() {
+    //add logic
+  }
+
+  SkillCategory getCategory() {
+    return this.category;
+  }
+
+  void setCategory(SkillCategory category) {
+    this.category = category;
+  }
 
   int getId() {
     return this.id;
@@ -397,5 +449,226 @@ class Skill {
 
   void setLevel(int level) {
     this.level = level;
+  }
+}
+
+class Armor extends Item {
+  int SP = 0;
+  int mod = 0;
+  bool penalty = false;
+  int maxSP = 0;
+
+  Armor(int id) : super(id);
+
+  int getSP() {
+    return this.SP;
+  }
+
+  void setSP(int SP) {
+    this.SP = SP;
+  }
+
+  int getMod() {
+    return this.mod;
+  }
+
+  void setMod(int mod) {
+    this.mod = mod;
+  }
+
+  bool getPenalty() {
+    return this.penalty;
+  }
+
+  void setPenalty(bool penalty) {
+    this.penalty = penalty;
+  }
+
+  int getMaxSP() {
+    return this.maxSP;
+  }
+
+  void setMaxSP(int maxSP) {
+    this.maxSP = maxSP;
+  }
+}
+
+class WeaponMelee extends Item {
+  int SSD = 0;
+  int ROF = 0;
+  int NHR = 0;
+  bool conceal = false;
+
+  WeaponMelee(int id) : super(id);
+
+  int getSSD() {
+    return this.SSD;
+  }
+
+  void setSSD(int SSD) {
+    this.SSD = SSD;
+  }
+
+  int getROF() {
+    return this.ROF;
+  }
+
+  void setROF(int ROF) {
+    this.ROF = ROF;
+  }
+
+  int getNHR() {
+    return this.NHR;
+  }
+
+  void setNHR(int NHR) {
+    this.NHR = NHR;
+  }
+
+  bool getConceal() {
+    return this.conceal;
+  }
+
+  void setConceal(bool conceal) {
+    this.conceal = conceal;
+  }
+}
+
+class WeaponRanged extends Item {
+  String weaponSkill = "";
+  int SSD = 0;
+  int MAG = 0;
+  int ROF = 0;
+  int NHR = 0;
+  bool autofire = false;
+  bool conceal = false;
+
+  WeaponRanged(int id) : super(id);
+
+  int getSSD() {
+    return this.SSD;
+  }
+
+  void setSSD(int SSD) {
+    this.SSD = SSD;
+  }
+
+  int getMAG() {
+    return this.MAG;
+  }
+
+  void setMAG(int MAG) {
+    this.MAG = MAG;
+  }
+
+  int getROF() {
+    return this.ROF;
+  }
+
+  void setROF(int ROF) {
+    this.ROF = ROF;
+  }
+
+  int getNHR() {
+    return this.NHR;
+  }
+
+  void setNHR(int NHR) {
+    this.NHR = NHR;
+  }
+
+  bool getAutofire() {
+    return this.autofire;
+  }
+
+  void setAutofire(bool autofire) {
+    this.autofire = autofire;
+  }
+
+  bool getConceal() {
+    return this.conceal;
+  }
+
+  void setConceal(bool conceal) {
+    this.conceal = conceal;
+  }
+}
+
+class Inventory {
+  String name = "";
+  List<Item> items = [];
+
+  Inventory(this.name);
+
+  void addItem(Item items) {
+    //Add item to list
+  }
+  void removeItem(Item items) {
+    //Removes item from list
+  }
+  bool hasItem(Item item) {
+    //ADD logic
+    return false;
+  }
+
+  int getQuantity(Item item) {
+    //Add logic
+    return 0;
+  }
+}
+
+enum RoleType {
+  ROCKERBOY,
+  SOLO,
+  NETRUNNER,
+  TECH,
+  MEDTECH,
+  MEDIA,
+  EXEC,
+  LAWMAN,
+  FIXER,
+  NOMAD,
+  NONE
+}
+
+class Role {
+  int rank = 0;
+  RoleType type = RoleType.NONE;
+  String desc = "";
+
+  Role(this.type, this.rank);
+
+  int getRank() {
+    return this.rank;
+  }
+
+  void setRank(int rank) {
+    this.rank = rank;
+  }
+
+  RoleType getTyper() {
+    return this.type;
+  }
+
+  void setTyper(RoleType type) {
+    this.type = type;
+  }
+}
+
+class Skillbook {
+  String name = "";
+  List<Skill> skill = [];
+
+  Skillbook(this.name);
+
+  void addSkill(Skill skil) {
+    //add logic
+  }
+  void removeSkill(Skill skill) {
+    //add logic
+  }
+  int getLevel(Skill skill) {
+    //Add logic
+    return 0;
   }
 }

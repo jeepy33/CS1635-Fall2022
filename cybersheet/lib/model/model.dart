@@ -152,7 +152,7 @@ class Stats {
 class Lifepath {
   String template = '';
   String region = '';
-  List<String> languages = [''];
+  List<String> languages = [];
   String what_are_you_like = '';
   String clothing_style = '';
   String affectation_you_are_never_without = '';
@@ -165,9 +165,9 @@ class Lifepath {
   String childhood_environment = '';
   String background = '';
   int friends = 0;
-  List<String> friend_desc = ['', '', ''];
+  List<String> friend_desc = [];
   int enemies = 0;
-  List<String> enemy_desc = ['', '', ''];
+  List<String> enemy_desc = [];
   String life_goals = '';
 
   Lifepath();
@@ -386,7 +386,15 @@ class Skill {
   String name = "";
   int level = 0;
   SkillCategory category = SkillCategory.NONE;
+
   Skill(this.id);
+
+  void increment() {
+    //add logic
+  }
+  void decrement() {
+    //add logic
+  }
 
   SkillCategory getCategory() {
     return this.category;
@@ -566,4 +574,78 @@ class WeaponRanged extends Item {
 class Inventory {
   String name = "";
   List<Item> items = [];
+
+  Inventory(this.name);
+
+  void addItem(Item items) {
+    //Add item to list
+  }
+  void removeItem(Item items) {
+    //Removes item from list
+  }
+  bool hasItem(Item item) {
+    //ADD logic
+    return false;
+  }
+
+  int getQuantity(Item item) {
+    //Add logic
+    return 0;
+  }
+}
+
+enum RoleType {
+  ROCKERBOY,
+  SOLO,
+  NETRUNNER,
+  TECH,
+  MEDTECH,
+  MEDIA,
+  EXEC,
+  LAWMAN,
+  FIXER,
+  NOMAD,
+  NONE
+}
+
+class Role {
+  int rank = 0;
+  RoleType type = RoleType.NONE;
+  String desc = "";
+
+  Role(this.type, this.rank);
+
+  int getRank() {
+    return this.rank;
+  }
+
+  void setRank(int rank) {
+    this.rank = rank;
+  }
+
+  RoleType getTyper() {
+    return this.type;
+  }
+
+  void setTyper(RoleType type) {
+    this.type = type;
+  }
+}
+
+class Skillbook {
+  String name = "";
+  List<Skill> skill = [];
+
+  Skillbook(this.name);
+
+  void addSkill(Skill skil) {
+    //add logic
+  }
+  void removeSkill(Skill skill) {
+    //add logic
+  }
+  int getLevel(Skill skill) {
+    //Add logic
+    return 0;
+  }
 }

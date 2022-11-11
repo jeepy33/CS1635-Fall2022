@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Model {
   Edgerunner character = new Edgerunner();
 
@@ -15,8 +17,29 @@ class Model {
 class Edgerunner {
   String name = '';
   int eurobucks = 0;
+  Lifepath lifepath = new Lifepath();
+  Skillbook skills = new Skillbook('skills');
+  Inventory items = new Inventory('items');
+  Inventory cyberware = new Inventory('cyberware');
+  Inventory equipped = new Inventory('equipped');
+  Inventory outfit = new Inventory('outfit');
+  List<Role> role = [];
+  //getters and setters
+  //damage, heals, add eurobucks
 
   Edgerunner();
+
+  Lifepath getLifepath() {
+    return this.lifepath;
+  }
+
+  void setLifepath(Lifepath lifepath) {
+    this.lifepath = lifepath;
+  }
+
+  Inventory getItems() {
+    return this.items;
+  }
 
   String getName() {
     return this.name;

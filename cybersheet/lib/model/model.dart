@@ -660,18 +660,20 @@ class WeaponRanged extends Item {
 
 class Inventory {
   String name = "";
-  List<Item> items = [];
+  List<Item> items = <Item>[];
 
   Inventory(this.name);
 
-  void addItem(Item items) {
-    //Add item to list
+  void addItem(Item item) {
+    this.items.add(item);
   }
-  void removeItem(Item items) {
-    //Removes item from list
+
+  void removeItem(Item item) {
+    this.items.remove(item);
   }
+
   bool hasItem(Item item) {
-    //ADD logic
+    //add logic
     return false;
   }
 
@@ -721,16 +723,18 @@ class Role {
 
 class Skillbook {
   String name = "";
-  List<Skill> skill = [];
+  List<Skill> skill = <Skill>[];
 
   Skillbook(this.name);
 
-  void addSkill(Skill skil) {
-    //add logic
+  void addSkill(Skill skill) {
+    this.skill.add(skill);
   }
+
   void removeSkill(Skill skill) {
-    //add logic
+    this.skill.add(skill);
   }
+
   int getLevel(Skill skill) {
     //Add logic
     return 0;

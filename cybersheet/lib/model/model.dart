@@ -740,3 +740,20 @@ class Skillbook {
     return 0;
   }
 }
+
+class Table {
+  String name = "";
+  int x;
+  int y;
+  var table;
+
+  Table(this.x, this.y);
+
+  void initialize() {
+    this.table = List.generate(x, (index) => y, growable: false);
+  }
+
+  String getValue(int x) {
+    return table[x][1];
+  }
+}

@@ -75,7 +75,7 @@ class newChar extends StatelessWidget {
                 textStyle: const TextStyle(fontSize: 20),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, templatesRouteSR,
+                Navigator.pushNamed(context, templatesRoute,
                     arguments: 'arguments/chose Templates');
               },
               child: const Text('Street Rat'),
@@ -85,7 +85,7 @@ class newChar extends StatelessWidget {
                 textStyle: const TextStyle(fontSize: 20),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, templatesRouteER,
+                Navigator.pushNamed(context, templatesRoute,
                     arguments: 'arguments/chose Templates');
               },
               child: const Text('Edgerunner'),
@@ -95,7 +95,7 @@ class newChar extends StatelessWidget {
                 textStyle: const TextStyle(fontSize: 20),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, templatesRouteCP,
+                Navigator.pushNamed(context, templatesRoute,
                     arguments: 'arguments/chose Templates');
               },
               child: const Text('Complete Package'),
@@ -130,6 +130,327 @@ class TemplatesPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text('Templates: $data'),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, rolePage,
+                    arguments: 'arguments/chose Templates');
+              },
+              child: const Text('Roles'),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Back...'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class LifePath extends StatelessWidget {
+  final String data;
+
+  LifePath(this.data);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text('Templates: $data'),
+            Text('Role: $data'),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, confirmationRoute,
+                    arguments: 'arguments/chose Templates');
+              },
+              child: const Text('confirm'),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Back...'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class RolePart extends StatelessWidget {
+  final String data;
+
+  RolePart(this.data);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text('Role: $data'),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, templateLifePath,
+                    arguments: 'arguments/chose Templates');
+              },
+              child: const Text('Life Path 1'),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Back...'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ConfirmPage extends StatelessWidget {
+  final String data;
+
+  ConfirmPage(this.data);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text('confirm: $data'),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, LifePath2Page,
+                    arguments: 'arguments/chose Templates');
+              },
+              child: const Text('Life Path 2'),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Back...'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class LifePath2 extends StatelessWidget {
+  final String data;
+
+  LifePath2(this.data);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text('LifePath2: $data'),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, LifePath3Page,
+                    arguments: 'arguments/chose Templates');
+              },
+              child: const Text('Life Path 3'),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Back...'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class LifePath3 extends StatelessWidget {
+  final String data;
+
+  LifePath3(this.data);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text('LifePath3: $data'),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, friendsRoute,
+                    arguments: 'arguments/chose Templates');
+              },
+              child: const Text('Friends'),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Back...'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Friends extends StatelessWidget {
+  final String data;
+
+  Friends(this.data);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text('Friends: $data'),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, enemiesRoute,
+                    arguments: 'arguments/chose Templates');
+              },
+              child: const Text('Enemies'),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Back...'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Enemies extends StatelessWidget {
+  final String data;
+
+  Enemies(this.data);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text('Enemies: $data'),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, lifeGoalsRoute,
+                    arguments: 'arguments/chose Templates');
+              },
+              child: const Text('Life Goals'),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Back...'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class LifeGoals extends StatelessWidget {
+  final String data;
+
+  LifeGoals(this.data);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text('LifeGoals: $data'),
             TextButton(
               style: TextButton.styleFrom(
                 textStyle: const TextStyle(fontSize: 20),

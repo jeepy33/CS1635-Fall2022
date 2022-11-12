@@ -14,15 +14,33 @@ class Router {
       case editCharRoute:
         var data = settings.arguments as String;
         return MaterialPageRoute(builder: (_) => editChar(data));
-      case templatesRouteSR:
+      case templatesRoute:
         var data = settings.arguments as String;
         return MaterialPageRoute(builder: (_) => TemplatesPage(data));
-      case templatesRouteER:
+      case templateLifePath:
         var data = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) => TemplatesPage(data));
-      case templatesRouteCP:
+        return MaterialPageRoute(builder: (_) => LifePath(data));
+      case rolePage:
         var data = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) => TemplatesPage(data));
+        return MaterialPageRoute(builder: (_) => RolePart(data));
+      case confirmationRoute:
+        var data = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) => ConfirmPage(data));
+      case LifePath2Page:
+        var data = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) => LifePath2(data));
+      case LifePath3Page:
+        var data = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) => LifePath3(data));
+      case friendsRoute:
+        var data = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) => Friends(data));
+      case enemiesRoute:
+        var data = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) => Enemies(data));
+      case lifeGoalsRoute:
+        var data = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) => LifeGoals(data));
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

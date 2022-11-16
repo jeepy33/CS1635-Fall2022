@@ -199,7 +199,7 @@ class LifePath extends StatelessWidget {
 
 class RolePart extends StatelessWidget {
   final String data;
-
+  String istapped = '';
   RolePart(this.data);
 
   @override
@@ -207,7 +207,8 @@ class RolePart extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text('Role: $data'),
@@ -221,6 +222,78 @@ class RolePart extends StatelessWidget {
               },
               child: const Text('Life Path 1'),
             ),
+            const SizedBox(
+              height: 40,
+              width: 300,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Life Path Question',
+                ),
+              ),
+            ),
+            ListTile(
+              contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 470, vertical: 20), //change for side padding
+              title: Row(
+                children: <Widget>[
+                  ButtonTheme(
+                    minWidth: 300.0,
+                    height: 600.0,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        // ignore: deprecated_member_use
+                        primary: Colors.teal,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 40, vertical: 40),
+                        // minimumSize: const Size.fromHeight(90),
+                        textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontStyle: FontStyle.normal),
+                      ),
+                      onPressed: () {},
+                      child: const Text('Techie'),
+                    ),
+                  ),
+                  ButtonTheme(
+                      minWidth: 300.0,
+                      height: 600.0,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          // ignore: deprecated_member_use
+                          primary: Colors.teal,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 40, vertical: 40),
+                          // minimumSize: const Size.fromHeight(90),
+                          textStyle: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontStyle: FontStyle.normal),
+                        ),
+                        onPressed: () {},
+                        child: const Text('Media'),
+                      )),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                ],
+              ),
+            ),
+            DropdownButton(
+                value: dropdownvalue,
+                icon: const Icon(Icons.keyboard_arrow_down),
+                items: items.map((String items) {
+                  return DropdownMenuItem(
+                    value: items,
+                    child: Text(items),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    dropdownvalue = newValue!;
+                  });
+                }),
             TextButton(
               style: TextButton.styleFrom(
                 textStyle: const TextStyle(fontSize: 20),
@@ -236,6 +309,9 @@ class RolePart extends StatelessWidget {
     );
   }
 }
+
+@protected
+void setState(VoidCallback fn) {}
 
 class ConfirmPage extends StatelessWidget {
   final String data;

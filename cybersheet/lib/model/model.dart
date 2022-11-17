@@ -14,7 +14,10 @@ class Model {
   }
 }
 
+enum Template { STREETRAT, EDGERUNNER, COMPLETE, NONE }
+
 class Edgerunner {
+  Template template = Template.NONE;
   String name = '';
   Lifepath lifepath = new Lifepath();
   Skillbook skills = new Skillbook('skills');
@@ -43,6 +46,14 @@ class Edgerunner {
 
   void setRole(List<Role> role) {
     this.role = role;
+  }
+
+  Template getTemplate() {
+    return this.template;
+  }
+
+  void setTemplate(Template template) {
+    this.template = template;
   }
 
   int getEurobucks() {

@@ -23,9 +23,6 @@ class Router {
       case rolePage:
         var data = settings.arguments as String;
         return MaterialPageRoute(builder: (_) => RolePart(data));
-      case confirmationRoute:
-        var data = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) => ConfirmPage(data));
       case LifePath2Page:
         var data = settings.arguments as String;
         return MaterialPageRoute(builder: (_) => LifePath2(data));

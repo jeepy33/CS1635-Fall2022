@@ -1,7 +1,11 @@
+import 'package:cybersheet/presenter/presenter.dart';
+import 'package:cybersheet/model/model.dart';
 import 'package:flutter/material.dart';
 
 import 'router.dart' as LocalRouter;
 import 'constants.dart';
+
+Presenter presenter = new Presenter();
 
 void main() {
   runApp(MyApp());
@@ -77,6 +81,7 @@ class newChar extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, templatesRoute,
                     arguments: 'arguments/chose Templates');
+                presenter.model.character.setTemplate(Template.STREETRAT);
               },
               child: const Text('Street Rat'),
             ),
@@ -87,6 +92,7 @@ class newChar extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, templatesRoute,
                     arguments: 'arguments/chose Templates');
+                presenter.model.character.setTemplate(Template.EDGERUNNER);
               },
               child: const Text('Edgerunner'),
             ),
@@ -97,6 +103,7 @@ class newChar extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, templatesRoute,
                     arguments: 'arguments/chose Templates');
+                presenter.model.character.setTemplate(Template.COMPLETE);
               },
               child: const Text('Complete Package'),
             ),
@@ -199,7 +206,6 @@ class LifePath extends StatelessWidget {
 
 class RolePart extends StatelessWidget {
   final String data;
-  String istapped = '';
   RolePart(this.data);
 
   @override
@@ -208,7 +214,7 @@ class RolePart extends StatelessWidget {
       body: Center(
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text('Role: $data'),
@@ -217,125 +223,10 @@ class RolePart extends StatelessWidget {
                 textStyle: const TextStyle(fontSize: 20),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, templateLifePath,
-                    arguments: 'arguments/chose Templates');
-              },
-              child: const Text('Life Path 1'),
-            ),
-            const SizedBox(
-              height: 40,
-              width: 300,
-              child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Life Path Question',
-                ),
-              ),
-            ),
-            ListTile(
-              contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 470, vertical: 20), //change for side padding
-              title: Row(
-                children: <Widget>[
-                  ButtonTheme(
-                    minWidth: 300.0,
-                    height: 600.0,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        // ignore: deprecated_member_use
-                        primary: Colors.teal,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 40),
-                        // minimumSize: const Size.fromHeight(90),
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontStyle: FontStyle.normal),
-                      ),
-                      onPressed: () {},
-                      child: const Text('Techie'),
-                    ),
-                  ),
-                  ButtonTheme(
-                      minWidth: 300.0,
-                      height: 600.0,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          // ignore: deprecated_member_use
-                          primary: Colors.teal,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 40, vertical: 40),
-                          // minimumSize: const Size.fromHeight(90),
-                          textStyle: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontStyle: FontStyle.normal),
-                        ),
-                        onPressed: () {},
-                        child: const Text('Media'),
-                      )),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                ],
-              ),
-            ),
-            DropdownButton(
-                value: dropdownvalue,
-                icon: const Icon(Icons.keyboard_arrow_down),
-                items: items.map((String items) {
-                  return DropdownMenuItem(
-                    value: items,
-                    child: Text(items),
-                  );
-                }).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    dropdownvalue = newValue!;
-                  });
-                }),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: const TextStyle(fontSize: 20),
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Back...'),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-@protected
-void setState(VoidCallback fn) {}
-
-class ConfirmPage extends StatelessWidget {
-  final String data;
-
-  ConfirmPage(this.data);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Text('confirm: $data'),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: const TextStyle(fontSize: 20),
-              ),
-              onPressed: () {
                 Navigator.pushNamed(context, LifePath2Page,
                     arguments: 'arguments/chose Templates');
               },
-              child: const Text('Life Path 2'),
+              child: const Text('Life Path 1'),
             ),
             TextButton(
               style: TextButton.styleFrom(
@@ -375,7 +266,7 @@ class LifePath2 extends StatelessWidget {
                 Navigator.pushNamed(context, LifePath3Page,
                     arguments: 'arguments/chose Templates');
               },
-              child: const Text('Life Path 3'),
+              child: const Text('Life Path 2'),
             ),
             TextButton(
               style: TextButton.styleFrom(

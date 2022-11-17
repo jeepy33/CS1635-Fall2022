@@ -1,4 +1,6 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
+import '../constants.dart';
 
 class Model {
   Edgerunner character = new Edgerunner();
@@ -14,17 +16,16 @@ class Model {
   }
 }
 
-enum Template { STREETRAT, EDGERUNNER, COMPLETE, NONE }
-
 class Edgerunner {
   Template template = Template.NONE;
-  String name = '';
+  String name = 'Test Edgerunner';
   Lifepath lifepath = new Lifepath();
   Skillbook skills = new Skillbook('skills');
   Inventory items = new Inventory('items');
   Inventory cyberware = new Inventory('cyberware');
   Inventory equipped = new Inventory('equipped');
   Inventory outfit = new Inventory('outfit');
+  Stats stats = new Stats();
   List<Role> role = [];
   int eurobucks = 0;
 
@@ -142,6 +143,23 @@ class Stats {
 
   Stats();
 
+  void initialize(List<int> stats) {
+    this.INT = stats[0];
+    this.REF = stats[1];
+    this.DEX = stats[2];
+    this.TECH = stats[3];
+    this.COOL = stats[4];
+    this.WILL = stats[5];
+    this.LUCK = stats[6];
+    this.MOVE = stats[7];
+    this.BODY = stats[8];
+    this.EMP = stats[9];
+
+    this.HP = 10 + (5 * ((this.BODY + this.WILL) / 2.0).ceil());
+    this.HUM = this.EMP * 10;
+    this.initiative = this.REF;
+  }
+
   int getINT() {
     return this.INT;
   }
@@ -253,19 +271,22 @@ class Lifepath {
   List<String> languages = [];
   String what_are_you_like = '';
   String clothing_style = '';
+  String hairstyle = '';
   String affectation_you_are_never_without = '';
   String what_do_you_value_most = '';
   String how_do_you_feel_about_most_people = '';
   String most_valued_person = '';
   String most_valued_possession = '';
-  String original_background = '';
+  String background = '';
   String background_desc = '';
   String childhood_environment = '';
-  String background = '';
+  String family_crisis = '';
   int friends = 0;
   List<String> friend_desc = [];
   int enemies = 0;
   List<String> enemy_desc = [];
+  List<String> enemy_cause = [];
+  List<String> enemy_resource = [];
   String life_goals = '';
 
   Lifepath();
@@ -350,14 +371,6 @@ class Lifepath {
 
   void setMost_valued_possession(String most_valued_possession) {
     this.most_valued_possession = most_valued_possession;
-  }
-
-  String getOriginal_background() {
-    return this.original_background;
-  }
-
-  void setOriginal_background(String original_background) {
-    this.original_background = original_background;
   }
 
   String getBackground_desc() {
@@ -466,26 +479,13 @@ class Item {
   }
 }
 
-enum SkillCategory {
-  AWARE,
-  BODY,
-  CONTROL,
-  EDUCATION,
-  FIGHTING,
-  PERFORMANCE,
-  GUN,
-  SOCIAL,
-  TECH,
-  NONE
-}
-
 class Skill {
   int id = 0;
   String name = "";
   int level = 0;
   SkillCategory category = SkillCategory.NONE;
 
-  Skill(this.id);
+  Skill(this.name, this.level);
 
   void increment() {
     //add logic
@@ -694,20 +694,6 @@ class Inventory {
   }
 }
 
-enum RoleType {
-  ROCKERBOY,
-  SOLO,
-  NETRUNNER,
-  TECH,
-  MEDTECH,
-  MEDIA,
-  EXEC,
-  LAWMAN,
-  FIXER,
-  NOMAD,
-  NONE
-}
-
 class Role {
   int rank = 0;
   RoleType type = RoleType.NONE;
@@ -730,6 +716,11 @@ class Role {
   void setTyper(RoleType type) {
     this.type = type;
   }
+
+  @override
+  String toString() {
+    return type.toString().substring(9, type.toString().length);
+  }
 }
 
 class Skillbook {
@@ -746,6 +737,14 @@ class Skillbook {
     this.skill.add(skill);
   }
 
+  Map<String, num> getMap() {
+    Map<String, num> map = {};
+    skill.forEach((element) {
+      map[element.name] = element.level;
+    });
+    return map;
+  }
+
   int getLevel(Skill skill) {
     //Add logic
     return 0;
@@ -753,7 +752,7 @@ class Skillbook {
 }
 
 class Table {
-  String name = "";
+  String name = '';
   int x;
   int y;
   var table;
@@ -764,7 +763,7 @@ class Table {
     this.table = List.generate(x, (index) => y, growable: false);
   }
 
-  String getValue(int x) {
-    return table[x][1];
+  String getValue(int x, int y) {
+    return table[x][y];
   }
 }

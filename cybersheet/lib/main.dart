@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(fontFamily: 'Kontakt'), //line for default font
       home: Scaffold(
         body: Home(),
       ),
@@ -1048,7 +1049,7 @@ class _friendsState extends State<Friends> {
                   value: value,
                   child: Text(
                     value,
-                    style: const TextStyle(fontSize: 20),
+                    style: const TextStyle(fontSize: 15),
                   ),
                 );
               }).toList(),

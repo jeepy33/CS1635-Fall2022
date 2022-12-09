@@ -1910,6 +1910,8 @@ class _inventoryState extends State<InventoryPage> {
     list.forEach((element) {
       var textSegment;
       if (map[element] != 0) {
+        textSegment = Padding(
+            padding: EdgeInsets.only(bottom: 10), child: Text("$element"));
         // DropdownButton<String>(
         //       value: rockerItems,
         //       items:

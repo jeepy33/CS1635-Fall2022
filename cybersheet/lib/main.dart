@@ -1836,6 +1836,53 @@ class _skillsState extends State<SkillsPage> {
                         .addSkill(Skill(key, value));
                   });
                 });
+                Navigator.pushNamed(context, inventoryRoute,
+                    arguments: 'arguments/chose Templates'); //changing
+              },
+              child: const Text('Next'),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Back'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class InventoryPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _inventoryState();
+}
+
+class _inventoryState extends State<InventoryPage> {
+  String role = presenter.model.character.role.toString();
+  Map matrix = rockerboySB;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text('Inventory'), //added
+            Column(children: createItemList(rockerItems)),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                setState(() {
+                  // Add all items to inventory
+                });
                 Navigator.pushNamed(context, editCharRoute,
                     arguments: 'arguments/chose Templates');
               },
@@ -1854,6 +1901,36 @@ class _skillsState extends State<SkillsPage> {
         ),
       ),
     );
+  }
+
+  createItemList(Map<String, int> map) {
+    var textFields = <Padding>[];
+    var list = map.keys;
+
+    list.forEach((element) {
+      var textSegment;
+      if (map[element] != 0) {
+        textSegment = Padding(
+            padding: EdgeInsets.only(bottom: 10), child: Text("$element"));
+        // DropdownButton<String>(
+        //       value: rockerItems,
+        //       items:
+        //           rockerItems.map<DropdownMenuItem<String>>((String value) {
+        //         return DropdownMenuItem<String>(
+        //           value: value,
+        //           child: Text(
+        //             value,
+        //             style: const TextStyle(fontSize: 20),
+        //           ),
+        //         );
+        //dropdown here
+      } else {
+        textSegment = Padding(
+            padding: EdgeInsets.only(bottom: 10), child: Text("$element"));
+      }
+      return textFields.add(textSegment);
+    });
+    return textFields;
   }
 }
 

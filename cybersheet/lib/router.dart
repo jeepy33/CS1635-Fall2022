@@ -45,6 +45,9 @@ class Router {
         return MaterialPageRoute(builder: (_) => StatsPage());
       case skillsRoute:
         return MaterialPageRoute(builder: (_) => SkillsPage());
+      case inventoryRoute: //inventory page
+        return MaterialPageRoute(builder: (_) => InventoryPage());
+
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

@@ -18,8 +18,10 @@ const String friendsRoute = environmentRoute + "/friends";
 const String enemiesRoute = friendsRoute + "/enemies";
 const String lifeGoalsRoute = enemiesRoute + "/lifeGoals";
 const String statsRoute = lifeGoalsRoute + "/stats";
-const String skillsRoute = statsRoute + "/skills";
+const String inventoryRoute = statsRoute + "/skills";
+const String skillsRoute = inventoryRoute + "/stats"; //changed this
 const String editCharRoute = homeRoute + "/edit";
+//const String inventoryRoute = skillsRoute + "/inventory";
 
 enum Template { STREETRAT, EDGERUNNER, COMPLETE, NONE }
 
@@ -767,4 +769,16 @@ const Map techSB = {
   'Play Instrument': 6,
   'Streetwiswe': 6,
   'Wardrobe & Style': 4
+};
+
+const Map<String, int> rockerItems = {
+  //Add items
+  'Very Heavy Pistol': 0,
+  'Basic VH Pistol': 0,
+  'Ammunition x50': 0,
+  'Heavy Melee Weapon': 1, //toggle 1
+  'Flashbang Grenade': 1, //toggle 2
+  'Teargas Grenade x2': 0,
+  'Light Armorjack Body Armor (SP11)': 0,
+  'Light Armorjack Head Armor (SP11)': 0
 };

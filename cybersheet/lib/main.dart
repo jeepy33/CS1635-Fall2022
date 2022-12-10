@@ -2469,42 +2469,6 @@ class _inventoryState extends State<InventoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Text('Inventory'), //added
-            Column(children: createItemList(itemMap)),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: const TextStyle(fontSize: 20),
-              ),
-              onPressed: () {
-                setState(() {
-                  itemMap.forEach((key, value) {
-                    if (value == 0) {
-                      presenter.model.character.items.addItem(Item(key));
-                    }
-                  });
-                  presenter.model.character.items
-                      .addItem(Item(presenter.globalDropDown));
-                });
-                Navigator.pushNamed(context, editCharRoute,
-                    arguments: 'arguments/chose Templates');
-              },
-              child: const Text('Next'),
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: const TextStyle(fontSize: 20),
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Back'),
-            )
-          ],
         appBar: AppBar(
           toolbarHeight: 120,
           backgroundColor: Color.fromARGB(228, 228, 35, 24),
@@ -2528,43 +2492,35 @@ class _inventoryState extends State<InventoryPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text('Inventory'), //added
-                Column(children: createItemList(rockerItems)),
-                const SizedBox(
-                  height: 60,
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 15),
-                    textStyle:
-                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
+                Column(children: createItemList(itemMap)),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    textStyle: const TextStyle(fontSize: 20),
                   ),
                   onPressed: () {
                     setState(() {
-                      // Add all items to inventory
+                      itemMap.forEach((key, value) {
+                        if (value == 0) {
+                          presenter.model.character.items.addItem(Item(key));
+                        }
+                      });
+                      presenter.model.character.items
+                          .addItem(Item(presenter.globalDropDown));
                     });
                     Navigator.pushNamed(context, editCharRoute,
                         arguments: 'arguments/chose Templates');
                   },
                   child: const Text('Next'),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 15),
-                    textStyle:
-                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    textStyle: const TextStyle(fontSize: 20),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
                   },
                   child: const Text('Back'),
-                )
+                ),
               ],
             ),
           ),
@@ -2628,200 +2584,133 @@ class _editChar extends State<editChar> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('CyberPunk PLace holder'),
-        backgroundColor: Color.fromARGB(255, 228, 35, 24),
-      ),
-      backgroundColor: Color.fromARGB(255, 228, 35, 24),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            TabBar(
-                controller: _tabController,
-                labelColor: Colors.white,
-                indicatorColor: Colors.black,
-                tabs: const <Widget>[
-                  Tab(icon: Icon(Icons.badge_sharp)),
-                  Tab(
-                      icon: Icon(Icons
-                          .construction_outlined)), // or build_outline, cinstruction
-                  Tab(icon: Icon(Icons.sports_martial_arts_sharp)), // sport mma
-                  Tab(icon: Icon(Icons.shield_moon_outlined)),
-                  //Tab(icon: Icon(Icons.auto_fix_high_sharp)),
-                  Tab(icon: Icon(Icons.account_tree_outlined)),
-                  Tab(icon: Icon(Icons.nightlife_outlined)),
-                  Tab(icon: Icon(Icons.people_outlined)),
-                  Tab(icon: Icon(Icons.note_outlined)),
-                ]),
-            Text(
-              presenter.model.character.name,
-              style: const TextStyle(fontSize: 30),
-              textAlign: TextAlign.left,
-              selectionColor: Colors.white,
-            ),
-            //DropdownButton(items: numbers, onChanged: onChanged)
-            // DropdownButtonFormField(items: items, onChanged: onChanged)
-            Text(
-                '${presenter.model.character.role[0]}: ${presenter.model.character.role[0].rank}',
-                textAlign: TextAlign.left),
-            Text(
-                'HP: ${presenter.model.character.stats.HP}/${presenter.model.character.stats.HP}',
-                textAlign: TextAlign.left),
-
-            Row(children: const [
-              Icon(Icons.lightbulb_outline),
-              Text('INT', style: TextStyle(fontWeight: FontWeight.bold)),
-              // SizedBox(width: 12),
-              DropButtonINT(),
-              //SizedBox(width: 12),
-              Icon(Icons.sports_martial_arts),
-              Text('REF', style: TextStyle(fontWeight: FontWeight.bold)),
-              //SizedBox(width: 12),
-              DropButtonREF(),
-              //SizedBox(width: 12),
-              Icon(Icons.lightbulb_outline),
-              Text('DEX', style: TextStyle(fontWeight: FontWeight.bold)),
-              //SizedBox(width: 12),
-              DropButtonDEX(),
-              //SizedBox(width: 12),
-              Icon(Icons.construction),
-              Text('TECH', style: TextStyle(fontWeight: FontWeight.bold)),
-              // SizedBox(width: 12),
-              DropButtonTECH(),
-              //SizedBox(width: 12),
-              Icon(Icons.snowing),
-              Text('COOL', style: TextStyle(fontWeight: FontWeight.bold)),
-              //SizedBox(width: 12),
-              DropButtonCOOL(),
-              // SizedBox(width: 12),
-              Icon(Icons.lightbulb_outline),
-              Text('WILL', style: TextStyle(fontWeight: FontWeight.bold)),
-              // SizedBox(width: 12),
-              DropButtonWILL(),
-              //SizedBox(width: 12),
-              Icon(Icons.lightbulb_circle),
-              Text('LUCK', style: TextStyle(fontWeight: FontWeight.bold)),
-              // SizedBox(width: 12),
-              DropButtonLUCK(),
-              //SizedBox(width: 12),
-              Icon(Icons.lightbulb_outline),
-              Text('DEX', style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(width: 12),
-              DropButtonMOVE(),
-              //SizedBox(width: 12),
-              Icon(Icons.lightbulb_outline),
-              Text('BODY', style: TextStyle(fontWeight: FontWeight.bold)),
-              //SizedBox(width: 12),
-              // DropButtonBODY(),
-              // //SizedBox(width: 12),
-              // Icon(Icons.lightbulb_outline),
-              // Text('EMP', style: TextStyle(fontWeight: FontWeight.bold)),
-              // // SizedBox(width: 12),
-              // DropButtonEMP(),
-              // //SizedBox(width: 12),
-              // Icon(Icons.lightbulb_outline),
-              // Text('Humanity', style: TextStyle(fontWeight: FontWeight.bold)),
-              // //SizedBox(width: 12),
-              // DropButtonHumanity(),
-            ]),
-            Text('Initiative: +${presenter.model.character.stats.REF}',
-                textAlign: TextAlign.left),
-            Column(
-                children:
-                    presenter.model.character.skills.getMap().entries.map((e) {
-              num number = e.value;
-              var w = Text(e.key + ': $number',
-                  style: const TextStyle(fontSize: 10),
-                  textAlign: TextAlign.left);
-              return w;
-            }).toList()),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: const TextStyle(fontSize: 20),
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, homeRoute,
-                    arguments: 'arguments/chose Templates');
-              },
-              child: const Text('Home'),
-            )
-          ],
+        appBar: AppBar(
+          title: const Text('CyberPunk PLace holder'),
+          backgroundColor: Color.fromARGB(255, 228, 35, 24),
         ),
         backgroundColor: Color.fromARGB(228, 228, 35, 24),
         body: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage("Cyberwire.png"),
-            fit: BoxFit.cover,
-          )),
-          child: Center(
-            child: Column(
-              children: <Widget>[
-                Text(
-                  presenter.model.character.name,
-                  style: const TextStyle(fontSize: 30),
-                  textAlign: TextAlign.left,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+              image: AssetImage("Cyberwire.png"),
+              fit: BoxFit.cover,
+            )),
+            child: Center(
+                child: Column(children: <Widget>[
+              TabBar(
+                  controller: _tabController,
+                  labelColor: Colors.white,
+                  indicatorColor: Colors.black,
+                  tabs: const <Widget>[
+                    Tab(icon: Icon(Icons.badge_sharp)),
+                    Tab(
+                        icon: Icon(Icons
+                            .construction_outlined)), // or build_outline, cinstruction
+                    Tab(
+                        icon:
+                            Icon(Icons.sports_martial_arts_sharp)), // sport mma
+                    Tab(icon: Icon(Icons.shield_moon_outlined)),
+                    //Tab(icon: Icon(Icons.auto_fix_high_sharp)),
+                    Tab(icon: Icon(Icons.account_tree_outlined)),
+                    Tab(icon: Icon(Icons.nightlife_outlined)),
+                    Tab(icon: Icon(Icons.people_outlined)),
+                    Tab(icon: Icon(Icons.note_outlined)),
+                  ]),
+              Text(
+                presenter.model.character.name,
+                style: const TextStyle(fontSize: 30),
+                textAlign: TextAlign.left,
+                selectionColor: Colors.white,
+              ),
+              //DropdownButton(items: numbers, onChanged: onChanged)
+              // DropdownButtonFormField(items: items, onChanged: onChanged)
+              Text(
+                  '${presenter.model.character.role[0]}: ${presenter.model.character.role[0].rank}',
+                  textAlign: TextAlign.left),
+              Text(
+                  'HP: ${presenter.model.character.stats.HP}/${presenter.model.character.stats.HP}',
+                  textAlign: TextAlign.left),
+
+              Row(children: const [
+                Icon(Icons.lightbulb_outline),
+                Text('INT', style: TextStyle(fontWeight: FontWeight.bold)),
+                // SizedBox(width: 12),
+                DropButtonINT(),
+                //SizedBox(width: 12),
+                Icon(Icons.sports_martial_arts),
+                Text('REF', style: TextStyle(fontWeight: FontWeight.bold)),
+                //SizedBox(width: 12),
+                DropButtonREF(),
+                //SizedBox(width: 12),
+                Icon(Icons.lightbulb_outline),
+                Text('DEX', style: TextStyle(fontWeight: FontWeight.bold)),
+                //SizedBox(width: 12),
+                DropButtonDEX(),
+                //SizedBox(width: 12),
+                Icon(Icons.construction),
+                Text('TECH', style: TextStyle(fontWeight: FontWeight.bold)),
+                // SizedBox(width: 12),
+                DropButtonTECH(),
+                //SizedBox(width: 12),
+                Icon(Icons.snowing),
+                Text('COOL', style: TextStyle(fontWeight: FontWeight.bold)),
+                //SizedBox(width: 12),
+                DropButtonCOOL(),
+                // SizedBox(width: 12),
+                Icon(Icons.lightbulb_outline),
+                Text('WILL', style: TextStyle(fontWeight: FontWeight.bold)),
+                // SizedBox(width: 12),
+                DropButtonWILL(),
+                //SizedBox(width: 12),
+                Icon(Icons.lightbulb_circle),
+                Text('LUCK', style: TextStyle(fontWeight: FontWeight.bold)),
+                // SizedBox(width: 12),
+                DropButtonLUCK(),
+                //SizedBox(width: 12),
+                Icon(Icons.lightbulb_outline),
+                Text('DEX', style: TextStyle(fontWeight: FontWeight.bold)),
+                SizedBox(width: 12),
+                DropButtonMOVE(),
+                //SizedBox(width: 12),
+                Icon(Icons.lightbulb_outline),
+                Text('BODY', style: TextStyle(fontWeight: FontWeight.bold)),
+                //SizedBox(width: 12),
+                // DropButtonBODY(),
+                // //SizedBox(width: 12),
+                // Icon(Icons.lightbulb_outline),
+                // Text('EMP', style: TextStyle(fontWeight: FontWeight.bold)),
+                // // SizedBox(width: 12),
+                // DropButtonEMP(),
+                // //SizedBox(width: 12),
+                // Icon(Icons.lightbulb_outline),
+                // Text('Humanity', style: TextStyle(fontWeight: FontWeight.bold)),
+                // //SizedBox(width: 12),
+                // DropButtonHumanity(),
+              ]),
+              Text('Initiative: +${presenter.model.character.stats.REF}',
+                  textAlign: TextAlign.left),
+              Column(
+                  children: presenter.model.character.skills
+                      .getMap()
+                      .entries
+                      .map((e) {
+                num number = e.value;
+                var w = Text(e.key + ': $number',
+                    style: const TextStyle(fontSize: 10),
+                    textAlign: TextAlign.left);
+                return w;
+              }).toList()),
+              TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: const TextStyle(fontSize: 20),
                 ),
-                Text(
-                    '${presenter.model.character.role[0]}: ${presenter.model.character.role[0].rank}',
-                    textAlign: TextAlign.left),
-                Text(
-                    'HP: ${presenter.model.character.stats.HP}/${presenter.model.character.stats.HP}',
-                    textAlign: TextAlign.left),
-                Text('INT: ${presenter.model.character.stats.INT}',
-                    textAlign: TextAlign.left),
-                Text('REF: ${presenter.model.character.stats.REF}',
-                    textAlign: TextAlign.left),
-                Text('DEX: ${presenter.model.character.stats.DEX}',
-                    textAlign: TextAlign.left),
-                Text('TECH: ${presenter.model.character.stats.TECH}',
-                    textAlign: TextAlign.left),
-                Text('COOL: ${presenter.model.character.stats.COOL}',
-                    textAlign: TextAlign.left),
-                Text('WILL: ${presenter.model.character.stats.WILL}',
-                    textAlign: TextAlign.left),
-                Text('LUCK: ${presenter.model.character.stats.LUCK}',
-                    textAlign: TextAlign.left),
-                Text('MOVE: ${presenter.model.character.stats.MOVE}',
-                    textAlign: TextAlign.left),
-                Text('BODY: ${presenter.model.character.stats.BODY}',
-                    textAlign: TextAlign.left),
-                Text('EMP: ${presenter.model.character.stats.EMP}',
-                    textAlign: TextAlign.left),
-                Text('Humanity: ${presenter.model.character.stats.HUM}',
-                    textAlign: TextAlign.left),
-                Text('Initiative: +${presenter.model.character.stats.REF}',
-                    textAlign: TextAlign.left),
-                Column(
-                    children: presenter.model.character.skills
-                        .getMap()
-                        .entries
-                        .map((e) {
-                  num number = e.value;
-                  var w = Text(e.key + ': $number',
-                      style: const TextStyle(fontSize: 10),
-                      textAlign: TextAlign.left);
-                  return w;
-                }).toList()),
-                const SizedBox(height: 60),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 15),
-                    textStyle:
-                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
-                  ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, homeRoute,
-                        arguments: 'arguments/chose Templates');
-                  },
-                  child: const Text('Home'),
-                )
-              ],
-            ),
-          ),
-        ));
+                onPressed: () {
+                  Navigator.pushNamed(context, homeRoute,
+                      arguments: 'arguments/chose Templates');
+                },
+                child: const Text('Home'),
+              ),
+            ]))));
   }
 }
 

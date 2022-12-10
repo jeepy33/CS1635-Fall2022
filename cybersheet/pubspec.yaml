@@ -90,3 +90,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  #flutter:
+  fonts:
+    - family: Kontakt
+      fonts:
+        - asset: assets/Kontakt.ttf
+          #style: italic
+      

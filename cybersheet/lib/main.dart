@@ -313,9 +313,15 @@ class _roleState extends State<RolesPage> {
                   children: <Widget>[
                     TextButton(
                         style: TextButton.styleFrom(
-                            foregroundColor: Colors.black,
-                            backgroundColor:
-                                _selections[0] ? Colors.red : Colors.white),
+                            textStyle: const TextStyle(
+                                fontSize: 20, fontFamily: 'Kontakt'),
+                            padding: EdgeInsets.all(25.0),
+                            foregroundColor: _selections[0]
+                                ? Color.fromARGB(255, 231, 106, 106)
+                                : Colors.white,
+                            backgroundColor: _selections[0]
+                                ? Colors.white
+                                : Color.fromARGB(255, 231, 106, 106)),
                         onPressed: () {
                           setState(() {
                             roleToAdd = RoleType.ROCKERBOY;
@@ -327,9 +333,15 @@ class _roleState extends State<RolesPage> {
                         child: const Text('Rockerboy')),
                     TextButton(
                         style: TextButton.styleFrom(
-                            foregroundColor: Colors.black,
-                            backgroundColor:
-                                _selections[1] ? Colors.red : Colors.white),
+                            textStyle: const TextStyle(
+                                fontSize: 20, fontFamily: 'Kontakt'),
+                            padding: EdgeInsets.all(25.0),
+                            foregroundColor: _selections[1]
+                                ? Color.fromARGB(255, 231, 106, 106)
+                                : Colors.white,
+                            backgroundColor: _selections[1]
+                                ? Colors.white
+                                : Color.fromARGB(255, 231, 106, 106)),
                         onPressed: () {
                           setState(() {
                             roleToAdd = RoleType.SOLO;
@@ -341,9 +353,15 @@ class _roleState extends State<RolesPage> {
                         child: const Text('Solo')),
                     TextButton(
                         style: TextButton.styleFrom(
-                            foregroundColor: Colors.black,
-                            backgroundColor:
-                                _selections[2] ? Colors.red : Colors.white),
+                            textStyle: const TextStyle(
+                                fontSize: 20, fontFamily: 'Kontakt'),
+                            padding: EdgeInsets.all(25.0),
+                            foregroundColor: _selections[2]
+                                ? Color.fromARGB(255, 231, 106, 106)
+                                : Colors.white,
+                            backgroundColor: _selections[2]
+                                ? Colors.white
+                                : Color.fromARGB(255, 231, 106, 106)),
                         onPressed: () {
                           setState(() {
                             roleToAdd = RoleType.NETRUNNER;
@@ -355,9 +373,15 @@ class _roleState extends State<RolesPage> {
                         child: const Text('Netrunner')),
                     TextButton(
                         style: TextButton.styleFrom(
-                            foregroundColor: Colors.black,
-                            backgroundColor:
-                                _selections[3] ? Colors.red : Colors.white),
+                            textStyle: const TextStyle(
+                                fontSize: 20, fontFamily: 'Kontakt'),
+                            padding: EdgeInsets.all(25.0),
+                            foregroundColor: _selections[3]
+                                ? Color.fromARGB(255, 231, 106, 106)
+                                : Colors.white,
+                            backgroundColor: _selections[3]
+                                ? Colors.white
+                                : Color.fromARGB(255, 231, 106, 106)),
                         onPressed: () {
                           setState(() {
                             roleToAdd = RoleType.TECH;
@@ -369,9 +393,15 @@ class _roleState extends State<RolesPage> {
                         child: const Text('Tech')),
                     TextButton(
                         style: TextButton.styleFrom(
-                            foregroundColor: Colors.black,
-                            backgroundColor:
-                                _selections[4] ? Colors.red : Colors.white),
+                            textStyle: const TextStyle(
+                                fontSize: 20, fontFamily: 'Kontakt'),
+                            padding: EdgeInsets.all(25.0),
+                            foregroundColor: _selections[4]
+                                ? Color.fromARGB(255, 231, 106, 106)
+                                : Colors.white,
+                            backgroundColor: _selections[4]
+                                ? Colors.white
+                                : Color.fromARGB(255, 231, 106, 106)),
                         onPressed: () {
                           setState(() {
                             roleToAdd = RoleType.MEDTECH;
@@ -381,11 +411,19 @@ class _roleState extends State<RolesPage> {
                           });
                         },
                         child: const Text('Medtech')),
+                    //wrap here
+
                     TextButton(
                         style: TextButton.styleFrom(
-                            foregroundColor: Colors.black,
-                            backgroundColor:
-                                _selections[5] ? Colors.red : Colors.white),
+                            textStyle: const TextStyle(
+                                fontSize: 20, fontFamily: 'Kontakt'),
+                            padding: EdgeInsets.all(25.0),
+                            foregroundColor: _selections[5]
+                                ? Color.fromARGB(255, 231, 106, 106)
+                                : Colors.white,
+                            backgroundColor: _selections[5]
+                                ? Colors.white
+                                : Color.fromARGB(255, 231, 106, 106)),
                         onPressed: () {
                           setState(() {
                             roleToAdd = RoleType.MEDIA;
@@ -397,9 +435,15 @@ class _roleState extends State<RolesPage> {
                         child: const Text('Media')),
                     TextButton(
                         style: TextButton.styleFrom(
-                            foregroundColor: Colors.black,
-                            backgroundColor:
-                                _selections[6] ? Colors.red : Colors.white),
+                            textStyle: const TextStyle(
+                                fontSize: 20, fontFamily: 'Kontakt'),
+                            padding: EdgeInsets.all(25.0),
+                            foregroundColor: _selections[6]
+                                ? Color.fromARGB(255, 231, 106, 106)
+                                : Colors.white,
+                            backgroundColor: _selections[6]
+                                ? Colors.white
+                                : Color.fromARGB(255, 231, 106, 106)),
                         onPressed: () {
                           setState(() {
                             roleToAdd = RoleType.EXEC;
@@ -411,9 +455,15 @@ class _roleState extends State<RolesPage> {
                         child: const Text('Exec')),
                     TextButton(
                         style: TextButton.styleFrom(
-                            foregroundColor: Colors.black,
-                            backgroundColor:
-                                _selections[7] ? Colors.red : Colors.white),
+                            textStyle: const TextStyle(
+                                fontSize: 20, fontFamily: 'Kontakt'),
+                            padding: EdgeInsets.all(25.0),
+                            foregroundColor: _selections[7]
+                                ? Color.fromARGB(255, 231, 106, 106)
+                                : Colors.white,
+                            backgroundColor: _selections[7]
+                                ? Colors.white
+                                : Color.fromARGB(255, 231, 106, 106)),
                         onPressed: () {
                           setState(() {
                             roleToAdd = RoleType.LAWMAN;
@@ -425,9 +475,15 @@ class _roleState extends State<RolesPage> {
                         child: const Text('Lawman')),
                     TextButton(
                         style: TextButton.styleFrom(
-                            foregroundColor: Colors.black,
-                            backgroundColor:
-                                _selections[8] ? Colors.red : Colors.white),
+                            textStyle: const TextStyle(
+                                fontSize: 20, fontFamily: 'Kontakt'),
+                            padding: EdgeInsets.all(25.0),
+                            foregroundColor: _selections[8]
+                                ? Color.fromARGB(255, 231, 106, 106)
+                                : Colors.white,
+                            backgroundColor: _selections[8]
+                                ? Colors.white
+                                : Color.fromARGB(255, 231, 106, 106)),
                         onPressed: () {
                           setState(() {
                             roleToAdd = RoleType.FIXER;
@@ -439,9 +495,15 @@ class _roleState extends State<RolesPage> {
                         child: const Text('Fixer')),
                     TextButton(
                         style: TextButton.styleFrom(
-                            foregroundColor: Colors.black,
-                            backgroundColor:
-                                _selections[9] ? Colors.red : Colors.white),
+                            textStyle: const TextStyle(
+                                fontSize: 20, fontFamily: 'Kontakt'),
+                            padding: EdgeInsets.all(25.0),
+                            foregroundColor: _selections[9]
+                                ? Color.fromARGB(255, 231, 106, 106)
+                                : Colors.white,
+                            backgroundColor: _selections[9]
+                                ? Colors.white
+                                : Color.fromARGB(255, 231, 106, 106)),
                         onPressed: () {
                           setState(() {
                             roleToAdd = RoleType.NOMAD;
@@ -740,66 +802,100 @@ class _stylePageState extends State<StylePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text('Clothing Style: $style'),
-                DropdownButton<String>(
-                  value: style,
-                  items: clothingStyle
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      style = newValue!;
-                    });
-                  },
-                ),
-                Text('Hairstyle: $hair'),
-                DropdownButton<String>(
-                  value: hair,
-                  items:
-                      hairstyle.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      hair = newValue!;
-                    });
-                  },
-                ),
-                Text('Affecation You Are Never Without: $item'),
-                DropdownButton<String>(
-                  value: item,
-                  items:
-                      affecation.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      item = newValue!;
-                    });
-                  },
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                Text('Clothing Style:',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(height: 15),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 231, 106, 106),
+                    ),
+                    child: DropdownButton<String>(
+                      dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                      value: style,
+                      items: clothingStyle
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          style = newValue!;
+                        });
+                      },
+                    )),
+                const SizedBox(height: 15),
+                Text('Hairstyle:',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(height: 15),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 231, 106, 106),
+                    ),
+                    child: DropdownButton<String>(
+                      dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                      value: hair,
+                      items: hairstyle
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          hair = newValue!;
+                        });
+                      },
+                    )),
+                const SizedBox(height: 15),
+                Text('Affecation You Are Never Without:',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(height: 15),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 231, 106, 106),
+                    ),
+                    child: DropdownButton<String>(
+                      dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                      value: item,
+                      items: affecation
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          item = newValue!;
+                        });
+                      },
+                    )),
+                const SizedBox(height: 60),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     setState(() {
@@ -825,9 +921,16 @@ class _stylePageState extends State<StylePage> {
                   },
                   child: const Text('Next'),
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -964,9 +1067,16 @@ class _motivationsState extends State<MotivationsPage> {
                     });
                   },
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(
+                  height: 60,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     setState(() {
@@ -1003,9 +1113,14 @@ class _motivationsState extends State<MotivationsPage> {
                   },
                   child: const Text('Next'),
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -1080,9 +1195,16 @@ class _familyState extends State<FamilyPage> {
                   },
                 ),
                 Text('$backgroundDesc'),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(
+                  height: 60,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     setState(() {
@@ -1102,9 +1224,16 @@ class _familyState extends State<FamilyPage> {
                   },
                   child: const Text('Next'),
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -1197,9 +1326,16 @@ class _environmentPageState extends State<EnvironmentPage> {
                     });
                   },
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(
+                  height: 60,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     setState(() {
@@ -1221,9 +1357,14 @@ class _environmentPageState extends State<EnvironmentPage> {
                   },
                   child: const Text('Next'),
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -1373,9 +1514,14 @@ class _friendsState extends State<Friends> {
                         }
                       : null,
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(height: 60),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     setState(() {
@@ -1389,9 +1535,16 @@ class _friendsState extends State<Friends> {
                   },
                   child: const Text('Next'),
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -1680,9 +1833,16 @@ class _enemiesState extends State<Enemies> {
                     ),
                   ],
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(
+                  height: 60,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     setState(() {
@@ -1699,9 +1859,14 @@ class _enemiesState extends State<Enemies> {
                   },
                   child: const Text('Next'),
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -1772,9 +1937,14 @@ class _lifeGoalsState extends State<LifeGoalsPage> {
                     });
                   },
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(height: 60),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     setState(() {
@@ -1789,9 +1959,14 @@ class _lifeGoalsState extends State<LifeGoalsPage> {
                   },
                   child: const Text('Next'),
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -2061,9 +2236,16 @@ class _statsState extends State<StatsPage> {
                     ),
                   ],
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(
+                  height: 60,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     setState(() {
@@ -2077,9 +2259,16 @@ class _statsState extends State<StatsPage> {
                   },
                   child: const Text('Next'),
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -2170,9 +2359,16 @@ class _skillsState extends State<SkillsPage> {
                           style: const TextStyle(fontSize: 18));
                       return w;
                     }).toList()),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(
+                  height: 60,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     setState(() {
@@ -2186,9 +2382,16 @@ class _skillsState extends State<SkillsPage> {
                   },
                   child: const Text('Next'),
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -2237,9 +2440,16 @@ class _inventoryState extends State<InventoryPage> {
               children: <Widget>[
                 Text('Inventory'), //added
                 Column(children: createItemList(rockerItems)),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(
+                  height: 60,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     setState(() {
@@ -2250,9 +2460,16 @@ class _inventoryState extends State<InventoryPage> {
                   },
                   child: const Text('Next'),
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -2370,9 +2587,14 @@ class editChar extends StatelessWidget {
                       textAlign: TextAlign.left);
                   return w;
                 }).toList()),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(height: 60),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     Navigator.pushNamed(context, homeRoute,

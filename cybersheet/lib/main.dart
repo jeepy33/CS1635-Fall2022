@@ -299,8 +299,8 @@ class _roleState extends State<RolesPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text('Role Selection: $template',
-                    style: TextStyle(fontSize: 25, color: Colors.white)),
+                Text('Role Selection:',
+                    style: TextStyle(fontSize: 30, color: Colors.white)),
                 const SizedBox(height: 30),
                 ToggleButtons(
                   renderBorder: false,
@@ -550,68 +550,102 @@ class _lifePathState extends State<LifePath> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text('Cultural Origins: $origin'),
-                DropdownButton<String>(
-                  value: origin,
-                  items:
-                      originList.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      origin = newValue!;
-                      languages = CulturalRegion[origin].split(',');
-                      language = languages[0];
-                    });
-                  },
-                ),
-                Text('Language: $language'),
-                DropdownButton<String>(
-                  value: language,
-                  items:
-                      languages.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      language = newValue!;
-                    });
-                  },
-                ),
-                Text('What Are You Like?: $personality'),
-                DropdownButton<String>(
-                  value: personality,
-                  items: personalityList
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      personality = newValue!;
-                    });
-                  },
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                Text('Cultural Origins:',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(height: 15),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 231, 106, 106),
+                    ),
+                    child: DropdownButton<String>(
+                      dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                      value: origin,
+                      items: originList
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          origin = newValue!;
+                          languages = CulturalRegion[origin].split(',');
+                          language = languages[0];
+                        });
+                      },
+                    )),
+                const SizedBox(height: 15),
+                Text('Language:',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(height: 15),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 231, 106, 106), //<-- SEE HERE
+                    ),
+                    child: DropdownButton<String>(
+                      dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                      value: language,
+                      items: languages
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          language = newValue!;
+                        });
+                      },
+                    )),
+                const SizedBox(height: 15),
+                Text('What Are You Like?:',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(height: 15),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 231, 106, 106), //<-- SEE HERE
+                    ),
+                    child: DropdownButton<String>(
+                      dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                      value: personality,
+                      items: personalityList
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          personality = newValue!;
+                        });
+                      },
+                    )),
+                const SizedBox(height: 60),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     setState(() {
@@ -640,9 +674,16 @@ class _lifePathState extends State<LifePath> {
                   },
                   child: const Text('Next'),
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     Navigator.pop(context);

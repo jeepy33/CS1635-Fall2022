@@ -21,6 +21,8 @@ const String statsRoute = lifeGoalsRoute + "/stats";
 const String skillsRoute = statsRoute + "/skills";
 const String editCharRoute = homeRoute + "/edit";
 
+const List<int> numbers = <int>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 enum Template { STREETRAT, EDGERUNNER, COMPLETE, NONE }
 
 enum RoleType {

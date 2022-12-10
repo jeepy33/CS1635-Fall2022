@@ -788,3 +788,101 @@ const Map<String, int> rockerItems = {
   'Light Armorjack Body Armor (SP11)': 0,
   'Light Armorjack Head Armor (SP11)': 0
 };
+
+const Map<String, String> awarenessSkills = {
+  'Concentration': 'WILL',
+  'Conceal/Reveal Object': 'INT',
+  'Lip Reading': 'INT',
+  'Perception': 'INT',
+  'Tracking': 'INT'
+};
+
+const Map<String, String> bodySkills = {
+  'Athletics': 'DEX',
+  'Contortionist': 'DEX',
+  'Dance': 'DEX',
+  'Endurance': 'WILL',
+  'Resist Torture/Drugs': 'WILL',
+  'Stealth': 'DEX'
+};
+
+const Map<String, String> controlSkills = {
+  'Drive Land Vehicle': 'REF',
+  'Pilot Air Vehicle (x2)': 'REF',
+  'Pilot Sea Vehicle': 'REF',
+  'Riding': 'REF'
+};
+
+const Map<String, String> educationSkills = {
+  'Account': 'INT',
+  'Animal Handling': 'INT',
+  'Bureaucracy': 'INT',
+  'Business': 'INT',
+  'Composition': 'INT',
+  'Criminology': 'INT',
+  'Cryptography': 'INT',
+  'Deduction': 'INT',
+  'Education': 'INT',
+  'Gamble': 'INT',
+  'Language': 'INT',
+  'Library Search': 'INT',
+  'Local Expert': 'INT',
+  'Science': 'INT',
+  'Tactics': 'INT',
+  'Wilderness Survival': 'INT',
+};
+
+const Map<String, String> fightingSkills = {
+  'Brawling': 'DEX',
+  'Evasion': 'DEX',
+  'Martial Arts (x2)': 'DEX',
+  'Melee Weapon': 'DEX',
+};
+
+const Map<String, String> performanceSkills = {
+  'Acting': 'COOL',
+  'PLay Instrument': 'TECH'
+};
+
+const Map<String, String> rangedWeaponSkills = {
+  'Archery': 'REF',
+  'Autofire (x2)': 'REF',
+  'Handgun': 'REF',
+  'Heavy Weapon (x2)': 'REF',
+  'Shoulder Arms': 'REF',
+};
+
+const Map<String, String> socialSkills = {
+  'Bribery': 'COOL',
+  'Conversation': 'EMP',
+  'Human Perception': 'EMP',
+  'Interrogation': 'COOL',
+  'Persuasion': 'COOL',
+  'Personal Grooming': 'COOL',
+  'Streetwise': 'COOL',
+  'Trading': 'COOL',
+  'Wardrobe & Style': 'COOL',
+};
+
+const Map<String, String> techniqueSkills = {
+  'Air Vehicle Tech': 'TECH',
+  'Basic Tech': 'TECH',
+  'Cybertech': 'TECH',
+  'Demolitions': 'TECH',
+  'Electronics/Security Tech (x2)': 'TECH',
+  'First Aid': 'TECH',
+  'Forgery': 'TECH',
+  'Land Vehicle Tech': 'TECH',
+  'Paint/Draw/Sculpt': 'TECH',
+  'Paramedic (x2)': 'TECH',
+  'Photography/Film': 'TECH',
+  'Pick Lock': 'TECH',
+  'Pick Pocket': 'TECH',
+  'Sea Vehicle Tech': 'TECH',
+  'Weaponstech': 'TECH',
+};
+
+List<WeaponRanged> weaponRanged = [
+  WeaponRanged("Medium Pistol", "Handgun", 2, 12, 2, 1, false, true),
+  //WeaponRanged("Heavy Pistol", "Handh", SSD, MAG, ROF, NHR, autofire, conceal)
+];

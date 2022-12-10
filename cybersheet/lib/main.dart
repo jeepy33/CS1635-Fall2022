@@ -30,32 +30,52 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(228, 228, 35, 24),
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          const Text('Home'),
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: const TextStyle(fontSize: 20),
-            ),
-            onPressed: () {
-              Navigator.pushNamed(context, newCharRoute,
-                  arguments: 'arguments/chose NEW');
-            },
-            child: const Text('New Edgerunner'),
+          const Text(
+            'Home',
+            style: TextStyle(fontSize: 35, color: Colors.white),
           ),
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: const TextStyle(fontSize: 20),
-            ),
-            onPressed: () {
-              Navigator.pushNamed(context, editCharRoute,
-                  arguments: 'arguments/chose EDIT');
-            },
-            child: const Text('Edit Edgerunner'),
-          )
+          const SizedBox(height: 30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 60, vertical: 25),
+                  textStyle:
+                      const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, newCharRoute,
+                      arguments: 'arguments/chose NEW');
+                },
+                child: const Text('New Edgerunner'),
+              ),
+              const SizedBox(height: 20, width: 30),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 60, vertical: 25),
+                  textStyle:
+                      const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, editCharRoute,
+                      arguments: 'arguments/chose EDIT');
+                },
+                child: const Text('Edit Edgerunner'),
+              )
+            ],
+          ),
         ],
       )),
     );
@@ -78,12 +98,15 @@ class _newCharState extends State<newChar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(228, 228, 35, 24),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text('Template Selection: $template'),
+            Text('Template Selection: $template',
+                style: TextStyle(fontSize: 25, color: Colors.white)),
+            const SizedBox(height: 30),
             ToggleButtons(
               renderBorder: false,
               isSelected: _selections,
@@ -95,9 +118,12 @@ class _newCharState extends State<newChar> {
               children: <Widget>[
                 TextButton(
                     style: TextButton.styleFrom(
-                        foregroundColor: Colors.black,
-                        backgroundColor:
-                            _selections[0] ? Colors.red : Colors.white),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 60, vertical: 25),
+                        foregroundColor: Colors.white,
+                        backgroundColor: _selections[0]
+                            ? Colors.grey
+                            : Color.fromARGB(255, 231, 106, 106)),
                     onPressed: () {
                       setState(() {
                         presenter.model.character
@@ -107,12 +133,16 @@ class _newCharState extends State<newChar> {
                         _selections[0] = true;
                       });
                     },
-                    child: const Text('Street Rat')),
+                    child: const Text('Street Rat',
+                        style: TextStyle(fontSize: 20))),
                 TextButton(
                     style: TextButton.styleFrom(
-                        foregroundColor: Colors.black,
-                        backgroundColor:
-                            _selections[1] ? Colors.red : Colors.white),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 60, vertical: 25),
+                        foregroundColor: Colors.white,
+                        backgroundColor: _selections[1]
+                            ? Colors.grey
+                            : Color.fromARGB(255, 231, 106, 106)),
                     onPressed: () {
                       setState(() {
                         presenter.model.character
@@ -122,12 +152,16 @@ class _newCharState extends State<newChar> {
                         _selections[1] = true;
                       });
                     },
-                    child: const Text('Edgerunner')),
+                    child: const Text('Edgerunner',
+                        style: TextStyle(fontSize: 20))),
                 TextButton(
                     style: TextButton.styleFrom(
-                        foregroundColor: Colors.black,
-                        backgroundColor:
-                            _selections[2] ? Colors.red : Colors.white),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 40, vertical: 25),
+                        foregroundColor: Colors.white,
+                        backgroundColor: _selections[2]
+                            ? Colors.grey
+                            : Color.fromARGB(255, 231, 106, 106)),
                     onPressed: () {
                       setState(() {
                         presenter.model.character
@@ -137,12 +171,19 @@ class _newCharState extends State<newChar> {
                         _selections[2] = true;
                       });
                     },
-                    child: const Text('Complete Package'))
+                    child: const Text('Complete Package',
+                        style: TextStyle(fontSize: 20)))
               ],
             ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: const TextStyle(fontSize: 20),
+            const SizedBox(
+              height: 60,
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                textStyle: const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
               ),
               onPressed: () {
                 if (template.isEmpty) {
@@ -160,9 +201,15 @@ class _newCharState extends State<newChar> {
               },
               child: const Text('Next'),
             ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: const TextStyle(fontSize: 20),
+            const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                textStyle: const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
               ),
               onPressed: () {
                 Navigator.pop(context);
@@ -193,12 +240,15 @@ class _roleState extends State<RolesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(228, 228, 35, 24),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text('Role Selection: $template'),
+            Text('Role Selection: $template',
+                style: TextStyle(fontSize: 25, color: Colors.white)),
+            const SizedBox(height: 30),
             ToggleButtons(
               renderBorder: false,
               isSelected: _selections,
@@ -350,9 +400,15 @@ class _roleState extends State<RolesPage> {
                     child: const Text('Nomad')),
               ],
             ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: const TextStyle(fontSize: 20),
+            const SizedBox(
+              height: 60,
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                textStyle: const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
               ),
               onPressed: () {
                 if (template.isEmpty) {
@@ -371,9 +427,15 @@ class _roleState extends State<RolesPage> {
               },
               child: const Text('Next'),
             ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: const TextStyle(fontSize: 20),
+            const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                textStyle: const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
               ),
               onPressed: () {
                 Navigator.pop(context);
@@ -411,6 +473,7 @@ class _lifePathState extends State<LifePath> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(228, 228, 35, 24),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -539,6 +602,7 @@ class _stylePageState extends State<StylePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(228, 228, 35, 24),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -668,6 +732,7 @@ class _motivationsState extends State<MotivationsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(228, 228, 35, 24),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -819,6 +884,7 @@ class _familyState extends State<FamilyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(228, 228, 35, 24),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -900,6 +966,7 @@ class _environmentPageState extends State<EnvironmentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(228, 228, 35, 24),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -1000,6 +1067,7 @@ class _friendsState extends State<Friends> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(228, 228, 35, 24),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -1154,6 +1222,7 @@ class _enemiesState extends State<Enemies> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(228, 228, 35, 24),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -1439,6 +1508,7 @@ class _lifeGoalsState extends State<LifeGoalsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(228, 228, 35, 24),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -1542,6 +1612,7 @@ class _statsState extends State<StatsPage> {
       default:
     }
     return Scaffold(
+      backgroundColor: Color.fromARGB(228, 228, 35, 24),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -1811,6 +1882,7 @@ class _skillsState extends State<SkillsPage> {
       default:
     }
     return Scaffold(
+      backgroundColor: Color.fromARGB(228, 228, 35, 24),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -1869,6 +1941,7 @@ class _inventoryState extends State<InventoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(228, 228, 35, 24),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -1943,6 +2016,7 @@ class editChar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(228, 228, 35, 24),
       body: Center(
         child: Column(
           children: <Widget>[

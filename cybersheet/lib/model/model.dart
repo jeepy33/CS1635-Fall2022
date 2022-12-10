@@ -528,12 +528,12 @@ class Skill {
 }
 
 class Armor extends Item {
-  int SP = 0;
-  int mod = 0;
-  bool penalty = false;
-  int maxSP = 0;
+  int SP;
+  int mod;
+  bool penalty;
+  int maxSP;
 
-  Armor(String name) : super(name);
+  Armor(super.name, this.SP, this.mod, this.penalty, this.maxSP);
 
   int getSP() {
     return this.SP;
@@ -569,12 +569,12 @@ class Armor extends Item {
 }
 
 class WeaponMelee extends Item {
-  int SSD = 0;
-  int ROF = 0;
-  int NHR = 0;
-  bool conceal = false;
+  int SSD;
+  int ROF;
+  int NHR;
+  bool conceal;
 
-  WeaponMelee(String name) : super(name);
+  WeaponMelee(super.name, this.SSD, this.ROF, this.NHR, this.conceal);
 
   int getSSD() {
     return this.SSD;
@@ -610,15 +610,16 @@ class WeaponMelee extends Item {
 }
 
 class WeaponRanged extends Item {
-  String weaponSkill = "";
-  int SSD = 0;
-  int MAG = 0;
-  int ROF = 0;
-  int NHR = 0;
-  bool autofire = false;
-  bool conceal = false;
+  String weaponSkill;
+  int SSD;
+  int MAG;
+  int ROF;
+  int NHR;
+  bool autofire;
+  bool conceal;
 
-  WeaponRanged(String name) : super(name);
+  WeaponRanged(super.name, this.weaponSkill, this.SSD, this.MAG, this.ROF,
+      this.NHR, this.autofire, this.conceal);
 
   int getSSD() {
     return this.SSD;

@@ -884,5 +884,26 @@ const Map<String, String> techniqueSkills = {
 
 List<WeaponRanged> weaponRanged = [
   WeaponRanged("Medium Pistol", "Handgun", 2, 12, 2, 1, false, true),
-  //WeaponRanged("Heavy Pistol", "Handh", SSD, MAG, ROF, NHR, autofire, conceal)
+  WeaponRanged("Heavy Pistol", "Handgun", 3, 8, 2, 1, false, true),
+  WeaponRanged("Very Heavy Pistol", "Handgun", 4, 8, 1, 1, false, false),
+  WeaponRanged("SMG", "Handgun", 2, 30, 1, 1, true, true),
+  WeaponRanged("Heavy SMG", "Handgun", 3, 40, 1, 1, true, false),
+  WeaponRanged("Shotgun", "Shoulder Arms", 5, 4, 1, 2, false, false)
+];
+
+List<WeaponMelee> weaponMelee = [
+  WeaponMelee("Combat Knife", 1, 2, 1, true),
+  WeaponMelee("Baseball Bat", 2, 2, 2, false),
+  WeaponMelee("Crowbar", 2, 2, 1, false),
+  WeaponMelee("Sword", 3, 2, 2, false),
+  WeaponMelee("Sledgehammer", 4, 1, 2, false)
+];
+
+List<Armor> armor = [
+  Armor("Leathers", 4, 0, false, 4),
+  Armor("Kevlar", 7, 0, false, 7),
+  Armor("Light Armorjack", 11, 0, false, 11),
+  Armor("Bodyweight Suit", 11, 0, false, 11),
+  Armor("Medium Armorjack", 12, 0, true, 12),
+  Armor("Heavy Armorjack", 13, 0, true, 13)
 ];

@@ -440,11 +440,11 @@ class Lifepath {
 
 class Item {
   int id = 0;
-  String name = "";
+  String name;
   int cost = 0;
   String desc = "";
 
-  Item(this.id);
+  Item(this.name);
 
   int getId() {
     return this.id;
@@ -533,7 +533,7 @@ class Armor extends Item {
   bool penalty = false;
   int maxSP = 0;
 
-  Armor(int id) : super(id);
+  Armor(String name) : super(name);
 
   int getSP() {
     return this.SP;
@@ -574,7 +574,7 @@ class WeaponMelee extends Item {
   int NHR = 0;
   bool conceal = false;
 
-  WeaponMelee(int id) : super(id);
+  WeaponMelee(String name) : super(name);
 
   int getSSD() {
     return this.SSD;
@@ -618,7 +618,7 @@ class WeaponRanged extends Item {
   bool autofire = false;
   bool conceal = false;
 
-  WeaponRanged(int id) : super(id);
+  WeaponRanged(String name) : super(name);
 
   int getSSD() {
     return this.SSD;

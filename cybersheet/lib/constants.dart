@@ -18,8 +18,10 @@ const String friendsRoute = environmentRoute + "/friends";
 const String enemiesRoute = friendsRoute + "/enemies";
 const String lifeGoalsRoute = enemiesRoute + "/lifeGoals";
 const String statsRoute = lifeGoalsRoute + "/stats";
-const String skillsRoute = statsRoute + "/skills";
+const String inventoryRoute = statsRoute + "/skills";
+const String skillsRoute = inventoryRoute + "/stats"; //changed this
 const String editCharRoute = homeRoute + "/edit";
+//const String inventoryRoute = skillsRoute + "/inventory";
 
 const List<int> numbers = <int>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -769,4 +771,15 @@ const Map techSB = {
   'Play Instrument': 6,
   'Streetwiswe': 6,
   'Wardrobe & Style': 4
+};
+
+const Map<String, int> rockerItems = {
+  //Add items
+  'Very Heavy Pistol': 0,
+  'Basic VH Pistol': 0,
+  'Ammunition x50': 0,
+  ',Heavy Melee Weapon,Flashbang Grenade': 1, //toggle 1
+  'Teargas Grenade x2': 0,
+  'Light Armorjack Body Armor (SP11)': 0,
+  'Light Armorjack Head Armor (SP11)': 0
 };

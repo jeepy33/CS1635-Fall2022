@@ -1,9 +1,15 @@
+import 'package:cybersheet/view/character_view_cyberware.dart';
+import 'package:cybersheet/view/character_view_equipment.dart';
+import 'package:cybersheet/view/character_view_lifepath.dart';
+import 'package:cybersheet/view/character_view_notes.dart';
+import 'package:cybersheet/view/character_view_overview.dart';
+import 'package:cybersheet/view/character_view_skills.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 import '../constants.dart';
 
 class EditChar extends StatefulWidget {
-  const EditChar();
+  const EditChar({super.key});
   @override
   State<StatefulWidget> createState() => _EditChar();
 }
@@ -18,579 +24,599 @@ class _EditChar extends State<EditChar> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 120,
-          backgroundColor: cyberRed,
-          automaticallyImplyLeading: false,
-          title: const Image(
-            image: AssetImage("Cybersheet_Logo.png"),
-            width: 400,
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: cyberRed,
-        body: Container(
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-              image: AssetImage("Cyberwire.png"),
-              fit: BoxFit.cover,
-            )),
-            child: Center(
-                child: Column(children: <Widget>[
-              TabBar(
-                  controller: _tabController,
-                  labelColor: Colors.white,
-                  indicatorColor: Colors.black,
-                  tabs: const <Widget>[
-                    Tab(icon: Icon(Icons.badge_sharp)),
-                    Tab(
-                        icon: Icon(Icons
-                            .construction_outlined)), // or build_outline, cinstruction
-                    Tab(
-                        icon:
-                            Icon(Icons.sports_martial_arts_sharp)), // sport mma
-                    Tab(icon: Icon(Icons.shield_moon_outlined)),
-                    //Tab(icon: Icon(Icons.auto_fix_high_sharp)),
-                    Tab(icon: Icon(Icons.account_tree_outlined)),
-                    Tab(icon: Icon(Icons.nightlife_outlined)),
-                    Tab(icon: Icon(Icons.people_outlined)),
-                    Tab(icon: Icon(Icons.note_outlined)),
-                  ]),
-              Text(
-                presenter.model.character.name,
-                style: const TextStyle(fontSize: 30),
-                textAlign: TextAlign.left,
-                selectionColor: Colors.white,
+    return DefaultTabController(
+        length: 6,
+        child: Scaffold(
+            appBar: AppBar(
+              toolbarHeight: 120,
+              backgroundColor: cyberRed,
+              automaticallyImplyLeading: false,
+              title: const Image(
+                image: AssetImage("Cybersheet_Logo.png"),
+                width: 400,
+                color: Colors.white,
               ),
-              //DropdownButton(items: numbers, onChanged: onChanged)
-              // DropdownButtonFormField(items: items, onChanged: onChanged)
-              Text(
-                  '${presenter.model.character.role[0]}: ${presenter.model.character.role[0].rank}',
-                  textAlign: TextAlign.left),
-              Text(
-                  'HP: ${presenter.model.character.stats.HP}/${presenter.model.character.stats.HP}',
-                  textAlign: TextAlign.left),
-
-              Row(children: const [
-                Icon(Icons.lightbulb_outline),
-                Text('INT', style: TextStyle(fontWeight: FontWeight.bold)),
-                // SizedBox(width: 12),
-                DropButtonINT(),
-                //SizedBox(width: 12),
-                Icon(Icons.sports_martial_arts),
-                Text('REF', style: TextStyle(fontWeight: FontWeight.bold)),
-                //SizedBox(width: 12),
-                DropButtonREF(),
-                //SizedBox(width: 12),
-                Icon(Icons.lightbulb_outline),
-                Text('DEX', style: TextStyle(fontWeight: FontWeight.bold)),
-                //SizedBox(width: 12),
-                DropButtonDEX(),
-                //SizedBox(width: 12),
-                Icon(Icons.construction),
-                Text('TECH', style: TextStyle(fontWeight: FontWeight.bold)),
-                // SizedBox(width: 12),
-                DropButtonTECH(),
-                //SizedBox(width: 12),
-                Icon(Icons.snowing),
-                Text('COOL', style: TextStyle(fontWeight: FontWeight.bold)),
-                //SizedBox(width: 12),
-                DropButtonCOOL(),
-                // SizedBox(width: 12),
-                Icon(Icons.lightbulb_outline),
-                Text('WILL', style: TextStyle(fontWeight: FontWeight.bold)),
-                // SizedBox(width: 12),
-                DropButtonWILL(),
-                //SizedBox(width: 12),
-                Icon(Icons.lightbulb_circle),
-                Text('LUCK', style: TextStyle(fontWeight: FontWeight.bold)),
-                // SizedBox(width: 12),
-                DropButtonLUCK(),
-                //SizedBox(width: 12),
-                Icon(Icons.lightbulb_outline),
-                Text('DEX', style: TextStyle(fontWeight: FontWeight.bold)),
-                SizedBox(width: 12),
-                DropButtonMOVE(),
-                //SizedBox(width: 12),
-                Icon(Icons.lightbulb_outline),
-                Text('BODY', style: TextStyle(fontWeight: FontWeight.bold)),
-                //SizedBox(width: 12),
-                // DropButtonBODY(),
-                // //SizedBox(width: 12),
-                // Icon(Icons.lightbulb_outline),
-                // Text('EMP', style: TextStyle(fontWeight: FontWeight.bold)),
-                // // SizedBox(width: 12),
-                // DropButtonEMP(),
-                // //SizedBox(width: 12),
-                // Icon(Icons.lightbulb_outline),
-                // Text('Humanity', style: TextStyle(fontWeight: FontWeight.bold)),
-                // //SizedBox(width: 12),
-                // DropButtonHumanity(),
+              bottom: const TabBar(indicatorColor: Colors.white, tabs: [
+                Tab(icon: Icon(Icons.badge_sharp)),
+                Tab(icon: Icon(Icons.construction_outlined)),
+                Tab(icon: Icon(Icons.sports_martial_arts_sharp)),
+                Tab(icon: Icon(Icons.account_tree_outlined)),
+                Tab(icon: Icon(Icons.people_outlined)),
+                Tab(icon: Icon(Icons.note_outlined)),
               ]),
-              Text('Initiative: +${presenter.model.character.stats.REF}',
-                  textAlign: TextAlign.left),
-              Column(
-                  children: presenter.model.character.skills
-                      .getMap()
-                      .entries
-                      .map((e) {
-                num number = e.value;
-                var w = Text('${e.key}: $number',
-                    style: const TextStyle(fontSize: 10),
-                    textAlign: TextAlign.left);
-                return w;
-              }).toList()),
-              TextButton(
-                style: TextButton.styleFrom(
-                  textStyle: const TextStyle(fontSize: 20),
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, homeRoute,
-                      arguments: 'arguments/chose Templates');
-                },
-                child: const Text('Home'),
-              ),
-            ]))));
+            ),
+            backgroundColor: cyberRed,
+            body: const TabBarView(children: [
+              CharacterOverview(),
+              CharacterSkills(),
+              CharacterEquipment(),
+              CharacterCyberware(),
+              CharacterLifepath(),
+              CharacterNotes(),
+            ])));
   }
 }
+//         Container(
+//             decoration: const BoxDecoration(
+//                 image: DecorationImage(
+//               image: AssetImage("Cyberwire.png"),
+//               fit: BoxFit.cover,
+//             )),
+//             child: Center(
+//                 child: Column(children: <Widget>[
+//               TabBar(
+//                   controller: _tabController,
+//                   labelColor: Colors.white,
+//                   indicatorColor: Colors.black,
+//                   tabs: const <Widget>[
+//                     Tab(icon: Icon(Icons.badge_sharp)),
+//                     Tab(
+//                         icon: Icon(Icons
+//                             .construction_outlined)), // or build_outline, cinstruction
+//                     Tab(
+//                         icon:
+//                             Icon(Icons.sports_martial_arts_sharp)), // sport mma
+//                     Tab(icon: Icon(Icons.shield_moon_outlined)),
+//                     //Tab(icon: Icon(Icons.auto_fix_high_sharp)),
+//                     Tab(icon: Icon(Icons.account_tree_outlined)),
+//                     Tab(icon: Icon(Icons.nightlife_outlined)),
+//                     Tab(icon: Icon(Icons.people_outlined)),
+//                     Tab(icon: Icon(Icons.note_outlined)),
+//                   ]),
+//               Text(
+//                 presenter.model.character.name,
+//                 style: const TextStyle(fontSize: 30),
+//                 textAlign: TextAlign.left,
+//                 selectionColor: Colors.white,
+//               ),
+//               //DropdownButton(items: numbers, onChanged: onChanged)
+//               // DropdownButtonFormField(items: items, onChanged: onChanged)
+//               Text(
+//                   '${presenter.model.character.role[0]}: ${presenter.model.character.role[0].rank}',
+//                   textAlign: TextAlign.left),
+//               Text(
+//                   'HP: ${presenter.model.character.stats.HP}/${presenter.model.character.stats.HP}',
+//                   textAlign: TextAlign.left),
 
-class DropButtonINT extends StatefulWidget {
-  const DropButtonINT({super.key});
+//               Row(children: const [
+//                 Icon(Icons.lightbulb_outline),
+//                 Text('INT', style: TextStyle(fontWeight: FontWeight.bold)),
+//                 // SizedBox(width: 12),
+//                 DropButtonINT(),
+//                 //SizedBox(width: 12),
+//                 Icon(Icons.sports_martial_arts),
+//                 Text('REF', style: TextStyle(fontWeight: FontWeight.bold)),
+//                 //SizedBox(width: 12),
+//                 DropButtonREF(),
+//                 //SizedBox(width: 12),
+//                 Icon(Icons.lightbulb_outline),
+//                 Text('DEX', style: TextStyle(fontWeight: FontWeight.bold)),
+//                 //SizedBox(width: 12),
+//                 DropButtonDEX(),
+//                 //SizedBox(width: 12),
+//                 Icon(Icons.construction),
+//                 Text('TECH', style: TextStyle(fontWeight: FontWeight.bold)),
+//                 // SizedBox(width: 12),
+//                 DropButtonTECH(),
+//                 //SizedBox(width: 12),
+//                 Icon(Icons.snowing),
+//                 Text('COOL', style: TextStyle(fontWeight: FontWeight.bold)),
+//                 //SizedBox(width: 12),
+//                 DropButtonCOOL(),
+//                 // SizedBox(width: 12),
+//                 Icon(Icons.lightbulb_outline),
+//                 Text('WILL', style: TextStyle(fontWeight: FontWeight.bold)),
+//                 // SizedBox(width: 12),
+//                 DropButtonWILL(),
+//                 //SizedBox(width: 12),
+//                 Icon(Icons.lightbulb_circle),
+//                 Text('LUCK', style: TextStyle(fontWeight: FontWeight.bold)),
+//                 // SizedBox(width: 12),
+//                 DropButtonLUCK(),
+//                 //SizedBox(width: 12),
+//                 Icon(Icons.lightbulb_outline),
+//                 Text('DEX', style: TextStyle(fontWeight: FontWeight.bold)),
+//                 SizedBox(width: 12),
+//                 DropButtonMOVE(),
+//                 //SizedBox(width: 12),
+//                 Icon(Icons.lightbulb_outline),
+//                 Text('BODY', style: TextStyle(fontWeight: FontWeight.bold)),
+//                 //SizedBox(width: 12),
+//                 // DropButtonBODY(),
+//                 // //SizedBox(width: 12),
+//                 // Icon(Icons.lightbulb_outline),
+//                 // Text('EMP', style: TextStyle(fontWeight: FontWeight.bold)),
+//                 // // SizedBox(width: 12),
+//                 // DropButtonEMP(),
+//                 // //SizedBox(width: 12),
+//                 // Icon(Icons.lightbulb_outline),
+//                 // Text('Humanity', style: TextStyle(fontWeight: FontWeight.bold)),
+//                 // //SizedBox(width: 12),
+//                 // DropButtonHumanity(),
+//               ]),
+//               Text('Initiative: +${presenter.model.character.stats.REF}',
+//                   textAlign: TextAlign.left),
+//               Column(
+//                   children: presenter.model.character.skills
+//                       .getMap()
+//                       .entries
+//                       .map((e) {
+//                 num number = e.value;
+//                 var w = Text('${e.key}: $number',
+//                     style: const TextStyle(fontSize: 10),
+//                     textAlign: TextAlign.left);
+//                 return w;
+//               }).toList()),
+//               TextButton(
+//                 style: TextButton.styleFrom(
+//                   textStyle: const TextStyle(fontSize: 20),
+//                 ),
+//                 onPressed: () {
+//                   Navigator.pushNamed(context, homeRoute,
+//                       arguments: 'arguments/chose Templates');
+//                 },
+//                 child: const Text('Home'),
+//               ),
+//             ]))));
+//   }
+// }
 
-  @override
-  State<DropButtonINT> createState() => _DropButtonINTState();
-}
+// class DropButtonINT extends StatefulWidget {
+//   const DropButtonINT({super.key});
 
-class _DropButtonINTState extends State<DropButtonINT> {
-  int dropdownValue = presenter.model.character.stats.INT;
+//   @override
+//   State<DropButtonINT> createState() => _DropButtonINTState();
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<int>(
-      // text: "INT";
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.yellow),
-      underline: Container(
-        height: 2,
-        color: Colors.yellowAccent,
-      ),
-      onChanged: (int? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: numbers.map<DropdownMenuItem<int>>((int value) {
-        return DropdownMenuItem<int>(
-          value: value,
-          child: Text("$value"),
-        );
-      }).toList(),
-      // text: "INT";
-      //child: [\Text("Int"),
-    );
-  }
-}
+// class _DropButtonINTState extends State<DropButtonINT> {
+//   int dropdownValue = presenter.model.character.stats.INT;
 
-class DropButtonREF extends StatefulWidget {
-  const DropButtonREF({super.key});
+//   @override
+//   Widget build(BuildContext context) {
+//     return DropdownButton<int>(
+//       // text: "INT";
+//       value: dropdownValue,
+//       icon: const Icon(Icons.arrow_downward),
+//       elevation: 16,
+//       style: const TextStyle(color: Colors.yellow),
+//       underline: Container(
+//         height: 2,
+//         color: Colors.yellowAccent,
+//       ),
+//       onChanged: (int? value) {
+//         // This is called when the user selects an item.
+//         setState(() {
+//           dropdownValue = value!;
+//         });
+//       },
+//       items: numbers.map<DropdownMenuItem<int>>((int value) {
+//         return DropdownMenuItem<int>(
+//           value: value,
+//           child: Text("$value"),
+//         );
+//       }).toList(),
+//       // text: "INT";
+//       //child: [\Text("Int"),
+//     );
+//   }
+// }
 
-  @override
-  State<DropButtonREF> createState() => _DropButtonREFState();
-}
+// class DropButtonREF extends StatefulWidget {
+//   const DropButtonREF({super.key});
 
-class _DropButtonREFState extends State<DropButtonREF> {
-  int dropdownValue = presenter.model.character.stats.REF;
+//   @override
+//   State<DropButtonREF> createState() => _DropButtonREFState();
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<int>(
-      // text: "INT";
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.yellow),
-      underline: Container(
-        height: 2,
-        color: Colors.yellowAccent,
-      ),
-      onChanged: (int? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: numbers.map<DropdownMenuItem<int>>((int value) {
-        return DropdownMenuItem<int>(
-          value: value,
-          child: Text("$value"),
-        );
-      }).toList(),
-      // text: "INT";
-      //child: [\Text("Int"),
-    );
-  }
-}
+// class _DropButtonREFState extends State<DropButtonREF> {
+//   int dropdownValue = presenter.model.character.stats.REF;
 
-class DropButtonDEX extends StatefulWidget {
-  const DropButtonDEX({super.key});
+//   @override
+//   Widget build(BuildContext context) {
+//     return DropdownButton<int>(
+//       // text: "INT";
+//       value: dropdownValue,
+//       icon: const Icon(Icons.arrow_downward),
+//       elevation: 16,
+//       style: const TextStyle(color: Colors.yellow),
+//       underline: Container(
+//         height: 2,
+//         color: Colors.yellowAccent,
+//       ),
+//       onChanged: (int? value) {
+//         // This is called when the user selects an item.
+//         setState(() {
+//           dropdownValue = value!;
+//         });
+//       },
+//       items: numbers.map<DropdownMenuItem<int>>((int value) {
+//         return DropdownMenuItem<int>(
+//           value: value,
+//           child: Text("$value"),
+//         );
+//       }).toList(),
+//       // text: "INT";
+//       //child: [\Text("Int"),
+//     );
+//   }
+// }
 
-  @override
-  State<DropButtonDEX> createState() => _DropButtonDEXState();
-}
+// class DropButtonDEX extends StatefulWidget {
+//   const DropButtonDEX({super.key});
 
-class _DropButtonDEXState extends State<DropButtonDEX> {
-  int dropdownValue = presenter.model.character.stats.DEX;
+//   @override
+//   State<DropButtonDEX> createState() => _DropButtonDEXState();
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<int>(
-      // text: "INT";
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.yellow),
-      underline: Container(
-        height: 2,
-        color: Colors.yellowAccent,
-      ),
-      onChanged: (int? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: numbers.map<DropdownMenuItem<int>>((int value) {
-        return DropdownMenuItem<int>(
-          value: value,
-          child: Text("$value"),
-        );
-      }).toList(),
-      // text: "INT";
-      //child: [\Text("Int"),
-    );
-  }
-}
+// class _DropButtonDEXState extends State<DropButtonDEX> {
+//   int dropdownValue = presenter.model.character.stats.DEX;
 
-class DropButtonTECH extends StatefulWidget {
-  const DropButtonTECH({super.key});
+//   @override
+//   Widget build(BuildContext context) {
+//     return DropdownButton<int>(
+//       // text: "INT";
+//       value: dropdownValue,
+//       icon: const Icon(Icons.arrow_downward),
+//       elevation: 16,
+//       style: const TextStyle(color: Colors.yellow),
+//       underline: Container(
+//         height: 2,
+//         color: Colors.yellowAccent,
+//       ),
+//       onChanged: (int? value) {
+//         // This is called when the user selects an item.
+//         setState(() {
+//           dropdownValue = value!;
+//         });
+//       },
+//       items: numbers.map<DropdownMenuItem<int>>((int value) {
+//         return DropdownMenuItem<int>(
+//           value: value,
+//           child: Text("$value"),
+//         );
+//       }).toList(),
+//       // text: "INT";
+//       //child: [\Text("Int"),
+//     );
+//   }
+// }
 
-  @override
-  State<DropButtonTECH> createState() => _DropButtonTECHState();
-}
+// class DropButtonTECH extends StatefulWidget {
+//   const DropButtonTECH({super.key});
 
-class _DropButtonTECHState extends State<DropButtonTECH> {
-  int dropdownValue = presenter.model.character.stats.TECH;
+//   @override
+//   State<DropButtonTECH> createState() => _DropButtonTECHState();
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<int>(
-      // text: "INT";
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.yellow),
-      underline: Container(
-        height: 2,
-        color: Colors.yellowAccent,
-      ),
-      onChanged: (int? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: numbers.map<DropdownMenuItem<int>>((int value) {
-        return DropdownMenuItem<int>(
-          value: value,
-          child: Text("$value"),
-        );
-      }).toList(),
-      // text: "INT";
-      //child: [\Text("Int"),
-    );
-  }
-}
+// class _DropButtonTECHState extends State<DropButtonTECH> {
+//   int dropdownValue = presenter.model.character.stats.TECH;
 
-class DropButtonCOOL extends StatefulWidget {
-  const DropButtonCOOL({super.key});
+//   @override
+//   Widget build(BuildContext context) {
+//     return DropdownButton<int>(
+//       // text: "INT";
+//       value: dropdownValue,
+//       icon: const Icon(Icons.arrow_downward),
+//       elevation: 16,
+//       style: const TextStyle(color: Colors.yellow),
+//       underline: Container(
+//         height: 2,
+//         color: Colors.yellowAccent,
+//       ),
+//       onChanged: (int? value) {
+//         // This is called when the user selects an item.
+//         setState(() {
+//           dropdownValue = value!;
+//         });
+//       },
+//       items: numbers.map<DropdownMenuItem<int>>((int value) {
+//         return DropdownMenuItem<int>(
+//           value: value,
+//           child: Text("$value"),
+//         );
+//       }).toList(),
+//       // text: "INT";
+//       //child: [\Text("Int"),
+//     );
+//   }
+// }
 
-  @override
-  State<DropButtonCOOL> createState() => _DropButtonCOOLState();
-}
+// class DropButtonCOOL extends StatefulWidget {
+//   const DropButtonCOOL({super.key});
 
-class _DropButtonCOOLState extends State<DropButtonCOOL> {
-  int dropdownValue = presenter.model.character.stats.COOL;
+//   @override
+//   State<DropButtonCOOL> createState() => _DropButtonCOOLState();
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<int>(
-      // text: "INT";
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.yellow),
-      underline: Container(
-        height: 2,
-        color: Colors.yellowAccent,
-      ),
-      onChanged: (int? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: numbers.map<DropdownMenuItem<int>>((int value) {
-        return DropdownMenuItem<int>(
-          value: value,
-          child: Text("$value"),
-        );
-      }).toList(),
-      // text: "INT";
-      //child: [\Text("Int"),
-    );
-  }
-}
+// class _DropButtonCOOLState extends State<DropButtonCOOL> {
+//   int dropdownValue = presenter.model.character.stats.COOL;
 
-class DropButtonWILL extends StatefulWidget {
-  const DropButtonWILL({super.key});
+//   @override
+//   Widget build(BuildContext context) {
+//     return DropdownButton<int>(
+//       // text: "INT";
+//       value: dropdownValue,
+//       icon: const Icon(Icons.arrow_downward),
+//       elevation: 16,
+//       style: const TextStyle(color: Colors.yellow),
+//       underline: Container(
+//         height: 2,
+//         color: Colors.yellowAccent,
+//       ),
+//       onChanged: (int? value) {
+//         // This is called when the user selects an item.
+//         setState(() {
+//           dropdownValue = value!;
+//         });
+//       },
+//       items: numbers.map<DropdownMenuItem<int>>((int value) {
+//         return DropdownMenuItem<int>(
+//           value: value,
+//           child: Text("$value"),
+//         );
+//       }).toList(),
+//       // text: "INT";
+//       //child: [\Text("Int"),
+//     );
+//   }
+// }
 
-  @override
-  State<DropButtonWILL> createState() => _DropButtonWILLState();
-}
+// class DropButtonWILL extends StatefulWidget {
+//   const DropButtonWILL({super.key});
 
-class _DropButtonWILLState extends State<DropButtonWILL> {
-  int dropdownValue = presenter.model.character.stats.WILL;
+//   @override
+//   State<DropButtonWILL> createState() => _DropButtonWILLState();
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<int>(
-      // text: "INT";
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.yellow),
-      underline: Container(
-        height: 2,
-        color: Colors.yellowAccent,
-      ),
-      onChanged: (int? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: numbers.map<DropdownMenuItem<int>>((int value) {
-        return DropdownMenuItem<int>(
-          value: value,
-          child: Text("$value"),
-        );
-      }).toList(),
-      // text: "INT";
-      //child: [\Text("Int"),
-    );
-  }
-}
+// class _DropButtonWILLState extends State<DropButtonWILL> {
+//   int dropdownValue = presenter.model.character.stats.WILL;
 
-class DropButtonLUCK extends StatefulWidget {
-  const DropButtonLUCK({super.key});
+//   @override
+//   Widget build(BuildContext context) {
+//     return DropdownButton<int>(
+//       // text: "INT";
+//       value: dropdownValue,
+//       icon: const Icon(Icons.arrow_downward),
+//       elevation: 16,
+//       style: const TextStyle(color: Colors.yellow),
+//       underline: Container(
+//         height: 2,
+//         color: Colors.yellowAccent,
+//       ),
+//       onChanged: (int? value) {
+//         // This is called when the user selects an item.
+//         setState(() {
+//           dropdownValue = value!;
+//         });
+//       },
+//       items: numbers.map<DropdownMenuItem<int>>((int value) {
+//         return DropdownMenuItem<int>(
+//           value: value,
+//           child: Text("$value"),
+//         );
+//       }).toList(),
+//       // text: "INT";
+//       //child: [\Text("Int"),
+//     );
+//   }
+// }
 
-  @override
-  State<DropButtonLUCK> createState() => _DropButtonLUCKState();
-}
+// class DropButtonLUCK extends StatefulWidget {
+//   const DropButtonLUCK({super.key});
 
-class _DropButtonLUCKState extends State<DropButtonLUCK> {
-  int dropdownValue = presenter.model.character.stats.LUCK;
+//   @override
+//   State<DropButtonLUCK> createState() => _DropButtonLUCKState();
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<int>(
-      // text: "INT";
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.yellow),
-      underline: Container(
-        height: 2,
-        color: Colors.yellowAccent,
-      ),
-      onChanged: (int? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: numbers.map<DropdownMenuItem<int>>((int value) {
-        return DropdownMenuItem<int>(
-          value: value,
-          child: Text("$value"),
-        );
-      }).toList(),
-      // text: "INT";
-      //child: [\Text("Int"),
-    );
-  }
-}
+// class _DropButtonLUCKState extends State<DropButtonLUCK> {
+//   int dropdownValue = presenter.model.character.stats.LUCK;
 
-class DropButtonMOVE extends StatefulWidget {
-  const DropButtonMOVE({super.key});
+//   @override
+//   Widget build(BuildContext context) {
+//     return DropdownButton<int>(
+//       // text: "INT";
+//       value: dropdownValue,
+//       icon: const Icon(Icons.arrow_downward),
+//       elevation: 16,
+//       style: const TextStyle(color: Colors.yellow),
+//       underline: Container(
+//         height: 2,
+//         color: Colors.yellowAccent,
+//       ),
+//       onChanged: (int? value) {
+//         // This is called when the user selects an item.
+//         setState(() {
+//           dropdownValue = value!;
+//         });
+//       },
+//       items: numbers.map<DropdownMenuItem<int>>((int value) {
+//         return DropdownMenuItem<int>(
+//           value: value,
+//           child: Text("$value"),
+//         );
+//       }).toList(),
+//       // text: "INT";
+//       //child: [\Text("Int"),
+//     );
+//   }
+// }
 
-  @override
-  State<DropButtonMOVE> createState() => _DropButtonMOVEState();
-}
+// class DropButtonMOVE extends StatefulWidget {
+//   const DropButtonMOVE({super.key});
 
-class _DropButtonMOVEState extends State<DropButtonMOVE> {
-  int dropdownValue = presenter.model.character.stats.MOVE;
+//   @override
+//   State<DropButtonMOVE> createState() => _DropButtonMOVEState();
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<int>(
-      // text: "INT";
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.yellow),
-      underline: Container(
-        height: 2,
-        color: Colors.yellowAccent,
-      ),
-      onChanged: (int? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: numbers.map<DropdownMenuItem<int>>((int value) {
-        return DropdownMenuItem<int>(
-          value: value,
-          child: Text("$value"),
-        );
-      }).toList(),
-      // text: "INT";
-      //child: [\Text("Int"),
-    );
-  }
-}
+// class _DropButtonMOVEState extends State<DropButtonMOVE> {
+//   int dropdownValue = presenter.model.character.stats.MOVE;
 
-class DropButtonBODY extends StatefulWidget {
-  const DropButtonBODY({super.key});
+//   @override
+//   Widget build(BuildContext context) {
+//     return DropdownButton<int>(
+//       // text: "INT";
+//       value: dropdownValue,
+//       icon: const Icon(Icons.arrow_downward),
+//       elevation: 16,
+//       style: const TextStyle(color: Colors.yellow),
+//       underline: Container(
+//         height: 2,
+//         color: Colors.yellowAccent,
+//       ),
+//       onChanged: (int? value) {
+//         // This is called when the user selects an item.
+//         setState(() {
+//           dropdownValue = value!;
+//         });
+//       },
+//       items: numbers.map<DropdownMenuItem<int>>((int value) {
+//         return DropdownMenuItem<int>(
+//           value: value,
+//           child: Text("$value"),
+//         );
+//       }).toList(),
+//       // text: "INT";
+//       //child: [\Text("Int"),
+//     );
+//   }
+// }
 
-  @override
-  State<DropButtonBODY> createState() => _DropButtonBODYState();
-}
+// class DropButtonBODY extends StatefulWidget {
+//   const DropButtonBODY({super.key});
 
-class _DropButtonBODYState extends State<DropButtonBODY> {
-  int dropdownValue = presenter.model.character.stats.BODY;
+//   @override
+//   State<DropButtonBODY> createState() => _DropButtonBODYState();
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<int>(
-      // text: "INT";
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.yellow),
-      underline: Container(
-        height: 2,
-        color: Colors.yellowAccent,
-      ),
-      onChanged: (int? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: numbers.map<DropdownMenuItem<int>>((int value) {
-        return DropdownMenuItem<int>(
-          value: value,
-          child: Text("$value"),
-        );
-      }).toList(),
-      // text: "INT";
-      //child: [\Text("Int"),
-    );
-  }
-}
+// class _DropButtonBODYState extends State<DropButtonBODY> {
+//   int dropdownValue = presenter.model.character.stats.BODY;
 
-class DropButtonEMP extends StatefulWidget {
-  const DropButtonEMP({super.key});
+//   @override
+//   Widget build(BuildContext context) {
+//     return DropdownButton<int>(
+//       // text: "INT";
+//       value: dropdownValue,
+//       icon: const Icon(Icons.arrow_downward),
+//       elevation: 16,
+//       style: const TextStyle(color: Colors.yellow),
+//       underline: Container(
+//         height: 2,
+//         color: Colors.yellowAccent,
+//       ),
+//       onChanged: (int? value) {
+//         // This is called when the user selects an item.
+//         setState(() {
+//           dropdownValue = value!;
+//         });
+//       },
+//       items: numbers.map<DropdownMenuItem<int>>((int value) {
+//         return DropdownMenuItem<int>(
+//           value: value,
+//           child: Text("$value"),
+//         );
+//       }).toList(),
+//       // text: "INT";
+//       //child: [\Text("Int"),
+//     );
+//   }
+// }
 
-  @override
-  State<DropButtonEMP> createState() => _DropButtonEMPState();
-}
+// class DropButtonEMP extends StatefulWidget {
+//   const DropButtonEMP({super.key});
 
-class _DropButtonEMPState extends State<DropButtonEMP> {
-  int dropdownValue = presenter.model.character.stats.REF;
+//   @override
+//   State<DropButtonEMP> createState() => _DropButtonEMPState();
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<int>(
-      // text: "INT";
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.yellow),
-      underline: Container(
-        height: 2,
-        color: Colors.yellowAccent,
-      ),
-      onChanged: (int? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: numbers.map<DropdownMenuItem<int>>((int value) {
-        return DropdownMenuItem<int>(
-          value: value,
-          child: Text("$value"),
-        );
-      }).toList(),
-      // text: "INT";
-      //child: [\Text("Int"),
-    );
-  }
-}
+// class _DropButtonEMPState extends State<DropButtonEMP> {
+//   int dropdownValue = presenter.model.character.stats.REF;
 
-class DropButtonHumanity extends StatefulWidget {
-  const DropButtonHumanity({super.key});
+//   @override
+//   Widget build(BuildContext context) {
+//     return DropdownButton<int>(
+//       // text: "INT";
+//       value: dropdownValue,
+//       icon: const Icon(Icons.arrow_downward),
+//       elevation: 16,
+//       style: const TextStyle(color: Colors.yellow),
+//       underline: Container(
+//         height: 2,
+//         color: Colors.yellowAccent,
+//       ),
+//       onChanged: (int? value) {
+//         // This is called when the user selects an item.
+//         setState(() {
+//           dropdownValue = value!;
+//         });
+//       },
+//       items: numbers.map<DropdownMenuItem<int>>((int value) {
+//         return DropdownMenuItem<int>(
+//           value: value,
+//           child: Text("$value"),
+//         );
+//       }).toList(),
+//       // text: "INT";
+//       //child: [\Text("Int"),
+//     );
+//   }
+// }
 
-  @override
-  State<DropButtonHumanity> createState() => _DropButtonHumanityState();
-}
+// class DropButtonHumanity extends StatefulWidget {
+//   const DropButtonHumanity({super.key});
 
-class _DropButtonHumanityState extends State<DropButtonHumanity> {
-  int dropdownValue = presenter.model.character.stats.HUM;
+//   @override
+//   State<DropButtonHumanity> createState() => _DropButtonHumanityState();
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<int>(
-      // text: "INT";
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.yellow),
-      underline: Container(
-        height: 2,
-        color: Colors.yellowAccent,
-      ),
-      onChanged: (int? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: numbers.map<DropdownMenuItem<int>>((int value) {
-        return DropdownMenuItem<int>(
-          value: value,
-          child: Text("$value"),
-        );
-      }).toList(),
-      // text: "INT";
-      //child: [\Text("Int"),
-    );
-  }
-}
+// class _DropButtonHumanityState extends State<DropButtonHumanity> {
+//   int dropdownValue = presenter.model.character.stats.HUM;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return DropdownButton<int>(
+//       // text: "INT";
+//       value: dropdownValue,
+//       icon: const Icon(Icons.arrow_downward),
+//       elevation: 16,
+//       style: const TextStyle(color: Colors.yellow),
+//       underline: Container(
+//         height: 2,
+//         color: Colors.yellowAccent,
+//       ),
+//       onChanged: (int? value) {
+//         // This is called when the user selects an item.
+//         setState(() {
+//           dropdownValue = value!;
+//         });
+//       },
+//       items: numbers.map<DropdownMenuItem<int>>((int value) {
+//         return DropdownMenuItem<int>(
+//           value: value,
+//           child: Text("$value"),
+//         );
+//       }).toList(),
+//       // text: "INT";
+//       //child: [\Text("Int"),
+//     );
+//   }
+// }

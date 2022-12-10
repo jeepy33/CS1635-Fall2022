@@ -23,6 +23,8 @@ const String skillsRoute = inventoryRoute + "/stats"; //changed this
 const String editCharRoute = homeRoute + "/edit";
 //const String inventoryRoute = skillsRoute + "/inventory";
 
+const List<int> numbers = <int>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 enum Template { STREETRAT, EDGERUNNER, COMPLETE, NONE }
 
 enum RoleType {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
+import 'view/all.dart';
 
 import 'constants.dart';
 
@@ -7,46 +7,35 @@ class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case homeRoute:
-        return MaterialPageRoute(builder: (_) => Home());
+        return MaterialPageRoute(builder: (_) => const Home());
       case newCharRoute:
-        var data = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) => newChar(data));
+        return MaterialPageRoute(builder: (_) => const NewChar());
       case editCharRoute:
-        var data = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) => editChar(data));
+        return MaterialPageRoute(builder: (_) => const EditChar());
       case templatesRoute:
-        var data = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) => RolesPage(data));
+        return MaterialPageRoute(builder: (_) => const RolesPage());
       case templateLifePath:
-        var data = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) => LifePath(data));
+        return MaterialPageRoute(builder: (_) => const OriginPage());
       case styleRoute:
-        var data = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) => StylePage(data));
+        return MaterialPageRoute(builder: (_) => const StylePage());
       case motivationsRoute:
-        var data = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) => MotivationsPage(data));
+        return MaterialPageRoute(builder: (_) => const MotivationsPage());
       case familyRoute:
-        var data = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) => FamilyPage(data));
+        return MaterialPageRoute(builder: (_) => const FamilyPage());
       case environmentRoute:
-        var data = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) => EnvironmentPage(data));
+        return MaterialPageRoute(builder: (_) => const EnvironmentPage());
       case friendsRoute:
-        var data = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) => Friends(data));
+        return MaterialPageRoute(builder: (_) => const Friends());
       case enemiesRoute:
-        var data = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) => Enemies(data));
+        return MaterialPageRoute(builder: (_) => const Enemies());
       case lifeGoalsRoute:
-        var data = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) => LifeGoalsPage(data));
+        return MaterialPageRoute(builder: (_) => const LifeGoalsPage());
       case statsRoute:
-        return MaterialPageRoute(builder: (_) => StatsPage());
+        return MaterialPageRoute(builder: (_) => const StatsPage());
       case skillsRoute:
-        return MaterialPageRoute(builder: (_) => SkillsPage());
+        return MaterialPageRoute(builder: (_) => const SkillsPage());
       case inventoryRoute: //inventory page
-        return MaterialPageRoute(builder: (_) => InventoryPage());
+        return MaterialPageRoute(builder: (_) => const InventoryPage());
 
       default:
         return MaterialPageRoute(

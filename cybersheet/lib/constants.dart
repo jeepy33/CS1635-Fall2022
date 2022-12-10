@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cybersheet/main.dart';
 import 'package:cybersheet/model/model.dart';
 
@@ -22,6 +24,9 @@ const String inventoryRoute = statsRoute + "/skills";
 const String skillsRoute = inventoryRoute + "/stats"; //changed this
 const String editCharRoute = homeRoute + "/edit";
 //const String inventoryRoute = skillsRoute + "/inventory";
+
+const Color cyberRed = Color.fromARGB(228, 228, 35, 24);
+const Color buttonRed = Color.fromARGB(255, 231, 106, 106);
 
 const List<int> numbers = <int>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 

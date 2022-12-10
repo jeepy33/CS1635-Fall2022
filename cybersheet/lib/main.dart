@@ -2281,12 +2281,19 @@ class _statsState extends State<StatsPage> {
                 Column(
                   children: [
                     Text(
-                        'INT    REF    DEX    TECH   COOL   WILL   LUCK   MOVE   BODY    EMP'),
+                        'INT    REF    DEX    TECH   COOL   WILL   LUCK   MOVE   BODY    EMP',
+                        style: TextStyle(fontSize: 20, color: Colors.white)),
+                    const SizedBox(
+                      height: 15,
+                    ),
                     TextButton(
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          backgroundColor:
-                              _selections[0] ? Colors.red : Colors.white),
+                          foregroundColor: _selections[0]
+                              ? Color.fromARGB(255, 231, 106, 106)
+                              : Colors.white,
+                          backgroundColor: _selections[0]
+                              ? Colors.white
+                              : Color.fromARGB(255, 231, 106, 106)),
                       onPressed: () {
                         setState(() {
                           _selections.fillRange(0, _selections.length, false);
@@ -2302,9 +2309,12 @@ class _statsState extends State<StatsPage> {
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          backgroundColor:
-                              _selections[1] ? Colors.red : Colors.white),
+                          foregroundColor: _selections[1]
+                              ? Color.fromARGB(255, 231, 106, 106)
+                              : Colors.white,
+                          backgroundColor: _selections[1]
+                              ? Colors.white
+                              : Color.fromARGB(255, 231, 106, 106)),
                       onPressed: () {
                         setState(() {
                           _selections.fillRange(0, _selections.length, false);
@@ -2320,9 +2330,12 @@ class _statsState extends State<StatsPage> {
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          backgroundColor:
-                              _selections[2] ? Colors.red : Colors.white),
+                          foregroundColor: _selections[2]
+                              ? Color.fromARGB(255, 231, 106, 106)
+                              : Colors.white,
+                          backgroundColor: _selections[2]
+                              ? Colors.white
+                              : Color.fromARGB(255, 231, 106, 106)),
                       onPressed: () {
                         setState(() {
                           _selections.fillRange(0, _selections.length, false);
@@ -2338,9 +2351,12 @@ class _statsState extends State<StatsPage> {
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          backgroundColor:
-                              _selections[3] ? Colors.red : Colors.white),
+                          foregroundColor: _selections[3]
+                              ? Color.fromARGB(255, 231, 106, 106)
+                              : Colors.white,
+                          backgroundColor: _selections[3]
+                              ? Colors.white
+                              : Color.fromARGB(255, 231, 106, 106)),
                       onPressed: () {
                         setState(() {
                           _selections.fillRange(0, _selections.length, false);
@@ -2356,9 +2372,12 @@ class _statsState extends State<StatsPage> {
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          backgroundColor:
-                              _selections[4] ? Colors.red : Colors.white),
+                          foregroundColor: _selections[4]
+                              ? Color.fromARGB(255, 231, 106, 106)
+                              : Colors.white,
+                          backgroundColor: _selections[4]
+                              ? Colors.white
+                              : Color.fromARGB(255, 231, 106, 106)),
                       onPressed: () {
                         setState(() {
                           _selections.fillRange(0, _selections.length, false);
@@ -2374,9 +2393,12 @@ class _statsState extends State<StatsPage> {
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          backgroundColor:
-                              _selections[5] ? Colors.red : Colors.white),
+                          foregroundColor: _selections[5]
+                              ? Color.fromARGB(255, 231, 106, 106)
+                              : Colors.white,
+                          backgroundColor: _selections[5]
+                              ? Colors.white
+                              : Color.fromARGB(255, 231, 106, 106)),
                       onPressed: () {
                         setState(() {
                           _selections.fillRange(0, _selections.length, false);
@@ -2392,9 +2414,12 @@ class _statsState extends State<StatsPage> {
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          backgroundColor:
-                              _selections[6] ? Colors.red : Colors.white),
+                          foregroundColor: _selections[6]
+                              ? Color.fromARGB(255, 231, 106, 106)
+                              : Colors.white,
+                          backgroundColor: _selections[6]
+                              ? Colors.white
+                              : Color.fromARGB(255, 231, 106, 106)),
                       onPressed: () {
                         setState(() {
                           _selections.fillRange(0, _selections.length, false);
@@ -2410,9 +2435,12 @@ class _statsState extends State<StatsPage> {
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          backgroundColor:
-                              _selections[7] ? Colors.red : Colors.white),
+                          foregroundColor: _selections[7]
+                              ? Color.fromARGB(255, 231, 106, 106)
+                              : Colors.white,
+                          backgroundColor: _selections[7]
+                              ? Colors.white
+                              : Color.fromARGB(255, 231, 106, 106)),
                       onPressed: () {
                         setState(() {
                           _selections.fillRange(0, _selections.length, false);
@@ -2428,9 +2456,12 @@ class _statsState extends State<StatsPage> {
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          backgroundColor:
-                              _selections[8] ? Colors.red : Colors.white),
+                          foregroundColor: _selections[8]
+                              ? Color.fromARGB(255, 231, 106, 106)
+                              : Colors.white,
+                          backgroundColor: _selections[8]
+                              ? Colors.white
+                              : Color.fromARGB(255, 231, 106, 106)),
                       onPressed: () {
                         setState(() {
                           _selections.fillRange(0, _selections.length, false);
@@ -2446,9 +2477,12 @@ class _statsState extends State<StatsPage> {
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          backgroundColor:
-                              _selections[9] ? Colors.red : Colors.white),
+                          foregroundColor: _selections[9]
+                              ? Color.fromARGB(255, 231, 106, 106)
+                              : Colors.white,
+                          backgroundColor: _selections[9]
+                              ? Colors.white
+                              : Color.fromARGB(255, 231, 106, 106)),
                       onPressed: () {
                         setState(() {
                           _selections.fillRange(0, _selections.length, false);
@@ -2579,17 +2613,26 @@ class _skillsState extends State<SkillsPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 //thing
-                Text('Skills: $role'),
-                Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: matrix.entries.map((e) {
-                      num number = e.value;
-                      var w = Text(e.key + ': $number',
-                          style: const TextStyle(fontSize: 18));
-                      return w;
-                    }).toList()),
+                Text('Skills: $role',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(height: 15),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 231, 106, 106),
+                  ),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: matrix.entries.map((e) {
+                        num number = e.value;
+                        var w = Text(e.key + ': $number' + '\n',
+                            style: const TextStyle(
+                                fontSize: 15, color: Colors.white));
+                        return w;
+                      }).toList()),
+                ),
                 const SizedBox(
-                  height: 60,
+                  height: 40,
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -2667,11 +2710,24 @@ class _inventoryState extends State<InventoryPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text('Inventory'), //added
-                Column(children: createItemList(itemMap)),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                Text('Inventory: ',
+                    style: TextStyle(fontSize: 30, color: Colors.white)),
+                const SizedBox(height: 15),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 231, 106, 106),
+                  ),
+                  child: Column(children: createItemList(itemMap)),
+                ),
+                const SizedBox(height: 60),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     setState(() {
@@ -2688,9 +2744,14 @@ class _inventoryState extends State<InventoryPage> {
                   },
                   child: const Text('Next'),
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 231, 106, 106),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    textStyle:
+                        const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -2715,13 +2776,14 @@ class _inventoryState extends State<InventoryPage> {
             padding: EdgeInsets.only(bottom: 10),
             child: Column(children: [
               DropdownButton<String>(
+                dropdownColor: Color.fromARGB(255, 231, 106, 106),
                 value: presenter.globalDropDown,
                 items: split.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(
                       value,
-                      style: const TextStyle(fontSize: 20),
+                      style: const TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   );
                 }).toList(),
@@ -2734,7 +2796,11 @@ class _inventoryState extends State<InventoryPage> {
             ]));
       } else {
         textSegment = Padding(
-            padding: EdgeInsets.only(bottom: 10), child: Text("$element"));
+            padding: EdgeInsets.only(bottom: 10),
+            child: Text(
+              "$element",
+              style: const TextStyle(fontSize: 20, color: Colors.white),
+            ));
       }
       return textFields.add(textSegment);
     });

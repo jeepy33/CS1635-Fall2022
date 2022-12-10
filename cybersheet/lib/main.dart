@@ -133,7 +133,7 @@ class _newCharState extends State<newChar> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text('Template Selection: $template',
+                Text('Template Selection:',
                     style: TextStyle(fontSize: 30, color: Colors.white)),
                 const SizedBox(height: 30),
                 ToggleButtons(

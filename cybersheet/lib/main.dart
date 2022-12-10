@@ -1864,7 +1864,7 @@ class InventoryPage extends StatefulWidget {
 
 class _inventoryState extends State<InventoryPage> {
   String role = presenter.model.character.role.toString();
-  Map matrix = rockerboySB;
+  Map<String, int> itemMap = rockerItems;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -1874,14 +1874,20 @@ class _inventoryState extends State<InventoryPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text('Inventory'), //added
-            Column(children: createItemList(rockerItems)),
+            Column(children: createItemList(itemMap)),
             TextButton(
               style: TextButton.styleFrom(
                 textStyle: const TextStyle(fontSize: 20),
               ),
               onPressed: () {
                 setState(() {
-                  // Add all items to inventory
+                  itemMap.forEach((key, value) {
+                    if (value == 0) {
+                      presenter.model.character.items.addItem(Item(key));
+                    }
+                  });
+                  presenter.model.character.items
+                      .addItem(Item(presenter.globalDropDown));
                 });
                 Navigator.pushNamed(context, editCharRoute,
                     arguments: 'arguments/chose Templates');
@@ -1910,20 +1916,28 @@ class _inventoryState extends State<InventoryPage> {
     list.forEach((element) {
       var textSegment;
       if (map[element] != 0) {
+        List<String> split = element.split(',');
         textSegment = Padding(
-            padding: EdgeInsets.only(bottom: 10), child: Text("$element"));
-        // DropdownButton<String>(
-        //       value: rockerItems,
-        //       items:
-        //           rockerItems.map<DropdownMenuItem<String>>((String value) {
-        //         return DropdownMenuItem<String>(
-        //           value: value,
-        //           child: Text(
-        //             value,
-        //             style: const TextStyle(fontSize: 20),
-        //           ),
-        //         );
-        //dropdown here
+            padding: EdgeInsets.only(bottom: 10),
+            child: Column(children: [
+              DropdownButton<String>(
+                value: presenter.globalDropDown,
+                items: split.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(
+                      value,
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    presenter.globalDropDown = newValue!;
+                  });
+                },
+              ),
+            ]));
       } else {
         textSegment = Padding(
             padding: EdgeInsets.only(bottom: 10), child: Text("$element"));

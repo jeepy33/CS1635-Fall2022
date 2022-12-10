@@ -776,8 +776,7 @@ const Map<String, int> rockerItems = {
   'Very Heavy Pistol': 0,
   'Basic VH Pistol': 0,
   'Ammunition x50': 0,
-  'Heavy Melee Weapon': 1, //toggle 1
-  'Flashbang Grenade': 1, //toggle 2
+  ',Heavy Melee Weapon,Flashbang Grenade': 1, //toggle 1
   'Teargas Grenade x2': 0,
   'Light Armorjack Body Armor (SP11)': 0,
   'Light Armorjack Head Armor (SP11)': 0

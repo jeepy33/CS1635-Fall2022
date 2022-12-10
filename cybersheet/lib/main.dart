@@ -1226,27 +1226,42 @@ class _familyState extends State<FamilyPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text('Family Background: $background'),
-                DropdownButton<String>(
-                  value: background,
-                  items: backgroundList
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      background = newValue!;
-                      backgroundDesc = FamilyBackground[background];
-                    });
-                  },
+                Text('Family Background:',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(
+                  height: 15,
                 ),
-                Text('$backgroundDesc'),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 231, 106, 106),
+                    ),
+                    child: DropdownButton<String>(
+                      dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                      value: background,
+                      items: backgroundList
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          background = newValue!;
+                          backgroundDesc = FamilyBackground[background];
+                        });
+                      },
+                    )),
+                const SizedBox(height: 30),
+                Text(
+                  '$backgroundDesc',
+                  style: const TextStyle(fontSize: 15, color: Colors.white),
+                ),
                 const SizedBox(
                   height: 60,
                 ),
@@ -1340,44 +1355,69 @@ class _environmentPageState extends State<EnvironmentPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text('Childhood Environment: $environment'),
-                DropdownButton<String>(
-                  value: environment,
-                  items: environmentList
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      environment = newValue!;
-                    });
-                  },
+                Text('Childhood Environment:',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(
+                  height: 15,
                 ),
-                Text('Family Crisis: $crisis'),
-                DropdownButton<String>(
-                  value: crisis,
-                  items:
-                      crisisList.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      crisis = newValue!;
-                    });
-                  },
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 231, 106, 106),
+                    ),
+                    child: DropdownButton<String>(
+                      dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                      value: environment,
+                      items: environmentList
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          environment = newValue!;
+                        });
+                      },
+                    )),
+                const SizedBox(
+                  height: 15,
                 ),
+                Text('Family Crisis:',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(
+                  height: 15,
+                ),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 231, 106, 106),
+                    ),
+                    child: DropdownButton<String>(
+                      dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                      value: crisis,
+                      items: crisisList
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          crisis = newValue!;
+                        });
+                      },
+                    )),
                 const SizedBox(
                   height: 60,
                 ),
@@ -1470,10 +1510,17 @@ class _friendsState extends State<Friends> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text('Friends: $numFriends'),
+                Text('Friends:',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(height: 15),
                 Container(
+                  color: Color.fromARGB(255, 231, 106, 106),
                   constraints: BoxConstraints(maxWidth: 200),
                   child: NumberInputWithIncrementDecrement(
+                      decIconColor: Colors.white,
+                      incIconColor: Colors.white,
+                      incDecBgColor: Colors.white,
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                       controller: TextEditingController(),
                       min: 0,
                       max: 3,
@@ -1506,66 +1553,90 @@ class _friendsState extends State<Friends> {
                         });
                       }),
                 ),
-                DropdownButton<String>(
-                  value: relationship[0],
-                  items: relationshipList
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 15),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: friends[0]
-                      ? (String? newValue) {
-                          setState(() {
-                            relationship[0] = newValue!;
-                          });
-                        }
-                      : null,
-                ),
-                DropdownButton<String>(
-                  value: relationship[1],
-                  items: relationshipList
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: friends[1]
-                      ? (String? newValue) {
-                          setState(() {
-                            relationship[1] = newValue!;
-                          });
-                        }
-                      : null,
-                ),
-                DropdownButton<String>(
-                  value: relationship[2],
-                  items: relationshipList
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: friends[2]
-                      ? (String? newValue) {
-                          setState(() {
-                            relationship[2] = newValue!;
-                          });
-                        }
-                      : null,
-                ),
+                const SizedBox(height: 15),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 231, 106, 106),
+                    ),
+                    child: DropdownButton<String>(
+                      dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                      value: relationship[0],
+                      items: relationshipList
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: friends[0]
+                          ? (String? newValue) {
+                              setState(() {
+                                relationship[0] = newValue!;
+                              });
+                            }
+                          : null,
+                    )),
+                const SizedBox(height: 15),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 231, 106, 106),
+                    ),
+                    child: DropdownButton<String>(
+                      dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                      value: relationship[1],
+                      items: relationshipList
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: friends[1]
+                          ? (String? newValue) {
+                              setState(() {
+                                relationship[1] = newValue!;
+                              });
+                            }
+                          : null,
+                    )),
+                const SizedBox(height: 15),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 231, 106, 106),
+                    ),
+                    child: DropdownButton<String>(
+                      dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                      value: relationship[2],
+                      items: relationshipList
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: friends[2]
+                          ? (String? newValue) {
+                              setState(() {
+                                relationship[2] = newValue!;
+                              });
+                            }
+                          : null,
+                    )),
                 const SizedBox(height: 60),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -1654,11 +1725,20 @@ class _enemiesState extends State<Enemies> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text('Friends: $numEnemies'),
+                Text('Enemies:',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(
+                  height: 15,
+                ),
                 Container(
+                  color: Color.fromARGB(255, 231, 106, 106),
                   constraints: BoxConstraints(maxWidth: 200),
                   child: NumberInputWithIncrementDecrement(
                       controller: TextEditingController(),
+                      decIconColor: Colors.white,
+                      incIconColor: Colors.white,
+                      incDecBgColor: Colors.white,
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                       min: 0,
                       max: 3,
                       onIncrement: (newValue) {
@@ -1690,199 +1770,280 @@ class _enemiesState extends State<Enemies> {
                         });
                       }),
                 ),
+                const SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    DropdownButton<String>(
-                      value: relationship[0],
-                      items: enemiesList
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(
-                            value,
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: enemies[0]
-                          ? (String? newValue) {
-                              setState(() {
-                                relationship[0] = newValue!;
-                              });
-                            }
-                          : null,
-                    ),
-                    DropdownButton<String>(
-                      value: cause[0],
-                      items: causeList
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(
-                            value,
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: enemies[0]
-                          ? (String? newValue) {
-                              setState(() {
-                                cause[0] = newValue!;
-                              });
-                            }
-                          : null,
-                    ),
-                    DropdownButton<String>(
-                      value: resource[0],
-                      items: resourceList
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(
-                            value,
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: enemies[0]
-                          ? (String? newValue) {
-                              setState(() {
-                                resource[0] = newValue!;
-                              });
-                            }
-                          : null,
-                    ),
+                    const SizedBox(height: 15),
+                    Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 231, 106, 106),
+                        ),
+                        child: DropdownButton<String>(
+                          dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                          value: relationship[0],
+                          items: enemiesList
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: const TextStyle(
+                                    fontSize: 12, color: Colors.white),
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: enemies[0]
+                              ? (String? newValue) {
+                                  setState(() {
+                                    relationship[0] = newValue!;
+                                  });
+                                }
+                              : null,
+                        )),
+                    const SizedBox(height: 15),
+                    Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 231, 106, 106),
+                        ),
+                        child: DropdownButton<String>(
+                          dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                          value: cause[0],
+                          items: causeList
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: const TextStyle(
+                                    fontSize: 12, color: Colors.white),
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: enemies[0]
+                              ? (String? newValue) {
+                                  setState(() {
+                                    cause[0] = newValue!;
+                                  });
+                                }
+                              : null,
+                        )),
+                    const SizedBox(height: 15),
+                    Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 231, 106, 106),
+                        ),
+                        child: DropdownButton<String>(
+                          dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                          value: resource[0],
+                          items: resourceList
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: const TextStyle(
+                                    fontSize: 12, color: Colors.white),
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: enemies[0]
+                              ? (String? newValue) {
+                                  setState(() {
+                                    resource[0] = newValue!;
+                                  });
+                                }
+                              : null,
+                        )),
                   ],
+                ),
+                const SizedBox(
+                  height: 15,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    DropdownButton<String>(
-                      value: relationship[1],
-                      items: enemiesList
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(
-                            value,
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: enemies[1]
-                          ? (String? newValue) {
-                              setState(() {
-                                relationship[1] = newValue!;
-                              });
-                            }
-                          : null,
-                    ),
-                    DropdownButton<String>(
-                      value: cause[1],
-                      items: causeList
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(
-                            value,
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: enemies[1]
-                          ? (String? newValue) {
-                              setState(() {
-                                cause[1] = newValue!;
-                              });
-                            }
-                          : null,
-                    ),
-                    DropdownButton<String>(
-                      value: resource[1],
-                      items: resourceList
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(
-                            value,
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: enemies[1]
-                          ? (String? newValue) {
-                              setState(() {
-                                resource[1] = newValue!;
-                              });
-                            }
-                          : null,
-                    ),
+                    const SizedBox(height: 15),
+                    Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 231, 106, 106),
+                        ),
+                        child: DropdownButton<String>(
+                          dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                          value: relationship[1],
+                          items: enemiesList
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: const TextStyle(
+                                    fontSize: 12, color: Colors.white),
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: enemies[1]
+                              ? (String? newValue) {
+                                  setState(() {
+                                    relationship[1] = newValue!;
+                                  });
+                                }
+                              : null,
+                        )),
+                    const SizedBox(height: 15),
+                    Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 231, 106, 106),
+                        ),
+                        child: DropdownButton<String>(
+                          dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                          value: cause[1],
+                          items: causeList
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: const TextStyle(
+                                    fontSize: 12, color: Colors.white),
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: enemies[1]
+                              ? (String? newValue) {
+                                  setState(() {
+                                    cause[1] = newValue!;
+                                  });
+                                }
+                              : null,
+                        )),
+                    const SizedBox(height: 15),
+                    Container(
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 231, 106, 106),
+                      ),
+                      child: DropdownButton<String>(
+                        dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                        value: resource[1],
+                        items: resourceList
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: const TextStyle(
+                                  fontSize: 12, color: Colors.white),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: enemies[1]
+                            ? (String? newValue) {
+                                setState(() {
+                                  resource[1] = newValue!;
+                                });
+                              }
+                            : null,
+                      ),
+                    )
                   ],
+                ),
+                const SizedBox(
+                  height: 15,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    DropdownButton<String>(
-                      value: relationship[2],
-                      items: enemiesList
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(
-                            value,
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: enemies[2]
-                          ? (String? newValue) {
-                              setState(() {
-                                relationship[2] = newValue!;
-                              });
-                            }
-                          : null,
-                    ),
-                    DropdownButton<String>(
-                      value: cause[2],
-                      items: causeList
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(
-                            value,
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: enemies[2]
-                          ? (String? newValue) {
-                              setState(() {
-                                cause[2] = newValue!;
-                              });
-                            }
-                          : null,
-                    ),
-                    DropdownButton<String>(
-                      value: resource[2],
-                      items: resourceList
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(
-                            value,
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: enemies[2]
-                          ? (String? newValue) {
-                              setState(() {
-                                resource[2] = newValue!;
-                              });
-                            }
-                          : null,
-                    ),
+                    const SizedBox(height: 15),
+                    Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 231, 106, 106),
+                        ),
+                        child: DropdownButton<String>(
+                          dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                          value: relationship[2],
+                          items: enemiesList
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: const TextStyle(
+                                    fontSize: 12, color: Colors.white),
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: enemies[2]
+                              ? (String? newValue) {
+                                  setState(() {
+                                    relationship[2] = newValue!;
+                                  });
+                                }
+                              : null,
+                        )),
+                    const SizedBox(height: 15),
+                    Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 231, 106, 106),
+                        ),
+                        child: DropdownButton<String>(
+                          dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                          value: cause[2],
+                          items: causeList
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: const TextStyle(
+                                    fontSize: 12, color: Colors.white),
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: enemies[2]
+                              ? (String? newValue) {
+                                  setState(() {
+                                    cause[2] = newValue!;
+                                  });
+                                }
+                              : null,
+                        )),
+                    const SizedBox(height: 15),
+                    Container(
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 231, 106, 106),
+                      ),
+                      child: DropdownButton<String>(
+                        dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                        value: resource[2],
+                        items: resourceList
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: const TextStyle(
+                                  fontSize: 12, color: Colors.white),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: enemies[2]
+                            ? (String? newValue) {
+                                setState(() {
+                                  resource[2] = newValue!;
+                                });
+                              }
+                            : null,
+                      ),
+                    )
                   ],
                 ),
                 const SizedBox(
@@ -1970,25 +2131,36 @@ class _lifeGoalsState extends State<LifeGoalsPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text('Life Goals: $lifeGoal'),
-                DropdownButton<String>(
-                  value: lifeGoal,
-                  items: lifeGoalsList
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      lifeGoal = newValue!;
-                    });
-                  },
+                Text('Life Goals:',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(
+                  height: 15,
                 ),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 231, 106, 106),
+                    ),
+                    child: DropdownButton<String>(
+                      dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                      value: lifeGoal,
+                      items: lifeGoalsList
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          lifeGoal = newValue!;
+                        });
+                      },
+                    )),
                 const SizedBox(height: 60),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -2101,7 +2273,11 @@ class _statsState extends State<StatsPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text('Stats: $role'),
+                Text('Stats: ',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(
+                  height: 15,
+                ),
                 Column(
                   children: [
                     Text(

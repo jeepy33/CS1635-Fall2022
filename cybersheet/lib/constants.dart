@@ -907,3 +907,4 @@ List<Armor> armor = [
   Armor("Medium Armorjack", 12, 0, true, 12),
   Armor("Heavy Armorjack", 13, 0, true, 13)
 ];
+

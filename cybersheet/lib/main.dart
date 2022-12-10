@@ -991,81 +991,129 @@ class _motivationsState extends State<MotivationsPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text('What Do You Value Most?: $whatValue'),
-                DropdownButton<String>(
-                  value: whatValue,
-                  items: whatValueList
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      whatValue = newValue!;
-                    });
-                  },
+                Text('What Do You Value Most?: ',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(height: 15),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 231, 106, 106),
+                    ),
+                    child: DropdownButton<String>(
+                      dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                      value: whatValue,
+                      items: whatValueList
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          whatValue = newValue!;
+                        });
+                      },
+                    )),
+                const SizedBox(
+                  height: 15,
                 ),
-                Text('How Do You Feel About Most People?: $mostPeople'),
-                DropdownButton<String>(
-                  value: mostPeople,
-                  items: mostPeopleList
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      mostPeople = newValue!;
-                    });
-                  },
+                Text('How Do You Feel About Most People?: ',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(height: 15),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 231, 106, 106),
+                    ),
+                    child: DropdownButton<String>(
+                      dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                      value: mostPeople,
+                      items: mostPeopleList
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          mostPeople = newValue!;
+                        });
+                      },
+                    )),
+                const SizedBox(
+                  height: 15,
                 ),
-                Text('Most Valued Person in Your Life?: $whoValue'),
-                DropdownButton<String>(
-                  value: whoValue,
-                  items: whoValueList
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      whoValue = newValue!;
-                    });
-                  },
+                Text('Most Valued Person in Your Life?: ',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(height: 15),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 231, 106, 106),
+                    ),
+                    child: DropdownButton<String>(
+                      dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                      value: whoValue,
+                      items: whoValueList
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          whoValue = newValue!;
+                        });
+                      },
+                    )),
+                const SizedBox(
+                  height: 15,
                 ),
-                Text('Most Valued Possession You Own?: $possession'),
-                DropdownButton<String>(
-                  value: possession,
-                  items: valuedPossessionList
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      possession = newValue!;
-                    });
-                  },
+                Text('Most Valued Possession You Own?:',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                const SizedBox(height: 15),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 231, 106, 106),
+                    ),
+                    child: DropdownButton<String>(
+                      dropdownColor: Color.fromARGB(255, 231, 106, 106),
+                      value: possession,
+                      items: valuedPossessionList
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          possession = newValue!;
+                        });
+                      },
+                    )),
+                const SizedBox(
+                  height: 15,
                 ),
                 const SizedBox(
                   height: 60,

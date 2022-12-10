@@ -881,8 +881,3 @@ const Map<String, String> techniqueSkills = {
   'Sea Vehicle Tech': 'TECH',
   'Weaponstech': 'TECH',
 };
-
-List<WeaponRanged> weaponRanged = [
-  WeaponRanged("Medium Pistol", "Handgun", 2, 12, 2, 1, false, true),
-  //WeaponRanged("Heavy Pistol", "Handh", SSD, MAG, ROF, NHR, autofire, conceal)
-];

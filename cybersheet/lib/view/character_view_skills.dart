@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, unnecessary_brace_in_string_interps
+
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import 'package:tabbed_view/tabbed_view.dart';
@@ -29,7 +31,11 @@ class _CharacterSkillsState extends State<CharacterSkills> {
     tabs.add(TabData(
         text: 'Body',
         content:
-            Padding(child: Text('Hello again'), padding: EdgeInsets.all(8))));
+            //   print(awarenessSkills);
+            // awarenessSkills.map((a,b) => print(a)).toList();));
+            //Text(awarenessSkills),
+            // awarenessSkills.forEach((k,v) => print('${k}: ${v}'));
+            const Padding(padding: EdgeInsets.all(8))));
     tabs.add(TabData(
         closable: false,
         text: 'Control',

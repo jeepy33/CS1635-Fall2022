@@ -32,12 +32,22 @@ class _CharacterNotesState extends State<CharacterNotes> {
               style: TextStyle(fontSize: 25, color: Colors.white)),
           const SizedBox(height: 15),
           TextField(
+            maxLines: 30,
+            cursorColor: Colors.white,
+            style: TextStyle(
+              color: Colors.white,
+            ),
             onChanged: (text) {
               print(text);
               saveNotes = text;
             },
             decoration: InputDecoration(
-              border: OutlineInputBorder(),
+              focusColor: Colors.white,
+              filled: true,
+              fillColor: buttonRed,
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.white, width: 2.0),
+              ),
             ),
           ),
           const SizedBox(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
+import '../main.dart';
 
 class CharacterNotes extends StatefulWidget {
   const CharacterNotes({super.key});
@@ -14,7 +15,16 @@ class _CharacterNotesState extends State<CharacterNotes> {
 
   List<String> crisisList = FamilyCrisis;
   String crisis = FamilyCrisis[0];
-  String saveNotes = "";
+  TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _controller.text = presenter.saveNotes;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,14 +42,14 @@ class _CharacterNotesState extends State<CharacterNotes> {
               style: TextStyle(fontSize: 25, color: Colors.white)),
           const SizedBox(height: 15),
           TextField(
+            controller: _controller,
             maxLines: 30,
             cursorColor: Colors.white,
             style: TextStyle(
               color: Colors.white,
             ),
             onChanged: (text) {
-              print(text);
-              saveNotes = text;
+              presenter.saveNotes = text;
             },
             decoration: InputDecoration(
               focusColor: Colors.white,
@@ -52,17 +62,6 @@ class _CharacterNotesState extends State<CharacterNotes> {
           ),
           const SizedBox(
             height: 60,
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: buttonRed,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-              textStyle: const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
-            ),
-            onPressed: () {
-              setState(() {});
-            },
-            child: const Text('Save Notes'),
           ),
         ]),
       ),

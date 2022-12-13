@@ -348,7 +348,7 @@ class _CharacterSkillsState extends State<CharacterSkills> {
     Set<Widget> widgetRanged = {};
     tabs.add(
       TabData(
-        text: 'Control',
+        text: 'Ranged Weapons',
         content: Padding(
           padding: const EdgeInsets.all(8),
           child: Column(children: <Widget>[
@@ -396,7 +396,7 @@ class _CharacterSkillsState extends State<CharacterSkills> {
     Set<Widget> widgetTech = {};
     tabs.add(
       TabData(
-        text: 'Control',
+        text: 'Technique',
         content: Padding(
           padding: const EdgeInsets.all(8),
           child: Column(children: <Widget>[

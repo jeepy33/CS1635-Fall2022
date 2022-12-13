@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../constants.dart';
 
@@ -7,8 +8,66 @@ class Model {
 
   Model();
 
+  Model.fromJson(Map<String, dynamic> json) {
+    character.name = json['name'];
+    character.role = [
+      Role(
+          RoleType.values
+              .firstWhere((e) => e.toString() == 'RoleType.' + json['role']),
+          json['rank'])
+    ];
+    character.stats.INT = json['int'];
+    character.stats.REF = json['ref'];
+    character.stats.DEX = json['dex'];
+    character.stats.TECH = json['tech'];
+    character.stats.COOL = json['cool'];
+    character.stats.WILL = json['will'];
+    character.stats.LUCK = json['luck'];
+    character.stats.LUCK_MAX = json['luck_max'];
+    character.stats.MOVE = json['move'];
+    character.stats.BODY = json['body'];
+    character.stats.EMP = json['emp'];
+    character.stats.EMP_MAX = json['emp_max'];
+    character.stats.HP = json['health'];
+    character.stats.HP_MAX = json['health_max'];
+    character.stats.HUM = json['hum'];
+    character.stats.HUM_MAX = json['hum_max'];
+    character.skills.fromMap(Map.from(json['skillbook']));
+    character.items.fromList(List.from(json['items']));
+    character.equipped.fromList(List.from(json['equipped']));
+    character.cyberware.fromList(List.from(json['cyberware']));
+    character.outfit.fromList(List.from(json['outfit']));
+  }
+
+  Map<String, dynamic> toJson() => {
+        'name': character.name,
+        'role': character.role[0].toString(),
+        'rank': character.role[0].rank,
+        'int': character.stats.INT,
+        'ref': character.stats.REF,
+        'dex': character.stats.DEX,
+        'tech': character.stats.TECH,
+        'cool': character.stats.COOL,
+        'will': character.stats.WILL,
+        'luck': character.stats.LUCK,
+        'luck_max': character.stats.LUCK_MAX,
+        'move': character.stats.MOVE,
+        'body': character.stats.BODY,
+        'emp': character.stats.EMP,
+        'emp_max': character.stats.EMP_MAX,
+        'health': character.stats.HP,
+        'health_max': character.stats.HP_MAX,
+        'hum': character.stats.HUM,
+        'hum_max': character.stats.HUM_MAX,
+        'skillbook': character.skills.toMap(),
+        'items': character.items.toList(),
+        'equipped': character.equipped.toList(),
+        'cyberware': character.cyberware.toList(),
+        'outfit': character.outfit.toList(),
+      };
+
   Edgerunner getEdgerunner() {
-    return this.character;
+    return character;
   }
 
   void setEdgerunner(Edgerunner character) {
@@ -26,6 +85,8 @@ class Edgerunner {
   Inventory equipped = new Inventory('equipped');
   Inventory outfit = new Inventory('outfit');
   Stats stats = new Stats();
+  bool isSeriouslyWounded = false;
+  bool isMortallyWounded = false;
   List<Role> role = [];
   int eurobucks = 0;
 
@@ -134,11 +195,15 @@ class Stats {
   int COOL = 0;
   int WILL = 0;
   int LUCK = 0;
+  int LUCK_MAX = 0;
   int MOVE = 0;
   int BODY = 0;
   int EMP = 0;
+  int EMP_MAX = 0;
   int HP = 0;
+  int HP_MAX = 0;
   int HUM = 0;
+  int HUM_MAX = 0;
   int initiative = 0;
 
   Stats();
@@ -151,12 +216,15 @@ class Stats {
     this.COOL = stats[4];
     this.WILL = stats[5];
     this.LUCK = stats[6];
+    this.LUCK_MAX = this.LUCK;
     this.MOVE = stats[7];
     this.BODY = stats[8];
     this.EMP = stats[9];
-
+    this.EMP_MAX = this.EMP;
     this.HP = 10 + (5 * ((this.BODY + this.WILL) / 2.0).ceil());
+    this.HP_MAX = HP;
     this.HUM = this.EMP * 10;
+    this.HUM_MAX = this.HUM;
     this.initiative = this.REF;
   }
 
@@ -676,12 +744,26 @@ class Inventory {
 
   Inventory(this.name);
 
+  fromList(List<String> list) {
+    for (var element in list) {
+      items.add(Item(element));
+    }
+  }
+
+  List<String> toList() {
+    List<String> list = [];
+    for (var element in items) {
+      list.add(element.name);
+    }
+    return list;
+  }
+
   void addItem(Item item) {
     this.items.add(item);
   }
 
-  void removeItem(Item item) {
-    this.items.remove(item);
+  void removeItem(String name) {
+    this.items.removeWhere((element) => element.name == name);
   }
 
   bool hasItem(Item item) {
@@ -710,7 +792,7 @@ class Role {
     this.rank = rank;
   }
 
-  RoleType getTyper() {
+  RoleType getType() {
     return this.type;
   }
 
@@ -729,6 +811,21 @@ class Skillbook {
   List<Skill> skill = <Skill>[];
 
   Skillbook(this.name);
+
+  Map<String, int> toMap() {
+    Map<String, int> map = {};
+    for (var element in skill) {
+      map.putIfAbsent(element.name, () => element.level);
+    }
+    return map;
+  }
+
+  void fromMap(Map<String, int> map) {
+    map.forEach((key, value) {
+      skill.add(Skill(key, value));
+    });
+    name = "skills";
+  }
 
   void addSkill(Skill skill) {
     this.skill.add(skill);

@@ -1,5 +1,12 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:cybersheet/main.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
+import '../model/model.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -59,8 +66,7 @@ class Home extends StatelessWidget {
                               fontSize: 20, fontFamily: 'Kontakt'),
                         ),
                         onPressed: () {
-                          Navigator.pushNamed(context, editCharRoute,
-                              arguments: 'arguments/chose EDIT');
+                          _readSelectedFile(context);
                         },
                         child: const Text('Edit Edgerunner'),
                       )
@@ -69,5 +75,35 @@ class Home extends StatelessWidget {
                 ],
               )),
         ));
+  }
+
+  _readSelectedFile(context) async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+        dialogTitle: 'Select .json file for character',
+        allowMultiple: false,
+        allowCompression: false,
+        type: FileType.custom,
+        allowedExtensions: ['json']);
+
+    print(1);
+
+    if (result != null) {
+      print(2);
+      Uint8List uint8list = result.files.single.bytes!;
+      print(3);
+      String s = String.fromCharCodes(uint8list);
+      print(4);
+      print(s);
+      print(5);
+      Map<String, dynamic> userMap = jsonDecode(s);
+      print(userMap['name']);
+      print(6);
+      presenter.model = Model.fromJson(userMap);
+      print(7);
+      Navigator.pushNamed(context, editCharRoute,
+          arguments: 'arguments/chose EDIT');
+    } else {
+      print('result is null');
+    }
   }
 }

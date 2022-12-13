@@ -3,8 +3,11 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import 'package:tabbed_view/tabbed_view.dart';
+import '../constants.dart';
+import '../constants.dart';
 import '../main.dart';
 import '../model/model.dart';
+import '../presenter/presenter.dart';
 
 class CharacterSkills extends StatefulWidget {
   const CharacterSkills({super.key});
@@ -22,6 +25,7 @@ class _CharacterSkillsState extends State<CharacterSkills> {
   late TabbedViewController _controller;
   final key = 'someKey';
   final controller = TextEditingController();
+
   List<Widget> widgets = [];
 
 // Loop through the keys in the map
@@ -51,50 +55,202 @@ class _CharacterSkillsState extends State<CharacterSkills> {
     super.initState();
     List<TabData> tabs = [];
 
-    tabs.add(TabData(
+    Set<Widget> widgetAware = {
+      for (String key in awarenessSkills.keys)
+        TextField(
+          controller:
+              TextEditingController(text: "${mapKeys(awarenessSkills, key)}"),
+          textAlign: TextAlign.left,
+          onChanged: (value) {
+            setState(() {
+              awarenessSkills[key] = value;
+              setState(() {});
+            });
+          },
+        ),
+    };
+    tabs.add(
+      TabData(
         text: 'Awareness',
         content: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text(mapToString(awarenessSkills)))));
-    tabs.add(TabData(
-        closable: false,
-        // keepAlive: true,
+          padding: const EdgeInsets.all(8),
+          child: Column(children: <Widget>[
+            ...widgetAware,
+            Text(
+              mapToString(awarenessSkills),
+              textAlign: TextAlign.left,
+            ),
+          ]),
+        ),
+      ),
+    );
+    Set<Widget> widgetBody = {
+      for (String key in bodySkills.keys)
+        TextField(
+          controller:
+              TextEditingController(text: "${mapKeys(bodySkills, key)}"),
+          textAlign: TextAlign.left,
+          onChanged: (value) {
+            setState(() {
+              bodySkills[key] = value;
+              setState(() {});
+            });
+          },
+        ),
+    };
+    tabs.add(
+      TabData(
         text: 'Body',
         content: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text(mapToString(bodySkills)))));
-    tabs.add(TabData(
+          padding: const EdgeInsets.all(8),
+          child: Column(children: <Widget>[
+            ...widgetBody,
+            Text(
+              mapToString(bodySkills),
+              textAlign: TextAlign.left,
+            ),
+          ]),
+        ),
+      ),
+    );
+    Set<Widget> widgetCon = {
+      for (String key in controlSkills.keys)
+        TextField(
+          controller:
+              TextEditingController(text: "${mapKeys(controlSkills, key)}"),
+          textAlign: TextAlign.left,
+          onChanged: (value) {
+            setState(() {
+              controlSkills[key] = value;
+              setState(() {});
+            });
+          },
+        ),
+    };
+    tabs.add(
+      TabData(
         text: 'Control',
-        content: const Padding(
-            child: TextField(
-                decoration: InputDecoration(
-                    isDense: true, border: OutlineInputBorder())),
-            padding: EdgeInsets.all(8)),
-        keepAlive: true));
-    tabs.add(TabData(
-        text: 'Education',
         content: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text(mapToString(educationSkills)))));
-    tabs.add(TabData(
-        text: 'Fighting',
-        content: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text(mapToString(fightingSkills)))));
-    tabs.add(TabData(
-        text: 'Preformance',
-        content: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text(mapToString(performanceSkills)))));
+          padding: const EdgeInsets.all(8),
+          child: Column(children: <Widget>[
+            ...widgetCon,
+            Text(
+              mapToString(controlSkills),
+              textAlign: TextAlign.left,
+            ),
+          ]),
+        ),
+      ),
+    );
 
-    Set<Widget> widgets = {
+///////////////////////////////////
+    Set<Widget> widgetEd = {
+      for (String key in educationSkills.keys)
+        TextField(
+          controller:
+              TextEditingController(text: "${mapKeys(educationSkills, key)}"),
+          textAlign: TextAlign.left,
+          onChanged: (value) {
+            setState(() {
+              educationSkills[key] = value;
+              setState(() {});
+            });
+          },
+        ),
+    };
+    tabs.add(
+      TabData(
+        text: 'Education',
+        keepAlive: true,
+        content: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Column(children: <Widget>[
+            ...widgetEd,
+            Text(
+              mapToString(educationSkills),
+              textAlign: TextAlign.left,
+            ),
+          ]),
+        ),
+      ),
+    );
+////////////////////////////
+    Set<Widget> widgetFight = {
       for (String key in rangedWeaponSkills.keys)
         TextField(
-          controller: TextEditingController(text: rangedWeaponSkills[key]),
+          controller:
+              TextEditingController(text: "${mapKeys(fightingSkills, key)}"),
+          textAlign: TextAlign.left,
+          onChanged: (value) {
+            setState(() {
+              fightingSkills[key] = value;
+              setState(() {});
+            });
+          },
+        ),
+    };
+    tabs.add(
+      TabData(
+        text: 'Fighting',
+        content: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Column(children: <Widget>[
+            ...widgetFight,
+            Text(
+              mapToString(fightingSkills),
+              textAlign: TextAlign.left,
+            ),
+          ]),
+        ),
+      ),
+    );
+///////////////////////////////////////
+    Set<Widget> widgetPerform = {
+      for (String key in performanceSkills.keys)
+        TextField(
+          controller:
+              TextEditingController(text: "${mapKeys(performanceSkills, key)}"),
+          textAlign: TextAlign.left,
+          onChanged: (value) {
+            setState(() {
+              fightingSkills[key] = value;
+              setState(() {});
+            });
+          },
+        ),
+    };
+    tabs.add(
+      TabData(
+        text: 'Performance',
+        content: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Column(children: <Widget>[
+            ...widgetPerform,
+            Text(
+              mapToString(performanceSkills),
+              textAlign: TextAlign.left,
+            ),
+          ]),
+        ),
+      ),
+    );
+///////////////////////////////////////////////
+    Set<Widget> widgetRanged = {
+      for (String key in rangedWeaponSkills.keys)
+        TextField(
+          controller: TextEditingController(
+              text: "${mapKeys(rangedWeaponSkills, key)}"
+              // (rangedWeaponSkills[key] == "DEX")? { Text("${presenter.model.character.stats.DEX}")},
+              // rw = "${presenter.model.character.stats.DEX}",
+              //   (rangedWeaponSkills[key] == "EMP")? {Text("${presenter.model.character.stats.EMP}")}:
+              //   (key == "EMP" )
+              /// "${presenter.model.character.stats.EMP}"
+              ),
           textAlign: TextAlign.left,
           onChanged: (value) {
             setState(() {
               rangedWeaponSkills[key] = value;
+              setState(() {});
             });
           },
         ),
@@ -106,7 +262,7 @@ class _CharacterSkillsState extends State<CharacterSkills> {
         content: Padding(
           padding: const EdgeInsets.all(8),
           child: Column(children: <Widget>[
-            ...widgets,
+            ...widgetRanged,
             Text(
               mapToString(rangedWeaponSkills),
               textAlign: TextAlign.left,
@@ -115,12 +271,36 @@ class _CharacterSkillsState extends State<CharacterSkills> {
         ),
       ),
     );
-
-    tabs.add(TabData(
+///////////////////////////////////////////
+    Set<Widget> widgetTechnique = {
+      for (String key in techniqueSkills.keys)
+        TextField(
+          controller:
+              TextEditingController(text: "${mapKeys(techniqueSkills, key)}"),
+          textAlign: TextAlign.left,
+          onChanged: (value) {
+            setState(() {
+              fightingSkills[key] = value;
+              setState(() {});
+            });
+          },
+        ),
+    };
+    tabs.add(
+      TabData(
         text: 'Technique',
         content: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text(mapToString(techniqueSkills)))));
+          padding: const EdgeInsets.all(8),
+          child: Column(children: <Widget>[
+            ...widgetTechnique,
+            Text(
+              mapToString(techniqueSkills),
+              textAlign: TextAlign.left,
+            ),
+          ]),
+        ),
+      ),
+    );
 
     _controller = TabbedViewController(tabs);
   }
@@ -163,6 +343,31 @@ class _CharacterSkillsState extends State<CharacterSkills> {
       if (map[key] == 'REF') result += "$key: $ref\n";
       if (map[key] == 'INT') result += "$key: $int\n";
     });
+    return result;
+  }
+
+  String mapKeys(Map<String, String> map, String key) {
+    String dex = presenter.model.character.stats.DEX.toString();
+    String hum = presenter.model.character.stats.HUM.toString();
+    String cool = presenter.model.character.stats.COOL.toString();
+    String will = presenter.model.character.stats.WILL.toString();
+    String tech = presenter.model.character.stats.DEX.toString();
+    String luck = presenter.model.character.stats.LUCK.toString();
+    String emp = presenter.model.character.stats.EMP.toString();
+    String ref = presenter.model.character.stats.REF.toString();
+    String int = presenter.model.character.stats.INT.toString();
+    String result = "";
+    // map.forEach((key, value) {
+    if (map[key] == 'DEX') result += "$dex";
+    if (map[key] == 'HUM') result += "$hum";
+    if (map[key] == 'COOL') result += "$cool\n";
+    if (map[key] == 'EMP') result += "$emp";
+    if (map[key] == 'LUCK') result += "$luck";
+    if (map[key] == 'WILL') result += "$will";
+    if (map[key] == 'TECH') result += "$tech";
+    if (map[key] == 'REF') result += "$ref";
+    if (map[key] == 'INT') result += "$int";
+    // });
     return result;
   }
 }

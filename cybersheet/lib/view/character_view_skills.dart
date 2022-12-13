@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print, unnecessary_brace_in_string_interps
 
 import 'package:flutter/material.dart';
+//import 'package:flutter/services.dart';
 import '../constants.dart';
 import 'package:tabbed_view/tabbed_view.dart';
 import '../constants.dart';
@@ -8,6 +9,8 @@ import '../constants.dart';
 import '../main.dart';
 import '../model/model.dart';
 import '../presenter/presenter.dart';
+
+//import 'package:flutter/services.dart';
 
 class CharacterSkills extends StatefulWidget {
   const CharacterSkills({super.key});
@@ -55,20 +58,7 @@ class _CharacterSkillsState extends State<CharacterSkills> {
     super.initState();
     List<TabData> tabs = [];
 
-    Set<Widget> widgetAware = {
-      for (String key in awarenessSkills.keys)
-        TextField(
-          controller:
-              TextEditingController(text: "${mapKeys(awarenessSkills, key)}"),
-          textAlign: TextAlign.left,
-          onChanged: (value) {
-            setState(() {
-              awarenessSkills[key] = value;
-              setState(() {});
-            });
-          },
-        ),
-    };
+    Set<Widget> widgetAware = {};
     tabs.add(
       TabData(
         text: 'Awareness',
@@ -76,28 +66,46 @@ class _CharacterSkillsState extends State<CharacterSkills> {
           padding: const EdgeInsets.all(8),
           child: Column(children: <Widget>[
             ...widgetAware,
-            Text(
-              mapToString(awarenessSkills),
-              textAlign: TextAlign.left,
-            ),
+            for (String key in awarenessSkills.keys)
+              Row(
+                children: [
+                  Text(key), // Display the key
+                  SizedBox(
+                      width:
+                          8), // Add some space between the key and the text field
+                  Expanded(
+                    child: TextField(
+                      // inputFormatters: [
+                      //   TextInputFormatter(RegExp("^[0-9]$|^10$")),
+                      // ],
+                      controller: TextEditingController(
+                          text: "${mapKeys(awarenessSkills, key)}"),
+                      decoration: InputDecoration(
+                        hintText: "Value must be in the range 0-10",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(
+                              4), // Set the border radius to make the text field smaller
+                        ),
+                      ),
+                      onChanged: (value) {
+                        if (int.tryParse(value) != null &&
+                            int.parse(value) >= 0 &&
+                            int.parse(value) <= 10) {
+                          setState(() {
+                            awarenessSkills[key] = value;
+                            setState(() {});
+                          });
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
           ]),
         ),
       ),
     );
-    Set<Widget> widgetBody = {
-      for (String key in bodySkills.keys)
-        TextField(
-          controller:
-              TextEditingController(text: "${mapKeys(bodySkills, key)}"),
-          textAlign: TextAlign.left,
-          onChanged: (value) {
-            setState(() {
-              bodySkills[key] = value;
-              setState(() {});
-            });
-          },
-        ),
-    };
+    Set<Widget> widgetBody = {};
     tabs.add(
       TabData(
         text: 'Body',
@@ -105,28 +113,46 @@ class _CharacterSkillsState extends State<CharacterSkills> {
           padding: const EdgeInsets.all(8),
           child: Column(children: <Widget>[
             ...widgetBody,
-            Text(
-              mapToString(bodySkills),
-              textAlign: TextAlign.left,
-            ),
+            for (String key in bodySkills.keys)
+              Row(
+                children: [
+                  Text(key), // Display the key
+                  SizedBox(
+                      width:
+                          8), // Add some space between the key and the text field
+                  Expanded(
+                    child: TextField(
+                      // inputFormatters: [
+                      //   TextInputFormatter(RegExp("^[0-9]$|^10$")),
+                      // ],
+                      controller: TextEditingController(
+                          text: "${mapKeys(bodySkills, key)}"),
+                      decoration: InputDecoration(
+                        hintText: "Value must be in the range 0-10",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(
+                              4), // Set the border radius to make the text field smaller
+                        ),
+                      ),
+                      onChanged: (value) {
+                        if (int.tryParse(value) != null &&
+                            int.parse(value) >= 0 &&
+                            int.parse(value) <= 10) {
+                          setState(() {
+                            bodySkills[key] = value;
+                            setState(() {});
+                          });
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
           ]),
         ),
       ),
     );
-    Set<Widget> widgetCon = {
-      for (String key in controlSkills.keys)
-        TextField(
-          controller:
-              TextEditingController(text: "${mapKeys(controlSkills, key)}"),
-          textAlign: TextAlign.left,
-          onChanged: (value) {
-            setState(() {
-              controlSkills[key] = value;
-              setState(() {});
-            });
-          },
-        ),
-    };
+    Set<Widget> widgetCon = {};
     tabs.add(
       TabData(
         text: 'Control',
@@ -134,61 +160,96 @@ class _CharacterSkillsState extends State<CharacterSkills> {
           padding: const EdgeInsets.all(8),
           child: Column(children: <Widget>[
             ...widgetCon,
-            Text(
-              mapToString(controlSkills),
-              textAlign: TextAlign.left,
-            ),
+            for (String key in controlSkills.keys)
+              Row(
+                children: [
+                  Text(key), // Display the key
+                  SizedBox(
+                      width:
+                          8), // Add some space between the key and the text field
+                  Expanded(
+                    child: TextField(
+                      // inputFormatters: [
+                      //   TextInputFormatter(RegExp("^[0-9]$|^10$")),
+                      // ],
+                      controller: TextEditingController(
+                          text: "${mapKeys(controlSkills, key)}"),
+                      decoration: InputDecoration(
+                        hintText: "Value must be in the range 0-10",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(
+                              4), // Set the border radius to make the text field smaller
+                        ),
+                      ),
+                      onChanged: (value) {
+                        if (int.tryParse(value) != null &&
+                            int.parse(value) >= 0 &&
+                            int.parse(value) <= 10) {
+                          setState(() {
+                            controlSkills[key] = value;
+                            setState(() {});
+                          });
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
           ]),
         ),
       ),
     );
 
 ///////////////////////////////////
-    Set<Widget> widgetEd = {
-      for (String key in educationSkills.keys)
-        TextField(
-          controller:
-              TextEditingController(text: "${mapKeys(educationSkills, key)}"),
-          textAlign: TextAlign.left,
-          onChanged: (value) {
-            setState(() {
-              educationSkills[key] = value;
-              setState(() {});
-            });
-          },
-        ),
-    };
+    Set<Widget> widgetEd = {};
     tabs.add(
       TabData(
         text: 'Education',
-        keepAlive: true,
         content: Padding(
           padding: const EdgeInsets.all(8),
           child: Column(children: <Widget>[
             ...widgetEd,
-            Text(
-              mapToString(educationSkills),
-              textAlign: TextAlign.left,
-            ),
+            for (String key in educationSkills.keys)
+              Row(
+                children: [
+                  Text(key), // Display the key
+                  SizedBox(
+                      width:
+                          8), // Add some space between the key and the text field
+                  Expanded(
+                    child: TextField(
+                      // inputFormatters: [
+                      //   TextInputFormatter(RegExp("^[0-9]$|^10$")),
+                      // ],
+                      controller: TextEditingController(
+                          text: "${mapKeys(educationSkills, key)}"),
+                      decoration: InputDecoration(
+                        hintText: "Value must be in the range 0-10",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(
+                              4), // Set the border radius to make the text field smaller
+                        ),
+                      ),
+                      onChanged: (value) {
+                        if (int.tryParse(value) != null &&
+                            int.parse(value) >= 0 &&
+                            int.parse(value) <= 10) {
+                          setState(() {
+                            educationSkills[key] = value;
+                            setState(() {});
+                          });
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
           ]),
         ),
       ),
     );
 ////////////////////////////
-    Set<Widget> widgetFight = {
-      for (String key in rangedWeaponSkills.keys)
-        TextField(
-          controller:
-              TextEditingController(text: "${mapKeys(fightingSkills, key)}"),
-          textAlign: TextAlign.left,
-          onChanged: (value) {
-            setState(() {
-              fightingSkills[key] = value;
-              setState(() {});
-            });
-          },
-        ),
-    };
+    Set<Widget> widgetFight = {};
     tabs.add(
       TabData(
         text: 'Fighting',
@@ -196,29 +257,47 @@ class _CharacterSkillsState extends State<CharacterSkills> {
           padding: const EdgeInsets.all(8),
           child: Column(children: <Widget>[
             ...widgetFight,
-            Text(
-              mapToString(fightingSkills),
-              textAlign: TextAlign.left,
-            ),
+            for (String key in fightingSkills.keys)
+              Row(
+                children: [
+                  Text(key), // Display the key
+                  SizedBox(
+                      width:
+                          8), // Add some space between the key and the text field
+                  Expanded(
+                    child: TextField(
+                      // inputFormatters: [
+                      //   TextInputFormatter(RegExp("^[0-9]$|^10$")),
+                      // ],
+                      controller: TextEditingController(
+                          text: "${mapKeys(fightingSkills, key)}"),
+                      decoration: InputDecoration(
+                        hintText: "Value must be in the range 0-10",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(
+                              4), // Set the border radius to make the text field smaller
+                        ),
+                      ),
+                      onChanged: (value) {
+                        if (int.tryParse(value) != null &&
+                            int.parse(value) >= 0 &&
+                            int.parse(value) <= 10) {
+                          setState(() {
+                            fightingSkills[key] = value;
+                            setState(() {});
+                          });
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
           ]),
         ),
       ),
     );
 ///////////////////////////////////////
-    Set<Widget> widgetPerform = {
-      for (String key in performanceSkills.keys)
-        TextField(
-          controller:
-              TextEditingController(text: "${mapKeys(performanceSkills, key)}"),
-          textAlign: TextAlign.left,
-          onChanged: (value) {
-            setState(() {
-              fightingSkills[key] = value;
-              setState(() {});
-            });
-          },
-        ),
-    };
+    Set<Widget> widgetPerform = {};
     tabs.add(
       TabData(
         text: 'Performance',
@@ -226,77 +305,137 @@ class _CharacterSkillsState extends State<CharacterSkills> {
           padding: const EdgeInsets.all(8),
           child: Column(children: <Widget>[
             ...widgetPerform,
-            Text(
-              mapToString(performanceSkills),
-              textAlign: TextAlign.left,
-            ),
+            for (String key in performanceSkills.keys)
+              Row(
+                children: [
+                  Text(key), // Display the key
+                  SizedBox(
+                      width:
+                          8), // Add some space between the key and the text field
+                  Expanded(
+                    child: TextField(
+                      // inputFormatters: [
+                      //   TextInputFormatter(RegExp("^[0-9]$|^10$")),
+                      // ],
+                      controller: TextEditingController(
+                          text: "${mapKeys(performanceSkills, key)}"),
+                      decoration: InputDecoration(
+                        hintText: "Value must be in the range 0-10",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(
+                              4), // Set the border radius to make the text field smaller
+                        ),
+                      ),
+                      onChanged: (value) {
+                        if (int.tryParse(value) != null &&
+                            int.parse(value) >= 0 &&
+                            int.parse(value) <= 10) {
+                          setState(() {
+                            performanceSkills[key] = value;
+                            setState(() {});
+                          });
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
           ]),
         ),
       ),
     );
 ///////////////////////////////////////////////
-    Set<Widget> widgetRanged = {
-      for (String key in rangedWeaponSkills.keys)
-        TextField(
-          controller: TextEditingController(
-              text: "${mapKeys(rangedWeaponSkills, key)}"
-              // (rangedWeaponSkills[key] == "DEX")? { Text("${presenter.model.character.stats.DEX}")},
-              // rw = "${presenter.model.character.stats.DEX}",
-              //   (rangedWeaponSkills[key] == "EMP")? {Text("${presenter.model.character.stats.EMP}")}:
-              //   (key == "EMP" )
-              /// "${presenter.model.character.stats.EMP}"
-              ),
-          textAlign: TextAlign.left,
-          onChanged: (value) {
-            setState(() {
-              rangedWeaponSkills[key] = value;
-              setState(() {});
-            });
-          },
-        ),
-    };
-
+    Set<Widget> widgetRanged = {};
     tabs.add(
       TabData(
-        text: 'Ranged Weapon',
+        text: 'Control',
         content: Padding(
           padding: const EdgeInsets.all(8),
           child: Column(children: <Widget>[
             ...widgetRanged,
-            Text(
-              mapToString(rangedWeaponSkills),
-              textAlign: TextAlign.left,
-            ),
+            for (String key in rangedWeaponSkills.keys)
+              Row(
+                children: [
+                  Text(key), // Display the key
+                  SizedBox(
+                      width:
+                          8), // Add some space between the key and the text field
+                  Expanded(
+                    child: TextField(
+                      // inputFormatters: [
+                      //   TextInputFormatter(RegExp("^[0-9]$|^10$")),
+                      // ],
+                      controller: TextEditingController(
+                          text: "${mapKeys(rangedWeaponSkills, key)}"),
+                      decoration: InputDecoration(
+                        hintText: "Value must be in the range 0-10",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(
+                              4), // Set the border radius to make the text field smaller
+                        ),
+                      ),
+                      onChanged: (value) {
+                        if (int.tryParse(value) != null &&
+                            int.parse(value) >= 0 &&
+                            int.parse(value) <= 10) {
+                          setState(() {
+                            rangedWeaponSkills[key] = value;
+                            setState(() {});
+                          });
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
           ]),
         ),
       ),
     );
 ///////////////////////////////////////////
-    Set<Widget> widgetTechnique = {
-      for (String key in techniqueSkills.keys)
-        TextField(
-          controller:
-              TextEditingController(text: "${mapKeys(techniqueSkills, key)}"),
-          textAlign: TextAlign.left,
-          onChanged: (value) {
-            setState(() {
-              fightingSkills[key] = value;
-              setState(() {});
-            });
-          },
-        ),
-    };
+    Set<Widget> widgetTech = {};
     tabs.add(
       TabData(
-        text: 'Technique',
+        text: 'Control',
         content: Padding(
           padding: const EdgeInsets.all(8),
           child: Column(children: <Widget>[
-            ...widgetTechnique,
-            Text(
-              mapToString(techniqueSkills),
-              textAlign: TextAlign.left,
-            ),
+            ...widgetTech,
+            for (String key in techniqueSkills.keys)
+              Row(
+                children: [
+                  Text(key), // Display the key
+                  SizedBox(
+                      width:
+                          8), // Add some space between the key and the text field
+                  Expanded(
+                    child: TextField(
+                      // inputFormatters: [
+                      //   TextInputFormatter(RegExp("^[0-9]$|^10$")),
+                      // ],
+                      controller: TextEditingController(
+                          text: "${mapKeys(techniqueSkills, key)}"),
+                      decoration: InputDecoration(
+                        hintText: "Value must be in the range 0-10",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(
+                              4), // Set the border radius to make the text field smaller
+                        ),
+                      ),
+                      onChanged: (value) {
+                        if (int.tryParse(value) != null &&
+                            int.parse(value) >= 0 &&
+                            int.parse(value) <= 10) {
+                          setState(() {
+                            techniqueSkills[key] = value;
+                            setState(() {});
+                          });
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
           ]),
         ),
       ),

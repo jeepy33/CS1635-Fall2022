@@ -13,6 +13,7 @@ class _CharacterCyberwareState extends State<CharacterCyberware> {
   String environment = ChildhoodEnvironment[0];
 
   List<String> crisisList = FamilyCrisis;
+  List<String> cyberEye = ["A", "B", "B"];
   String crisis = FamilyCrisis[0];
 
   @override
@@ -55,6 +56,30 @@ class _CharacterCyberwareState extends State<CharacterCyberware> {
               backgroundColor: Color.fromRGBO(255, 255, 255, 0),
               foregroundColor: Colors.white,
               onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                          height: 200,
+                          child: Column(children: [
+                            TextField(
+                              onSubmitted: (String value) {
+                                // Handle the user input here
+                              },
+                            ),
+                            ListView.builder(
+                              itemCount: cyberEye.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return ListTile(
+                                  title: Text(cyberEye[index]),
+                                  onTap: () {
+                                    // Handle selecting the item
+                                  },
+                                );
+                              },
+                            ),
+                          ]));
+                    });
                 // Handle the button press
               },
               child: Icon(Icons.add_circle_outline_rounded),

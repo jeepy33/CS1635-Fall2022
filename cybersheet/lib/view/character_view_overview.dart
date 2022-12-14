@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../constants.dart';
 import '../main.dart';
+import '../model/model.dart';
 
 class CharacterOverview extends StatefulWidget {
   const CharacterOverview({super.key});
@@ -12,6 +13,9 @@ class CharacterOverview extends StatefulWidget {
 }
 
 class _CharacterOverviewState extends State<CharacterOverview> {
+  List<Card> rangedWeaponCards = [];
+  List<Card> skillCards = [];
+
   final List<TextEditingController> _controller = [
     TextEditingController(), // INT
     TextEditingController(), // REF
@@ -26,6 +30,7 @@ class _CharacterOverviewState extends State<CharacterOverview> {
     TextEditingController(), // EMP
     TextEditingController(), // EMP MAX
     TextEditingController(), // Health
+    TextEditingController() // name
   ];
 
   final List<AssetImage> _orbs = [
@@ -85,6 +90,9 @@ class _CharacterOverviewState extends State<CharacterOverview> {
     _controller[10].text = EMP.toString();
     _controller[11].text = EMP_MAX.toString();
     _controller[12].text = health.toString();
+    _controller[13].text = name;
+
+    rangedWeaponCards = _createWeaponRangedCards();
   }
 
   @override
@@ -114,9 +122,29 @@ class _CharacterOverviewState extends State<CharacterOverview> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(name,
-                                style: const TextStyle(
-                                    fontSize: 35, color: Colors.white)),
+                            Container(
+                                color: buttonRed,
+                                width: 500,
+                                height: 45,
+                                child: TextField(
+                                    textAlign: TextAlign.left,
+                                    decoration: const InputDecoration(
+                                      counterText: "",
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.white),
+                                      ),
+                                    ),
+                                    keyboardType: TextInputType.name,
+                                    controller: _controller[13],
+                                    onChanged: (value) {
+                                      setState(() {
+                                        presenter.model.character.name = value;
+                                      });
+                                    },
+                                    style: const TextStyle(
+                                        fontSize: 35, color: Colors.white))),
+                            const SizedBox(height: 5),
                             Text("$role: $rank",
                                 style: const TextStyle(
                                     fontSize: 25, color: Colors.white)),
@@ -277,6 +305,45 @@ class _CharacterOverviewState extends State<CharacterOverview> {
                                   ],
                                 ))
                           ],
+                        )),
+                    const SizedBox(
+                      width: 35,
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Weapons',
+                                style: TextStyle(
+                                    fontSize: 35, color: Colors.white)),
+                            Container(
+                                color: buttonRed,
+                                height: 200,
+                                width: 400,
+                                child: ListView(
+                                    children:
+                                        List<Widget>.from(rangedWeaponCards))),
+                          ],
+                        )),
+                    const SizedBox(
+                      width: 35,
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Skills',
+                                style: TextStyle(
+                                    fontSize: 35, color: Colors.white)),
+                            Container(
+                                color: buttonRed,
+                                height: 200,
+                                width: 400,
+                                child: ListView(
+                                    children: List<Widget>.from(skillCards))),
+                          ],
                         ))
                   ],
                 ),
@@ -299,7 +366,9 @@ class _CharacterOverviewState extends State<CharacterOverview> {
                                     backgroundColor:
                                         MaterialStatePropertyAll(buttonRed),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () => rollStat(
+                                      presenter.model.character.stats.INT,
+                                      context),
                                   child: const Padding(
                                       padding: EdgeInsets.only(
                                           left: 5,
@@ -356,7 +425,9 @@ class _CharacterOverviewState extends State<CharacterOverview> {
                                     backgroundColor:
                                         MaterialStatePropertyAll(buttonRed),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () => rollStat(
+                                      presenter.model.character.stats.REF,
+                                      context),
                                   child: const Padding(
                                       padding: EdgeInsets.only(
                                           left: 5,
@@ -417,7 +488,9 @@ class _CharacterOverviewState extends State<CharacterOverview> {
                                     backgroundColor:
                                         MaterialStatePropertyAll(buttonRed),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () => rollStat(
+                                      presenter.model.character.stats.DEX,
+                                      context),
                                   child: const Padding(
                                       padding: EdgeInsets.only(
                                           left: 5,
@@ -472,7 +545,9 @@ class _CharacterOverviewState extends State<CharacterOverview> {
                                     backgroundColor:
                                         MaterialStatePropertyAll(buttonRed),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () => rollStat(
+                                      presenter.model.character.stats.TECH,
+                                      context),
                                   child: const Padding(
                                       padding: EdgeInsets.only(
                                           left: 5, right: 5, top: 5, bottom: 5),
@@ -530,7 +605,9 @@ class _CharacterOverviewState extends State<CharacterOverview> {
                                     backgroundColor:
                                         MaterialStatePropertyAll(buttonRed),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () => rollStat(
+                                      presenter.model.character.stats.COOL,
+                                      context),
                                   child: const Padding(
                                       padding: EdgeInsets.only(
                                           left: 5, right: 5, top: 5, bottom: 5),
@@ -582,7 +659,9 @@ class _CharacterOverviewState extends State<CharacterOverview> {
                                     backgroundColor:
                                         MaterialStatePropertyAll(buttonRed),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () => rollStat(
+                                      presenter.model.character.stats.WILL,
+                                      context),
                                   child: const Padding(
                                       padding: EdgeInsets.only(
                                           left: 5,
@@ -647,7 +726,9 @@ class _CharacterOverviewState extends State<CharacterOverview> {
                                     backgroundColor:
                                         MaterialStatePropertyAll(buttonRed),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () => rollStat(
+                                      presenter.model.character.stats.LUCK_MAX,
+                                      context),
                                   child: const Padding(
                                       padding: EdgeInsets.only(
                                           left: 5, right: 5, top: 5, bottom: 5),
@@ -742,7 +823,9 @@ class _CharacterOverviewState extends State<CharacterOverview> {
                                     backgroundColor:
                                         MaterialStatePropertyAll(buttonRed),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () => rollStat(
+                                      presenter.model.character.stats.MOVE,
+                                      context),
                                   child: const Padding(
                                       padding: EdgeInsets.only(
                                           left: 5, right: 3, top: 5, bottom: 5),
@@ -800,7 +883,9 @@ class _CharacterOverviewState extends State<CharacterOverview> {
                                     backgroundColor:
                                         MaterialStatePropertyAll(buttonRed),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () => rollStat(
+                                      presenter.model.character.stats.BODY,
+                                      context),
                                   child: const Padding(
                                       padding: EdgeInsets.only(
                                           left: 5, right: 0, top: 5, bottom: 5),
@@ -856,7 +941,9 @@ class _CharacterOverviewState extends State<CharacterOverview> {
                                     backgroundColor:
                                         MaterialStatePropertyAll(buttonRed),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () => rollStat(
+                                      presenter.model.character.stats.EMP,
+                                      context),
                                   child: const Padding(
                                       padding: EdgeInsets.only(
                                           left: 5,
@@ -989,5 +1076,57 @@ class _CharacterOverviewState extends State<CharacterOverview> {
     } else {
       return 11;
     }
+  }
+
+  Future<void> rollStat(int mod, BuildContext context) {
+    int roll = presenter.rollMod(mod);
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: Text('Roll 1d10+$mod:'),
+              content: Text(
+                '$roll',
+                style: const TextStyle(fontSize: 35),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  style: TextButton.styleFrom(
+                      textStyle: Theme.of(context).textTheme.labelMedium),
+                  child: const Text('Close'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ]);
+        });
+  }
+
+  List<Card> _createWeaponRangedCards() {
+    List<Item> items = presenter.model.character.equipped.items;
+
+    List<Card> cards = [];
+
+    for (Item element in items) {
+      var key = Key('${element.name}');
+      cards.add(
+        Card(
+          key: key,
+          child: ListTile(
+            leading: IconButton(
+              icon: Icon(Icons.keyboard_alt_rounded),
+              onPressed: () {
+                setState(() {
+                  rollStat(presenter.model.character.stats.REF, context);
+                });
+              },
+            ),
+            title: Text('${element.name}'),
+          ),
+        ),
+      );
+    }
+
+    return cards;
   }
 }

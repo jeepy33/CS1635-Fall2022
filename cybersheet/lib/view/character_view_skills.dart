@@ -93,7 +93,6 @@ class _CharacterSkillsState extends State<CharacterSkills> {
                             int.parse(value) <= 10) {
                           setState(() {
                             awarenessSkills[key] = value;
-                            setState(() {});
                           });
                         }
                       },
@@ -117,7 +116,7 @@ class _CharacterSkillsState extends State<CharacterSkills> {
               Row(
                 children: [
                   Text(key), // Display the key
-                  SizedBox(
+                  const SizedBox(
                       width:
                           8), // Add some space between the key and the text field
                   Expanded(

@@ -9,12 +9,18 @@ class CharacterCyberware extends StatefulWidget {
 }
 
 class _CharacterCyberwareState extends State<CharacterCyberware> {
-  List<String> environmentList = ChildhoodEnvironment;
-  String environment = ChildhoodEnvironment[0];
 
-  List<String> crisisList = FamilyCrisis;
-  List<String> cyberEye = ["A", "B", "B"];
-  String crisis = FamilyCrisis[0];
+  final List<TextEditingController> _controller = [
+    TextEditingController(), // Fashionware
+    TextEditingController(), // Neuralware
+    TextEditingController(), // Cyberoptics
+    TextEditingController(), // Cyberaudio
+    TextEditingController(), // Internal Body Cyberware
+    TextEditingController(), // External Body Cyberware
+    TextEditingController(), // Cyberlimbs
+    TextEditingController(), // Borgware
+  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -24,134 +30,209 @@ class _CharacterCyberwareState extends State<CharacterCyberware> {
         image: AssetImage("Cyberwire.png"),
         fit: BoxFit.cover,
       )),
-      child: Stack(
-        children: [
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            child: Image(
-              image: AssetImage("Body3.png"),
-              width: 300,
-              height: 250,
-            ),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            child: Image(
-              image: AssetImage("BodyNoShade.png"),
-              width: 300,
-              height: 250,
-            ),
-          ),
-          Positioned(
-            left: 820,
-            bottom: 700,
-            child: FloatingActionButton(
-              mini: true,
-              backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-              foregroundColor: Colors.white,
-              onPressed: () {
-                showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Container(
-                          height: 200,
-                          child: Column(children: [
-                            TextField(
-                              onSubmitted: (String value) {
-                                // Handle the user input here
-                              },
-                            ),
-                            ListView.builder(
-                              itemCount: cyberEye.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return ListTile(
-                                  title: Text(cyberEye[index]),
-                                  onTap: () {
-                                    // Handle selecting the item
-                                  },
-                                );
-                              },
-                            ),
-                          ]));
-                    });
-                // Handle the button press
-              },
-              child: Icon(Icons.add_circle_outline_rounded),
-            ),
-          ),
-          Positioned(
-            left: 750,
-            bottom: 600,
-            child: FloatingActionButton(
-              mini: true,
-              backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-              foregroundColor: Colors.white,
-              onPressed: () {
-                // Handle the button press
-              },
-              child: Icon(Icons.add_circle_outline_rounded),
-            ),
-          ),
-          Positioned(
-            left: 1000,
-            bottom: 550,
-            child: FloatingActionButton(
-              mini: true,
-              backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-              foregroundColor: Colors.white,
-              onPressed: () {
-                // Handle the button press
-              },
-              child: Icon(Icons.add_circle_outline_rounded),
-            ),
-          ),
-          Positioned(
-            left: 750,
-            bottom: 400,
-            child: FloatingActionButton(
-              mini: true,
-              backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-              foregroundColor: Colors.white,
-              onPressed: () {
-                // Handle the button press
-              },
-              child: Icon(Icons.add_circle_outline_rounded),
-            ),
-          ),
-          Positioned(
-            left: 750,
-            bottom: 200,
-            child: FloatingActionButton(
-              mini: true,
-              backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-              foregroundColor: Colors.white,
-              onPressed: () {
-                // Handle the button press
-              },
-              child: Icon(Icons.add_circle_outline_rounded),
-            ),
-          ),
-          Positioned(
-            left: 950,
-            bottom: 200,
-            child: FloatingActionButton(
-              mini: true,
-              backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-              foregroundColor: Colors.white,
-              onPressed: () {
-                // Handle the button press
-              },
-              child: Icon(Icons.add_circle_outline_rounded),
-            ),
-          )
-        ],
-      ),
+      child: Center(
+          child: UnconstrainedBox(
+              child: Container(
+                  width: 700,
+                  height: 800,
+                  child: Stack(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(
+                          left: 0,
+                          right: 0,
+                          top: 0,
+                          bottom: 0,
+                        ),
+                        child: Image(
+                          image: AssetImage("Body3.png"),
+                          width: 700,
+                        ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(
+                          left: 0,
+                          right: 0,
+                          top: 0,
+                          bottom: 0,
+                        ),
+                        child: Image(
+                          image: AssetImage("BodyNoShade.png"),
+                          width: 700,
+                        ),
+                      ),
+                      // Fashionware
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 250,
+                          top: 180,
+                        ),
+                        child: FloatingActionButton(
+                          mini: true,
+                          backgroundColor:
+                              const Color.fromRGBO(255, 255, 255, 0),
+                          foregroundColor: Colors.white,
+                          onPressed: () {
+                            promptDialog('Fashionware', 0, context);
+                          },
+                          child: const Icon(Icons.add_circle_outline_rounded),
+                        ),
+                      ),
+                      // Neuralware
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 327,
+                          top: 70,
+                        ),
+                        child: FloatingActionButton(
+                          mini: true,
+                          backgroundColor:
+                              const Color.fromRGBO(255, 255, 255, 0),
+                          foregroundColor: Colors.white,
+                          onPressed: () {
+                            promptDialog('Neuralware', 1, context);
+                          },
+                          child: const Icon(Icons.add_circle_outline_rounded),
+                        ),
+                      ),
+                      // Cyberoptics
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 312,
+                          top: 105,
+                        ),
+                        child: FloatingActionButton(
+                          mini: true,
+                          backgroundColor:
+                              const Color.fromRGBO(255, 255, 255, 0),
+                          foregroundColor: Colors.white,
+                          onPressed: () {
+                            promptDialog('Cyberoptics', 2, context);
+                          },
+                          child: const Icon(Icons.add_circle_outline_rounded),
+                        ),
+                      ),
+                      // Cyberaudio
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 360,
+                          top: 115,
+                        ),
+                        child: FloatingActionButton(
+                          mini: true,
+                          backgroundColor:
+                              const Color.fromRGBO(255, 255, 255, 0),
+                          foregroundColor: Colors.white,
+                          onPressed: () {
+                            promptDialog("Cyberaudio", 3, context);
+                          },
+                          child: const Icon(Icons.add_circle_outline_rounded),
+                        ),
+                      ),
+                      // IBC
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 327,
+                          top: 240,
+                        ),
+                        child: FloatingActionButton(
+                          mini: true,
+                          backgroundColor:
+                              const Color.fromRGBO(255, 255, 255, 0),
+                          foregroundColor: Colors.white,
+                          onPressed: () {
+                            promptDialog("Internal Body", 4, context);
+                          },
+                          child: const Icon(Icons.add_circle_outline_rounded),
+                        ),
+                      ),
+                      // EBC
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 450,
+                          top: 220,
+                        ),
+                        child: FloatingActionButton(
+                          mini: true,
+                          backgroundColor:
+                              const Color.fromRGBO(255, 255, 255, 0),
+                          foregroundColor: Colors.white,
+                          onPressed: () {
+                            promptDialog("External Body", 5, context);
+                          },
+                          child: const Icon(Icons.add_circle_outline_rounded),
+                        ),
+                      ),
+                      // Cyberlimbs Arm
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 225,
+                          top: 380,
+                        ),
+                        child: FloatingActionButton(
+                          mini: true,
+                          backgroundColor:
+                              const Color.fromRGBO(255, 255, 255, 0),
+                          foregroundColor: Colors.white,
+                          onPressed: () {
+                            promptDialog('Cyberlimbs Arms', 6, context);
+                          },
+                          child: const Icon(Icons.add_circle_outline_rounded),
+                        ),
+                      ),
+                      // Cyberlimbs Leg
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 300,
+                          top: 600,
+                        ),
+                        child: FloatingActionButton(
+                          mini: true,
+                          backgroundColor:
+                              const Color.fromRGBO(255, 255, 255, 0),
+                          foregroundColor: Colors.white,
+                          onPressed: () {
+                            promptDialog('Cyberlimbs Legs', 7, context);
+                          },
+                          child: const Icon(Icons.add_circle_outline_rounded),
+                        ),
+                      )
+                    ],
+                  )))),
     );
+  }
+
+  Future<void> promptDialog(String label, int index, BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: Text('Add $label Cyberware:'),
+              content: TextField(
+                controller: _controller[index],
+                onChanged: (value) {
+                  setState(() {});
+                },
+                style: const TextStyle(fontSize: 35),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  style: TextButton.styleFrom(
+                      textStyle: Theme.of(context).textTheme.labelMedium),
+                  child: const Text('Add'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                      textStyle: Theme.of(context).textTheme.labelMedium),
+                  child: const Text('Close'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ]);
+        });
   }
 }

@@ -9,6 +9,7 @@ class Presenter {
   Random rand = new Random();
   Model model = new Model();
   String globalDropDown = '';
+  String saveNotes = '';
 
   Presenter();
 

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cybersheet/main.dart';
 import 'package:cybersheet/model/model.dart';
+import 'package:flutter/cupertino.dart';
 
 /// This file contains all constant variables used in the cybersheet application
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
@@ -908,3 +909,4 @@ List<Armor> armor = [
   Armor("Heavy Armorjack", 13, 0, true, 13)
 ];
 
+Key missingKey = const Key('missing');

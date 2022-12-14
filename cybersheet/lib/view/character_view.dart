@@ -1,9 +1,15 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+import 'dart:html' as webFile;
+
 import 'package:cybersheet/view/character_view_cyberware.dart';
 import 'package:cybersheet/view/character_view_equipment.dart';
 import 'package:cybersheet/view/character_view_lifepath.dart';
 import 'package:cybersheet/view/character_view_notes.dart';
 import 'package:cybersheet/view/character_view_overview.dart';
 import 'package:cybersheet/view/character_view_skills.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 import '../constants.dart';
@@ -28,6 +34,22 @@ class _EditChar extends State<EditChar> with TickerProviderStateMixin {
         length: 6,
         child: Scaffold(
             appBar: AppBar(
+              actions: [
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonRed,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 15),
+                      textStyle:
+                          const TextStyle(fontSize: 20, fontFamily: 'Kontakt'),
+                    ),
+                    onPressed: (() {
+                      setState(() {
+                        _writeSelectedFile(context);
+                      });
+                    }),
+                    child: const Text('Save Edgerunner'))
+              ],
               toolbarHeight: 120,
               backgroundColor: cyberRed,
               automaticallyImplyLeading: false,
@@ -54,6 +76,21 @@ class _EditChar extends State<EditChar> with TickerProviderStateMixin {
               CharacterLifepath(),
               CharacterNotes(),
             ])));
+  }
+
+  _writeSelectedFile(context) async {
+    // final List<int> codeUnits = jsonEncode(presenter.model).codeUnits;
+    // Uint8List uint8list = Uint8List.fromList(codeUnits);
+    // print(uint8list);
+    // print(jsonEncode(presenter.model));
+
+    var blob = webFile.Blob(
+        [jsonEncode(presenter.model)], 'application/json', 'native');
+    var anchorElement = webFile.AnchorElement(
+      href: webFile.Url.createObjectUrlFromBlob(blob).toString(),
+    )
+      ..setAttribute("download", "${presenter.model.character.name}.json")
+      ..click();
   }
 }
 //         Container(

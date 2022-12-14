@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../constants.dart';
 import '../main.dart';
+import '../model/model.dart';
 
 class CharacterOverview extends StatefulWidget {
   const CharacterOverview({super.key});
@@ -12,6 +13,9 @@ class CharacterOverview extends StatefulWidget {
 }
 
 class _CharacterOverviewState extends State<CharacterOverview> {
+  List<Card> rangedWeaponCards = [];
+  List<Card> skillCards = [];
+
   final List<TextEditingController> _controller = [
     TextEditingController(), // INT
     TextEditingController(), // REF
@@ -87,6 +91,8 @@ class _CharacterOverviewState extends State<CharacterOverview> {
     _controller[11].text = EMP_MAX.toString();
     _controller[12].text = health.toString();
     _controller[13].text = name;
+
+    rangedWeaponCards = _createWeaponRangedCards();
   }
 
   @override
@@ -298,6 +304,45 @@ class _CharacterOverviewState extends State<CharacterOverview> {
                                         ])
                                   ],
                                 ))
+                          ],
+                        )),
+                    const SizedBox(
+                      width: 35,
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Weapons',
+                                style: TextStyle(
+                                    fontSize: 35, color: Colors.white)),
+                            Container(
+                                color: buttonRed,
+                                height: 200,
+                                width: 400,
+                                child: ListView(
+                                    children:
+                                        List<Widget>.from(rangedWeaponCards))),
+                          ],
+                        )),
+                    const SizedBox(
+                      width: 35,
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Skills',
+                                style: TextStyle(
+                                    fontSize: 35, color: Colors.white)),
+                            Container(
+                                color: buttonRed,
+                                height: 200,
+                                width: 400,
+                                child: ListView(
+                                    children: List<Widget>.from(skillCards))),
                           ],
                         ))
                   ],
@@ -1055,5 +1100,33 @@ class _CharacterOverviewState extends State<CharacterOverview> {
                 ),
               ]);
         });
+  }
+
+  List<Card> _createWeaponRangedCards() {
+    List<Item> items = presenter.model.character.equipped.items;
+
+    List<Card> cards = [];
+
+    for (Item element in items) {
+      var key = Key('${element.name}');
+      cards.add(
+        Card(
+          key: key,
+          child: ListTile(
+            leading: IconButton(
+              icon: Icon(Icons.keyboard_alt_rounded),
+              onPressed: () {
+                setState(() {
+                  rollStat(presenter.model.character.stats.REF, context);
+                });
+              },
+            ),
+            title: Text('${element.name}'),
+          ),
+        ),
+      );
+    }
+
+    return cards;
   }
 }

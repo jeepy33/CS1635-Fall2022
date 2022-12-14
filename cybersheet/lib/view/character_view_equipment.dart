@@ -43,8 +43,19 @@ class _CharacterEquipmentState extends State<CharacterEquipment> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Weapons/Armor',
-                    style: TextStyle(fontSize: 40, color: Colors.white)),
+                Row(children: [
+                  const Text('Weapons/Armor',
+                      style: TextStyle(fontSize: 40, color: Colors.white)),
+                  FloatingActionButton(
+                    mini: true,
+                    backgroundColor: const Color.fromRGBO(255, 255, 255, 0),
+                    foregroundColor: Colors.white,
+                    onPressed: () {
+                      _addWeaponDialog(context);
+                    },
+                    child: const Icon(Icons.add_circle_outline_rounded),
+                  ),
+                ]),
                 Container(
                     color: buttonRed,
                     height: 125,
@@ -76,8 +87,19 @@ class _CharacterEquipmentState extends State<CharacterEquipment> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Outfit',
-                    style: TextStyle(fontSize: 40, color: Colors.white)),
+                Row(children: [
+                  const Text('Outfit',
+                      style: TextStyle(fontSize: 40, color: Colors.white)),
+                  FloatingActionButton(
+                    mini: true,
+                    backgroundColor: const Color.fromRGBO(255, 255, 255, 0),
+                    foregroundColor: Colors.white,
+                    onPressed: () {
+                      _addOutfitDialog(context);
+                    },
+                    child: const Icon(Icons.add_circle_outline_rounded),
+                  ),
+                ]),
                 Container(
                     color: buttonRed,
                     height: 600,
@@ -91,8 +113,19 @@ class _CharacterEquipmentState extends State<CharacterEquipment> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Stashed',
-                    style: TextStyle(fontSize: 40, color: Colors.white)),
+                Row(children: [
+                  const Text('Stashed',
+                      style: TextStyle(fontSize: 40, color: Colors.white)),
+                  FloatingActionButton(
+                    mini: true,
+                    backgroundColor: const Color.fromRGBO(255, 255, 255, 0),
+                    foregroundColor: Colors.white,
+                    onPressed: () {
+                      _addStashedDialog(context);
+                    },
+                    child: const Icon(Icons.add_circle_outline_rounded),
+                  ),
+                ]),
                 Container(
                     color: buttonRed,
                     height: 600,
@@ -111,6 +144,9 @@ class _CharacterEquipmentState extends State<CharacterEquipment> {
       orElse: () => Card(key: missingKey),
     );
     if (card.key != missingKey) {
+      presenter.model.character.equipped.removeItem(
+          card.key.toString().substring(3, card.key.toString().length - 3));
+      rangedWeaponCards.remove(card);
       return;
     }
 
@@ -121,6 +157,9 @@ class _CharacterEquipmentState extends State<CharacterEquipment> {
       orElse: () => Card(key: missingKey),
     );
     if (card.key != missingKey) {
+      presenter.model.character.equipped.removeItem(
+          card.key.toString().substring(3, card.key.toString().length - 3));
+      meleeWeaponCards.remove(card);
       return;
     }
 
@@ -131,6 +170,9 @@ class _CharacterEquipmentState extends State<CharacterEquipment> {
       orElse: () => Card(key: missingKey),
     );
     if (card.key != missingKey) {
+      presenter.model.character.equipped.removeItem(
+          card.key.toString().substring(3, card.key.toString().length - 3));
+      armorCards.remove(card);
       return;
     }
 
@@ -180,6 +222,9 @@ class _CharacterEquipmentState extends State<CharacterEquipment> {
       orElse: () => Card(key: missingKey),
     );
     if (card.key != missingKey) {
+      presenter.model.character.items.removeItem(
+          card.key.toString().substring(3, card.key.toString().length - 3));
+      stashedCards.remove(card);
       return;
     }
 
@@ -428,5 +473,188 @@ class _CharacterEquipmentState extends State<CharacterEquipment> {
     }
 
     return cards;
+  }
+
+  Future<void> _addWeaponDialog(BuildContext context) {
+    TextEditingController _controller = TextEditingController();
+
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: Text('Add to Weapons/Armor:'),
+              content: TextField(
+                controller: _controller,
+                style: const TextStyle(fontSize: 35),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  style: TextButton.styleFrom(
+                      textStyle: Theme.of(context).textTheme.labelMedium),
+                  child: const Text('Add'),
+                  onPressed: () {
+                    setState(() {
+                      presenter.model.character.equipped
+                          .addItem(Item(_controller.text));
+                      rangedWeaponCards.add(
+                        Card(
+                          key: Key('${_controller.text}'),
+                          child: ListTile(
+                            leading: IconButton(
+                              icon: Icon(Icons.fast_rewind),
+                              onPressed: () {
+                                setState(() {
+                                  moveCardLeft(Key('${_controller.text}'));
+                                });
+                              },
+                            ),
+                            title: Text('${_controller.text}'),
+                            trailing: IconButton(
+                              icon: Icon(Icons.fast_forward),
+                              onPressed: () {
+                                setState(() {
+                                  moveCardRight(Key('${_controller.text}'));
+                                });
+                              },
+                            ),
+                          ),
+                        ),
+                      );
+                    });
+                    Navigator.of(context).pop();
+                  },
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                      textStyle: Theme.of(context).textTheme.labelMedium),
+                  child: const Text('Close'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ]);
+        });
+  }
+
+  Future<void> _addOutfitDialog(BuildContext context) {
+    TextEditingController _controller = TextEditingController();
+
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: Text('Add to Outfit:'),
+              content: TextField(
+                controller: _controller,
+                style: const TextStyle(fontSize: 35),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  style: TextButton.styleFrom(
+                      textStyle: Theme.of(context).textTheme.labelMedium),
+                  child: const Text('Add'),
+                  onPressed: () {
+                    setState(() {
+                      presenter.model.character.outfit
+                          .addItem(Item(_controller.text));
+                      outfitCards.add(
+                        Card(
+                          key: Key('${_controller.text}'),
+                          child: ListTile(
+                            leading: IconButton(
+                              icon: Icon(Icons.fast_rewind),
+                              onPressed: () {
+                                setState(() {
+                                  moveCardLeft(Key('${_controller.text}'));
+                                });
+                              },
+                            ),
+                            title: Text('${_controller.text}'),
+                            trailing: IconButton(
+                              icon: Icon(Icons.fast_forward),
+                              onPressed: () {
+                                setState(() {
+                                  moveCardRight(Key('${_controller.text}'));
+                                });
+                              },
+                            ),
+                          ),
+                        ),
+                      );
+                    });
+                    Navigator.of(context).pop();
+                  },
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                      textStyle: Theme.of(context).textTheme.labelMedium),
+                  child: const Text('Close'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ]);
+        });
+  }
+
+  Future<void> _addStashedDialog(BuildContext context) {
+    TextEditingController _controller = TextEditingController();
+
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: Text('Add to Stashed:'),
+              content: TextField(
+                controller: _controller,
+                style: const TextStyle(fontSize: 35),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  style: TextButton.styleFrom(
+                      textStyle: Theme.of(context).textTheme.labelMedium),
+                  child: const Text('Add'),
+                  onPressed: () {
+                    setState(() {
+                      presenter.model.character.items
+                          .addItem(Item(_controller.text));
+                      stashedCards.add(
+                        Card(
+                          key: Key('${_controller.text}'),
+                          child: ListTile(
+                            leading: IconButton(
+                              icon: Icon(Icons.fast_rewind),
+                              onPressed: () {
+                                setState(() {
+                                  moveCardLeft(Key('${_controller.text}'));
+                                });
+                              },
+                            ),
+                            title: Text('${_controller.text}'),
+                            trailing: IconButton(
+                              icon: Icon(Icons.fast_forward),
+                              onPressed: () {
+                                setState(() {
+                                  moveCardRight(Key('${_controller.text}'));
+                                });
+                              },
+                            ),
+                          ),
+                        ),
+                      );
+                    });
+                    Navigator.of(context).pop();
+                  },
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                      textStyle: Theme.of(context).textTheme.labelMedium),
+                  child: const Text('Close'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ]);
+        });
   }
 }

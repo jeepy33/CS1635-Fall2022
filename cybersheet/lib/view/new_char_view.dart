@@ -1,3 +1,4 @@
+import 'package:cybersheet/model/model.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 import '../constants.dart';
@@ -12,6 +13,12 @@ class NewChar extends StatefulWidget {
 class _NewCharState extends State<NewChar> {
   String template = '';
   final List<bool> _selections = List<bool>.filled(3, false);
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    presenter.model.character = Edgerunner();
+  }
 
   @override
   Widget build(BuildContext context) {

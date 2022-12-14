@@ -9,6 +9,7 @@ class CharacterCyberware extends StatefulWidget {
 }
 
 class _CharacterCyberwareState extends State<CharacterCyberware> {
+
   final List<TextEditingController> _controller = [
     TextEditingController(), // Fashionware
     TextEditingController(), // Neuralware
@@ -19,6 +20,7 @@ class _CharacterCyberwareState extends State<CharacterCyberware> {
     TextEditingController(), // Cyberlimbs
     TextEditingController(), // Borgware
   ];
+
 
   @override
   Widget build(BuildContext context) {

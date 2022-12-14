@@ -206,47 +206,50 @@ class _CharacterSkillsState extends State<CharacterSkills> {
         text: 'Education',
         content: Padding(
           padding: const EdgeInsets.all(8),
-          child: Column(children: <Widget>[
-            ...widgetEd,
-            for (String key in educationSkills.keys)
-              Row(
-                children: [
-                  Text(key), // Display the key
-                  SizedBox(
-                      width:
-                          8), // Add some space between the key and the text field
-                  Expanded(
-                    child: TextField(
-                      // inputFormatters: [
-                      //   TextInputFormatter(RegExp("^[0-9]$|^10$")),
-                      // ],
-                      controller: TextEditingController(
-                          text: "${mapKeys(educationSkills, key)}"),
-                      decoration: InputDecoration(
-                        hintText: "Value must be in the range 0-10",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                              4), // Set the border radius to make the text field smaller
+          child: SingleChildScrollView(
+            child: Column(children: <Widget>[
+              ...widgetEd,
+              for (String key in educationSkills.keys)
+                Row(
+                  children: [
+                    Text(key), // Display the key
+                    SizedBox(
+                        width:
+                            8), // Add some space between the key and the text field
+                    Expanded(
+                      child: TextField(
+                        // inputFormatters: [
+                        //   TextInputFormatter(RegExp("^[0-9]$|^10$")),
+                        // ],
+                        controller: TextEditingController(
+                            text: "${mapKeys(educationSkills, key)}"),
+                        decoration: InputDecoration(
+                          hintText: "Value must be in the range 0-10",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(
+                                4), // Set the border radius to make the text field smaller
+                          ),
                         ),
+                        onChanged: (value) {
+                          if (int.tryParse(value) != null &&
+                              int.parse(value) >= 0 &&
+                              int.parse(value) <= 10) {
+                            setState(() {
+                              educationSkills[key] = value;
+                              setState(() {});
+                            });
+                          }
+                        },
                       ),
-                      onChanged: (value) {
-                        if (int.tryParse(value) != null &&
-                            int.parse(value) >= 0 &&
-                            int.parse(value) <= 10) {
-                          setState(() {
-                            educationSkills[key] = value;
-                            setState(() {});
-                          });
-                        }
-                      },
                     ),
-                  ),
-                ],
-              ),
-          ]),
+                  ],
+                ),
+            ]),
+          ),
         ),
       ),
     );
+
 ////////////////////////////
     Set<Widget> widgetFight = {};
     tabs.add(
@@ -398,44 +401,46 @@ class _CharacterSkillsState extends State<CharacterSkills> {
         text: 'Technique',
         content: Padding(
           padding: const EdgeInsets.all(8),
-          child: Column(children: <Widget>[
-            ...widgetTech,
-            for (String key in techniqueSkills.keys)
-              Row(
-                children: [
-                  Text(key), // Display the key
-                  SizedBox(
-                      width:
-                          8), // Add some space between the key and the text field
-                  Expanded(
-                    child: TextField(
-                      // inputFormatters: [
-                      //   TextInputFormatter(RegExp("^[0-9]$|^10$")),
-                      // ],
-                      controller: TextEditingController(
-                          text: "${mapKeys(techniqueSkills, key)}"),
-                      decoration: InputDecoration(
-                        hintText: "Value must be in the range 0-10",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                              4), // Set the border radius to make the text field smaller
+          child: SingleChildScrollView(
+            child: Column(children: <Widget>[
+              ...widgetTech,
+              for (String key in techniqueSkills.keys)
+                Row(
+                  children: [
+                    Text(key), // Display the key
+                    SizedBox(
+                        width:
+                            8), // Add some space between the key and the text field
+                    Expanded(
+                      child: TextField(
+                        // inputFormatters: [
+                        //   TextInputFormatter(RegExp("^[0-9]$|^10$")),
+                        // ],
+                        controller: TextEditingController(
+                            text: "${mapKeys(techniqueSkills, key)}"),
+                        decoration: InputDecoration(
+                          hintText: "Value must be in the range 0-10",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(
+                                4), // Set the border radius to make the text field smaller
+                          ),
                         ),
+                        onChanged: (value) {
+                          if (int.tryParse(value) != null &&
+                              int.parse(value) >= 0 &&
+                              int.parse(value) <= 10) {
+                            setState(() {
+                              techniqueSkills[key] = value;
+                              setState(() {});
+                            });
+                          }
+                        },
                       ),
-                      onChanged: (value) {
-                        if (int.tryParse(value) != null &&
-                            int.parse(value) >= 0 &&
-                            int.parse(value) <= 10) {
-                          setState(() {
-                            techniqueSkills[key] = value;
-                            setState(() {});
-                          });
-                        }
-                      },
                     ),
-                  ),
-                ],
-              ),
-          ]),
+                  ],
+                ),
+            ]),
+          ),
         ),
       ),
     );

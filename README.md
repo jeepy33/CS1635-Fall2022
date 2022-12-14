@@ -20,11 +20,16 @@ In order to save your character for future use, you must select `Save Edgerunner
 The Overview page allows players to get a glimpse of their characters stats, health, equipped weapons, and other key components. Stats can be edited as text fields, and can be rolled by selecting the button with the name of the stat. Weapons can be rolled by selecting the keyboard icon in the specific weapon to be rolled. Health and Humanity are altered based on stats they are derived from. 
 
 #### Skills Page
+The Skills page gives the player a snapshot into their characters available skills and automatically assigns the values to them based on character stats.
 
 #### Equipment Page
+The Equipment page displays the character's items and can be used to move items around (whether they are equipped/stashed or on your person) create and delete items. Deleting items involves moving them right inside the stashed column or left inside the weapons column.
 
 #### Cyberware Page
+The Cyberware page displays the character's cyberware augments and allows the user to open a dialog to record the various cyberware their character has installed.
 
 #### Lifepath Page
+The Lifepath page gives a view of the backstory options the user selected during character creation.
 
 #### Notes Page
+The Notes page is a place for the user to jot down session notes in between uses of the character sheet.

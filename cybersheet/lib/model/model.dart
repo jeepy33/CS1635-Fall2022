@@ -37,6 +37,7 @@ class Model {
     character.equipped.fromList(List.from(json['equipped']));
     character.cyberware.fromList(List.from(json['cyberware']));
     character.outfit.fromList(List.from(json['outfit']));
+    character.saveNotes = json['notes'];
   }
 
   Map<String, dynamic> toJson() => {
@@ -64,6 +65,7 @@ class Model {
         'equipped': character.equipped.toList(),
         'cyberware': character.cyberware.toList(),
         'outfit': character.outfit.toList(),
+        'notes': character.saveNotes
       };
 
   Edgerunner getEdgerunner() {
@@ -76,6 +78,7 @@ class Model {
 }
 
 class Edgerunner {
+  String saveNotes = '';
   Template template = Template.NONE;
   String name = 'Test Edgerunner';
   Lifepath lifepath = new Lifepath();

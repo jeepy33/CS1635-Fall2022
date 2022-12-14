@@ -34,6 +34,15 @@ class _EditChar extends State<EditChar> with TickerProviderStateMixin {
         length: 6,
         child: Scaffold(
             appBar: AppBar(
+              leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back_ios_new_sharp,
+                  size: 50,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
               actions: [
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -59,14 +68,12 @@ class _EditChar extends State<EditChar> with TickerProviderStateMixin {
                 color: Colors.white,
               ),
               bottom: const TabBar(indicatorColor: Colors.white, tabs: [
-                Tab(icon: Icon(Icons.badge_sharp), text: ('Overview')),
-                Tab(icon: Icon(Icons.construction_outlined), text: ('Skills')),
-                Tab(icon: Icon(Icons.backpack), text: ('Equipment')),
-                Tab(
-                    icon: Icon(Icons.account_tree_outlined),
-                    text: ('Cyberware')),
-                Tab(icon: Icon(Icons.people_outlined), text: ('Lifepaths')),
-                Tab(icon: Icon(Icons.note_add), text: ('Notes')),
+                Tab(icon: Icon(Icons.badge_sharp)),
+                Tab(icon: Icon(Icons.construction_outlined)),
+                Tab(icon: Icon(Icons.sports_martial_arts_sharp)),
+                Tab(icon: Icon(Icons.account_tree_outlined)),
+                Tab(icon: Icon(Icons.people_outlined)),
+                Tab(icon: Icon(Icons.note_outlined)),
               ]),
             ),
             backgroundColor: cyberRed,
